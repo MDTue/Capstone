@@ -1,4 +1,4 @@
-package com.example.demo;
+package capstone.herbs;
 
 import java.util.Arrays;
 import java.util.List;
