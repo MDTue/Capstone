@@ -1,24 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import "./HerbsEdit.css";
 
 function App() {
-
-    const [greeting, setGreeting] = useState('')
-
-    useEffect(() => {
-        fetch('/api/greeting', {
-            method: 'GET',
-            headers: {
-                'Accept': 'text/plain'
-            }
-        })
-            .then(response => response.text())
-            .then(text => setGreeting(text))
-            .catch(err => setGreeting('Da ist etwas schief gelaufen'));
-    }, []);
-
     return (
-        <div>
-            {greeting}
+        <div className={'app'}>
+            <div className={'leftSide'}>
+
+            </div>
+            <div className={'rightSide'}>
+                <span className={'suche'}>Suche</span>
+                <span className={'HerbName'}>Name</span>
+                <span className={'category'}>Kategorie</span>
+                <span className={'herbDescription'}>Beschreibung</span>
+                <span className={'category'}>Kategorie</span>
+                <span className={'herbApplication'}>Anwendung</span>
+                <span className={'category'}>Kategorie</span>
+            </div>
         </div>
     );
 }

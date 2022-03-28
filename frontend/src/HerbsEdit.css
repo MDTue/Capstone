@@ -1,0 +1,36 @@
+body, html {
+    background-color: #cccccc;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.leftSide {
+    background-color: #cccccc;
+    height: 100%;
+}
+
+.rightSide {
+    background-color: #cccccc;
+    height:100%;
+    display: grid;
+    align-items: center;
+    grid-template-rows: 1fr 1fr 5fr;
+}
+.suche{
+    border: blue solid 1px;
+}
+
+.herbName{
+    border: gold solid 1px;
+}
+
+.herbDescription{
+    border: red solid 1px;
+}
+.herbApplication{
+    border: blue solid 1px;
+}
+.category{
+    border: green solid 1px;
+}
