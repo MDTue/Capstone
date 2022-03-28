@@ -11,7 +11,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class HerbsController {
     private final HerbsService herbsService;
-    private final HerbsRepository herbsRepository;
+    //private final HerbsRepository herbsRepository;
 
     @PostMapping
     public List<HerbsItem> createHerbsItem(@RequestBody HerbsItem newHerb){

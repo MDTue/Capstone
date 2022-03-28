@@ -1,15 +1,16 @@
 import HerbsItem from "./HerbsItem";
 import {useEffect, useState} from "react";
 import {HerbsItemDTO} from "./HerbsModel";
+import "./HerbsEdit.css";
 
 
 
 
-interface HerbsItemProps{
-    onHerbsCreation: (herbsItem: Array<HerbsItemDTO>)=> void;
+interface HerbsFromProps{
+    onHerbsCreation: ()=> void;
 }
 
-export default function HerbsEdit(props:HerbsItemProps){
+export default function HerbsEdit(props:HerbsFromProps){
     const[herbsName, setHerbsName] = useState(localStorage.getItem('herbsName')??'')
     const[herbsNameCategory, setHerbsNameCategory] = useState('')
     const[herbsDescription, setHerbsDescription] = useState(localStorage.getItem('herbDescription'))
@@ -45,7 +46,7 @@ export default function HerbsEdit(props:HerbsItemProps){
             .then((herbsFromBackend: Array<HerbsItemDTO>) => {
                 setHerbsName('');
                 setHerbsDescription('');
-                props.onHerbsCreation(herbsFromBackend);
+                props.onHerbsCreation();
             })
             .catch(e=> setErrorMessage(e.message));
     }
@@ -56,14 +57,16 @@ export default function HerbsEdit(props:HerbsItemProps){
 
 
     return(
-        <div className={'herbsform'}>
-            <input className={'herbsform'} type="text" placeholder={"Name"} value={herbsName} onChange={ev => setHerbsName(ev.target.value)}/>
-            <input className={'herbsform'} type="text" placeholder={"Kategorie Pflanze"} value={herbsNameCategory} onChange={ev => setHerbsNameCategory(ev.target.value)}/>
-            <input className={'herbsform'} type="text" placeholder={"Beschreibung"} value={herbsApplication} onChange={ev => setHerbsApplication(ev.target.value)}/>
-            <input className={'herbsform'} type="text" placeholder={"Kategorie Beschreibung"} value={herbsApplicationCategory} onChange={ev => setHerbsDescriptionCategory(ev.target.value)}/>
-            <input className={'herbsform'} type="text" placeholder={"Anwendung"} value={herbsApplication} onChange={ev => setHerbsApplication(ev.target.value)}/>
-            <input className={'herbsform'} type="text" placeholder={"Kategorie Anwendung"} value={herbsApplicationCategory} onChange={ev => setHerbsApplicationCategory(ev.target.value)}/>
-            <button onClick={createHerb}>Speichern</button>
+        <div className={'page'}>
+            <div className={'rightSide'}>
+                <input className={'herbName'} type="text" placeholder={"Name"} value={herbsName} onChange={ev => setHerbsName(ev.target.value)}/>
+                <input className={'category'} type="text" placeholder={"Kategorie Pflanze"} value={herbsNameCategory} onChange={ev => setHerbsNameCategory(ev.target.value)}/>
+                <input className={'herbDescription'} type="text" placeholder={"Beschreibung"} value={herbsApplication} onChange={ev => setHerbsApplication(ev.target.value)}/>
+                <input className={'category'} type="text" placeholder={"Kategorie Beschreibung"} value={herbsApplicationCategory} onChange={ev => setHerbsDescriptionCategory(ev.target.value)}/>
+                <input className={'herbApplication'} type="text" placeholder={"Anwendung"} value={herbsApplication} onChange={ev => setHerbsApplication(ev.target.value)}/>
+                <input className={'category'} type="text" placeholder={"Kategorie Anwendung"} value={herbsApplicationCategory} onChange={ev => setHerbsApplicationCategory(ev.target.value)}/>
+                <button onClick={createHerb}>Speichern</button>
+            </div>
         </div>
 
 

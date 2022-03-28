@@ -6,6 +6,6 @@ interface HerbsItemProps{
 }
 
 export default function HerbsItem(props:HerbsItemProps){
-
-
 }
+
+
