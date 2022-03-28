@@ -10,10 +10,13 @@ import org.springframework.data.annotation.Id;
 @AllArgsConstructor
 public class HerbsItem {
     @Id
-    private String Id;
-    private String name;
-    private String description;
-    private String application;
+    private String HerbsId;
+    private String herbsName;
+    private String herbsNameCategory;
+    private String herbsDescription;
+    private String herbsDescriptionCategory;
+    private String herbsApplication;
+    private String herbsApplicationCategory;
     private String userId;
 
 }

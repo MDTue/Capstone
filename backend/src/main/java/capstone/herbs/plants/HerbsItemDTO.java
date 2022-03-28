@@ -12,8 +12,13 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class HerbsItemDTO {
-    private String name;
-    private String description;
-    private String application;
+    private String herbsName;
+    private String herbsNameCategory;
+    private String herbsDescription;
+    private String herbsDescriptionCategory;
+    private String herbsApplication;
+    private String herbsApplicationCategory;
     private List<Link> links;
+
+
 }
