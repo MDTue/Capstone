@@ -10,12 +10,11 @@ export default function HerbsPage(){
     const[errorMessage, setErrorMessage]= useState('');
 
     const fetchAll = useCallback(() => {
-        fetch(`${process.env.REACT_APP_BASE_URL}/herbs`,{
+        fetch(`${process.env.REACT_APP_BASE_URL}/api/items`,{
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`,
-            },
+                },
         })
             .then(response => {
                 if (response.status===200) {

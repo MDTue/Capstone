@@ -1,7 +1,8 @@
-import HerbsItem from "./HerbsItem";
 import {useEffect, useState} from "react";
 import {HerbsItemDTO} from "./HerbsModel";
 import "./HerbsEdit.css";
+import "./HerbsPage.css";
+import logo from "../src/images/LogoHoerbs.png"
 
 
 
@@ -13,7 +14,7 @@ interface HerbsFromProps{
 export default function HerbsEdit(props:HerbsFromProps){
     const[herbsName, setHerbsName] = useState(localStorage.getItem('herbsName')??'')
     const[herbsNameCategory, setHerbsNameCategory] = useState('')
-    const[herbsDescription, setHerbsDescription] = useState(localStorage.getItem('herbDescription'))
+    const[herbsDescription, setHerbsDescription] = useState(localStorage.getItem('herbDescription')??'')
     const[herbsDescriptionCategory, setHerbsDescriptionCategory] = useState('')
     const[herbsApplication, setHerbsApplication] = useState('')
     const[herbsApplicationCategory, setHerbsApplicationCategory] = useState('')
@@ -22,11 +23,10 @@ export default function HerbsEdit(props:HerbsFromProps){
     const[token] = useState(localStorage.getItem('token') ?? '');
 
     const createHerb = () => {
-        fetch(`${process.env.REACT_APP_BASE_URL}/herbs`,{
+        fetch(`${process.env.REACT_APP_BASE_URL}/api/items`,{
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type' : 'application/json'
+               'Content-Type' : 'application/json'
             },
             body: JSON.stringify({
                 herbsName: herbsName,
@@ -51,21 +51,27 @@ export default function HerbsEdit(props:HerbsFromProps){
             .catch(e=> setErrorMessage(e.message));
     }
     useEffect(() => {
-        localStorage.setHerbsName('herbsName',herbsName);
-        localStorage.setHerbsDescription('herbsdescription',herbsDescription);
+        localStorage.setItem('herbsName',herbsName);
+        setHerbsNameCategory('');
+        localStorage.setItem('herbsdescription',herbsDescription);
+        setHerbsDescriptionCategory('');
+        setHerbsApplication('');
+        setHerbsApplicationCategory('');
     }, [herbsName, herbsDescription]);
 
 
     return(
         <div className={'page'}>
+            <div className={'header'}>Wildkräuter</div>
+            <img src={logo} alt="Logo" className={'logo'} />
             <div className={'rightSide'}>
                 <input className={'herbName'} type="text" placeholder={"Name"} value={herbsName} onChange={ev => setHerbsName(ev.target.value)}/>
-                <input className={'category'} type="text" placeholder={"Kategorie Pflanze"} value={herbsNameCategory} onChange={ev => setHerbsNameCategory(ev.target.value)}/>
-                <input className={'herbDescription'} type="text" placeholder={"Beschreibung"} value={herbsApplication} onChange={ev => setHerbsApplication(ev.target.value)}/>
-                <input className={'category'} type="text" placeholder={"Kategorie Beschreibung"} value={herbsApplicationCategory} onChange={ev => setHerbsDescriptionCategory(ev.target.value)}/>
-                <input className={'herbApplication'} type="text" placeholder={"Anwendung"} value={herbsApplication} onChange={ev => setHerbsApplication(ev.target.value)}/>
-                <input className={'category'} type="text" placeholder={"Kategorie Anwendung"} value={herbsApplicationCategory} onChange={ev => setHerbsApplicationCategory(ev.target.value)}/>
-                <button onClick={createHerb}>Speichern</button>
+                <input className={'herbNameCategory'} type="text" placeholder={"Kategorie Pflanze"} value={herbsNameCategory} onChange={ev => setHerbsNameCategory(ev.target.value)}/>
+                <textarea className={'herbDescription'} rows={10}  placeholder= {"Beschreibung"} value={herbsDescription} onChange={ev => setHerbsDescription(ev.target.value)}/>
+                <input className={'herbDescriptionCategory'} type="text" placeholder={"Kategorie Beschreibung"} value={herbsDescriptionCategory} onChange={ev => setHerbsDescriptionCategory(ev.target.value)}/>
+                <textarea className={'herbApplication'} rows={10} placeholder={"Anwendung"} value={herbsApplication} onChange={ev => setHerbsApplication(ev.target.value)}/>
+                <input className={'herbApplicationCategory'} type="text" placeholder={"Kategorie Anwendung"} value={herbsApplicationCategory} onChange={ev => setHerbsApplicationCategory(ev.target.value)}/>
+                <button className={'buttonSave'} onClick={createHerb}>Speichern</button>
             </div>
         </div>
 

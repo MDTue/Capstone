@@ -4,10 +4,37 @@ body, html {
     height: 100%;
     box-sizing: border-box;
 }
+.suche{
+    grid-column-start: 3;
+    grid-row-start: 1;
+    border: blue solid 1px;
+}
+.logo{
+    position: absolute;
+    top: 1rem;
+    right: 45rem;
+    border-radius: 70%;
+    width: 100px;
 
+
+}
+.header {
+    position: absolute;
+    top: 1rem;
+    left: 40rem;
+    font-size: 24px;
+    font-family: "American Typewriter";
+}
 .leftSide {
     background-color: #cccccc;
     height: 100%;
+    width:15rem;
+    grid-column-start: 1;
+    grid-column-end:2;
+    grid-row-start:5;
+}
+.page{
+    grid-template-columns: 15% 80% 2%;
 }
 
 .rightSide {
@@ -16,21 +43,46 @@ body, html {
     display: grid;
     align-items: center;
     grid-template-rows: 1fr 1fr 5fr;
+    grid-column-start: 2;
 }
-.suche{
-    border: blue solid 1px;
-}
-
 .herbName{
+    font-size: large;
     border: gold solid 1px;
+    grid-column-start: 2;
+    grid-row-start: 2;
 }
-
+.herbNameCategory{
+    grid-column-start: 3;
+    grid-row-start: 2;
+    width:15rem;
+    margin: auto;
+}
 .herbDescription{
     border: red solid 1px;
+    grid-column-start: 2;
+    grid-row-start: 3;
+    }
+.herbDescriptionCategory{
+    grid-column-start: 3;
+    grid-row-start: 3;
+    width:15rem;
+    margin: auto;
 }
 .herbApplication{
     border: blue solid 1px;
+    grid-column-start: 2;
+    grid-row-start: 6;
+    grid-row-end: 8;
 }
-.category{
+.herbApplicationCategory{
     border: green solid 1px;
+    grid-column-start: 3;
+    grid-row-start: 6;
+    width:15rem;
+    margin: auto;
+     }
+.buttonSave{
+    position: absolute;
+    top: 5rem;
+    right: 10rem;
 }
