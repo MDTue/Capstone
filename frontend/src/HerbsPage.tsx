@@ -32,8 +32,14 @@ export default function HerbsPage(){
         fetchAll();
     },[fetchAll]);
 
+    useEffect(() => {
+            const timoutId = setTimeout(() => setErrorMessage(''), 10000)
+            return () => clearTimeout(timoutId)
+        }, [errorMessage]
+    )
     return(
         <div>
+            <div className={'error'} > {errorMessage}  </div>
             <div className={"page"}>
                 <div className={"leftSide"}>
                     <HerbsList herbs={herbs} />
