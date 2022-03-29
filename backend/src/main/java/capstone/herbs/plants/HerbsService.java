@@ -1,7 +1,10 @@
 package capstone.herbs.plants;
 
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
 public class HerbsService {
     private final HerbsRepository herbsRepository;
 
