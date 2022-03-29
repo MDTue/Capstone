@@ -30,7 +30,7 @@ export default function HerbsPage(){
 
     useEffect(() =>{
         fetchAll();
-    },[]);
+    },[fetchAll]);
 
     return(
         <div>

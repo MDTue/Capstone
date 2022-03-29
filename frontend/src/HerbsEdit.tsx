@@ -20,7 +20,7 @@ export default function HerbsEdit(props:HerbsFromProps){
     const[herbsApplicationCategory, setHerbsApplicationCategory] = useState('')
 
     const[errorMessage, setErrorMessage] = useState('')
-    const[token] = useState(localStorage.getItem('token') ?? '');
+    //const[token] = useState(localStorage.getItem('token') ?? '');
 
     const createHerb = () => {
         fetch(`${process.env.REACT_APP_BASE_URL}/api/items`,{
@@ -59,9 +59,15 @@ export default function HerbsEdit(props:HerbsFromProps){
         setHerbsApplicationCategory('');
     }, [herbsName, herbsDescription]);
 
-
+    useEffect(() => {
+            const timoutId = setTimeout(() => setErrorMessage(''), 10000)
+            return () => clearTimeout(timoutId)
+        }, [errorMessage]
+    )
     return(
+
         <div className={'page'}>
+            <div className={'error'} > {errorMessage}  </div>
             <div className={'header'}>Wildkräuter</div>
             <img src={logo} alt="Logo" className={'logo'} />
             <div className={'rightSide'}>
