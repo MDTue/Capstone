@@ -11,7 +11,7 @@ export default function Login() {
     const [errorMessage, setErrorMessage] = useState('')
     const nav = useNavigate()
 
-    OnLogout()
+   // OnLogout()
 
     const loginUser = () => {
         fetch(`${process.env.REACT_APP_BASE_URL}/api/login`,{
@@ -20,7 +20,7 @@ export default function Login() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                email: loginName,
+                username: loginName,
                 password: loginPW
             })
         })
@@ -32,11 +32,11 @@ export default function Login() {
             })
             .then (response=>{
                 localStorage.setItem('token',response.token)
-                nav("/herbslist")
+                nav("/HerbsPage")
             })
 
             .catch(e=> setErrorMessage(errorMessage));
-        nav("/register")
+        nav("/HerbsPage")
     }
 
 

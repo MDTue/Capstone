@@ -3,6 +3,7 @@ import {HerbsItemDTO} from "./HerbsModel";
 import "./HerbsEdit.css";
 import "./HerbsPage.css";
 import logo from "../src/images/LogoHoerbs.png"
+import {Link} from "react-router-dom";
 
 
 
@@ -18,11 +19,11 @@ export default function HerbsEdit(props:HerbsFromProps){
     const[herbsDescriptionCategory, setHerbsDescriptionCategory] = useState('')
     const[herbsApplication, setHerbsApplication] = useState('')
     const[herbsApplicationCategory, setHerbsApplicationCategory] = useState('')
-
     const[errorMessage, setErrorMessage] = useState('')
-    //const[token, setToken] = useState(localStorage.getItem('token') ?? '');
+    const[token] = useState(localStorage.getItem('token') ?? '');
 
     const createHerb = () => {
+        debugger
         fetch(`${process.env.REACT_APP_BASE_URL}/api/items`,{
             method: 'POST',
             headers: {
@@ -30,7 +31,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
             },
             body: JSON.stringify({
-                herbsName: herbsName,
+                "herbsName": herbsName,
                 herbsNameCategory: herbsNameCategory,
                 herbsDescription: herbsDescription,
                 herbsDescriptionCategory : herbsDescriptionCategory,
@@ -51,6 +52,7 @@ export default function HerbsEdit(props:HerbsFromProps){
             })
             .catch(e=> setErrorMessage(e.message));
     }
+    /*
     useEffect(() => {
         localStorage.setItem('herbsName',herbsName);
         setHerbsNameCategory('');
@@ -59,7 +61,7 @@ export default function HerbsEdit(props:HerbsFromProps){
         setHerbsApplication('');
         setHerbsApplicationCategory('');
     }, [herbsName, herbsDescription]);
-
+*/
     useEffect(() => {
             const timoutId = setTimeout(() => setErrorMessage(''), 10000)
             return () => clearTimeout(timoutId)
@@ -71,16 +73,45 @@ export default function HerbsEdit(props:HerbsFromProps){
             <div className={'error'} > {errorMessage}  </div>
             <div className={'header'}>Wildkräuter</div>
             <img src={logo} alt="Logo" className={'logo'} />
-            <div className={'rightSide'}>
-                <input className={'herbName'} type="text" placeholder={"Name"} value={herbsName} onChange={ev => setHerbsName(ev.target.value)}/>
-                <input className={'herbNameCategory'} type="text" placeholder={"Kategorie Pflanze"} value={herbsNameCategory} onChange={ev => setHerbsNameCategory(ev.target.value)}/>
-                <textarea className={'herbDescription'} rows={10}  placeholder= {"Beschreibung"} value={herbsDescription} onChange={ev => setHerbsDescription(ev.target.value)}/>
-                <input className={'herbDescriptionCategory'} type="text" placeholder={"Kategorie Beschreibung"} value={herbsDescriptionCategory} onChange={ev => setHerbsDescriptionCategory(ev.target.value)}/>
-                <textarea className={'herbApplication'} rows={10} placeholder={"Anwendung"} value={herbsApplication} onChange={ev => setHerbsApplication(ev.target.value)}/>
-                <input className={'herbApplicationCategory'} type="text" placeholder={"Kategorie Anwendung"} value={herbsApplicationCategory} onChange={ev => setHerbsApplicationCategory(ev.target.value)}/>
-                <button className={'buttonSave'} onClick={createHerb}>Speichern</button>
-            </div>
+            {/*{token ?*/}
+                <div className={'rightSide'}>
+                    <input className={'herbName'} type="text" placeholder={"Name"} value={herbsName}
+                           onChange={ev => setHerbsName(ev.target.value)}/>
+                    <input className={'herbNameCategory'} type="text" placeholder={"Kategorie Pflanze"}
+                           value={herbsNameCategory} onChange={ev => setHerbsNameCategory(ev.target.value)}/>
+                    <textarea className={'herbDescription'} rows={10} placeholder={"Beschreibung"}
+                              value={herbsDescription} onChange={ev => setHerbsDescription(ev.target.value)}/>
+                    <input className={'herbDescriptionCategory'} type="text" placeholder={"Kategorie Beschreibung"}
+                           value={herbsDescriptionCategory}
+                           onChange={ev => setHerbsDescriptionCategory(ev.target.value)}/>
+                    <textarea className={'herbApplication'} rows={10} placeholder={"Anwendung"} value={herbsApplication}
+                              onChange={ev => setHerbsApplication(ev.target.value)}/>
+                    <input className={'herbApplicationCategory'} type="text" placeholder={"Kategorie Anwendung"}
+                           value={herbsApplicationCategory}
+                           onChange={ev => setHerbsApplicationCategory(ev.target.value)}/>
+                    <button className={'buttonSave'} onClick={createHerb}>Speichern</button>
+                </div>
+           {/*} :
+                <div className={'rightSide'}>
+
+                    <input className={'herbName'} type="text" placeholder={"Name"} value={herbsName}
+                           onChange={ev => setHerbsName(ev.target.value)} disabled={true} />
+                    <input className={'herbNameCategory'} type="text" placeholder={"Kategorie Pflanze"}
+                           value={herbsNameCategory} onChange={ev => setHerbsNameCategory(ev.target.value)}disabled={true}/>
+                    <textarea className={'herbDescription'} rows={10} placeholder={"Beschreibung"}
+                              value={herbsDescription} onChange={ev => setHerbsDescription(ev.target.value)}disabled={true}/>
+                    <input className={'herbDescriptionCategory'} type="text" placeholder={"Kategorie Beschreibung"}
+                           value={herbsDescriptionCategory}
+                           onChange={ev => setHerbsDescriptionCategory(ev.target.value)}disabled={true}/>
+                    <textarea className={'herbApplication'} rows={10} placeholder={"Anwendung"} value={herbsApplication}
+                              onChange={ev => setHerbsApplication(ev.target.value)}disabled={true}/>
+                    <input className={'herbApplicationCategory'} type="text" placeholder={"Kategorie Anwendung"}
+                           value={herbsApplicationCategory}
+                           onChange={ev => setHerbsApplicationCategory(ev.target.value)}disabled={true}/>
+                </div>
+           */}
         </div>
+
 
 
     )

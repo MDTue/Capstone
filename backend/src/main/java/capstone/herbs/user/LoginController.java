@@ -27,7 +27,7 @@ public class LoginController {
     @PostMapping
     public Token login(@RequestBody LoginData loginData){
         try {
-            Authentication auth = authentificationManager.authenticate(new UsernamePasswordAuthenticationToken(loginData.getEmail(), loginData.getPassword()));
+            Authentication auth = authentificationManager.authenticate(new UsernamePasswordAuthenticationToken(loginData.getUsername(), loginData.getPassword()));
 
             Map<String, Object> claims = new HashMap<>();
             claims.put("roles", getRoles(auth));
