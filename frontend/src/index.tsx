@@ -4,6 +4,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import HerbsPage from "./HerbsPage";
+import Login from "./User/Login";
+import OnLogout from "./User/OnLogout";
 
 
 ReactDOM.render(
@@ -12,6 +14,8 @@ ReactDOM.render(
             <BrowserRouter>
                 <Routes>
                     <Route path="/herbsList" element={<HerbsPage/>}/>
+                    <Route path="login" element={<Login/>}/>
+                    <Route path="/onlogout" element={<OnLogout/>}/>
                     <Route path='*' element={<App/>} />
                 </Routes>
 

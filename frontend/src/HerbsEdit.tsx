@@ -20,13 +20,14 @@ export default function HerbsEdit(props:HerbsFromProps){
     const[herbsApplicationCategory, setHerbsApplicationCategory] = useState('')
 
     const[errorMessage, setErrorMessage] = useState('')
-    //const[token] = useState(localStorage.getItem('token') ?? '');
+    //const[token, setToken] = useState(localStorage.getItem('token') ?? '');
 
     const createHerb = () => {
         fetch(`${process.env.REACT_APP_BASE_URL}/api/items`,{
             method: 'POST',
             headers: {
-               'Content-Type' : 'application/json'
+               'Content-Type' : 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
             },
             body: JSON.stringify({
                 herbsName: herbsName,

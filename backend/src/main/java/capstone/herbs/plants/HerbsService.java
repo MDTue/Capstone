@@ -12,7 +12,7 @@ public class HerbsService {
         this.herbsRepository = herbsRepository;
     }
 
-    public void createHerbsItem(HerbsItem newHerb) {
+    public void createHerbsItem(HerbsItem newHerb ) {
         herbsRepository.save(newHerb);
     }
 
