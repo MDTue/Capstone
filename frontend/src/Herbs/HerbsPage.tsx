@@ -1,10 +1,10 @@
-import HerbsList from "./HerbList";
-import HerbsEdit from "./HerbsEdit";
+import HerbsList from "../Herbs/HerbList";
+import HerbsEdit from "../Herbs/HerbsEdit";
 import {useCallback, useEffect, useState} from "react";
-import {HerbsItemDTO} from "./HerbsModel";
-import "./HerbsPage.css"
-import "./HerbsEdit.css"
-import {Link} from "react-router-dom";
+import {HerbsItemDTO} from "../Herbs/HerbsModel";
+import "../css/HerbsPage.css"
+import "../css/HerbsEdit.css"
+import Login from "../User/Login";
 
 export default function HerbsPage(){
     const[herbs, setHerbs] = useState([] as Array<HerbsItemDTO>);

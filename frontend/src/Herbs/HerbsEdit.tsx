@@ -1,12 +1,9 @@
 import {useEffect, useState} from "react";
-import {HerbsItemDTO} from "./HerbsModel";
-import "./HerbsEdit.css";
-import "./HerbsPage.css";
-import logo from "../src/images/LogoHoerbs.png"
-import {Link} from "react-router-dom";
-
-
-
+import {HerbsItemDTO} from "../Herbs/HerbsModel";
+import "../css/HerbsEdit.css";
+import "../css/HerbsPage.css";
+import logo from "../images/LogoHoerbs.png"
+import Login from "../User/Login";
 
 interface HerbsFromProps{
     onHerbsCreation: ()=> void;
@@ -22,8 +19,8 @@ export default function HerbsEdit(props:HerbsFromProps){
     const[errorMessage, setErrorMessage] = useState('')
     const[token] = useState(localStorage.getItem('token') ?? '');
 
-    const createHerb = () => {
-        debugger
+    const createHerb = (event:React.FormEvent) => {
+        event.preventDefault()
         fetch(`${process.env.REACT_APP_BASE_URL}/api/items`,{
             method: 'POST',
             headers: {
@@ -31,7 +28,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
             },
             body: JSON.stringify({
-                "herbsName": herbsName,
+                herbsName: herbsName,
                 herbsNameCategory: herbsNameCategory,
                 herbsDescription: herbsDescription,
                 herbsDescriptionCategory : herbsDescriptionCategory,
@@ -50,18 +47,17 @@ export default function HerbsEdit(props:HerbsFromProps){
                 setHerbsDescription('');
                 props.onHerbsCreation();
             })
+            .then (() => {
+                localStorage.setItem('herbsName',herbsName);
+                setHerbsNameCategory('');
+                localStorage.setItem('herbsdescription',herbsDescription);
+                setHerbsDescriptionCategory('');
+                setHerbsApplication('');
+                setHerbsApplicationCategory('');
+            })
             .catch(e=> setErrorMessage(e.message));
     }
-    /*
-    useEffect(() => {
-        localStorage.setItem('herbsName',herbsName);
-        setHerbsNameCategory('');
-        localStorage.setItem('herbsdescription',herbsDescription);
-        setHerbsDescriptionCategory('');
-        setHerbsApplication('');
-        setHerbsApplicationCategory('');
-    }, [herbsName, herbsDescription]);
-*/
+
     useEffect(() => {
             const timoutId = setTimeout(() => setErrorMessage(''), 10000)
             return () => clearTimeout(timoutId)
@@ -73,8 +69,8 @@ export default function HerbsEdit(props:HerbsFromProps){
             <div className={'error'} > {errorMessage}  </div>
             <div className={'header'}>Wildkräuter</div>
             <img src={logo} alt="Logo" className={'logo'} />
-            {/*{token ?*/}
-                <div className={'rightSide'}>
+            {token ?
+                <form onSubmit={createHerb}  className={'rightSide'}>
                     <input className={'herbName'} type="text" placeholder={"Name"} value={herbsName}
                            onChange={ev => setHerbsName(ev.target.value)}/>
                     <input className={'herbNameCategory'} type="text" placeholder={"Kategorie Pflanze"}
@@ -89,27 +85,30 @@ export default function HerbsEdit(props:HerbsFromProps){
                     <input className={'herbApplicationCategory'} type="text" placeholder={"Kategorie Anwendung"}
                            value={herbsApplicationCategory}
                            onChange={ev => setHerbsApplicationCategory(ev.target.value)}/>
-                    <button className={'buttonSave'} onClick={createHerb}>Speichern</button>
-                </div>
-           {/*} :
+                    <button type="submit" >Speichern</button>
+                </form>
+            :
                 <div className={'rightSide'}>
 
                     <input className={'herbName'} type="text" placeholder={"Name"} value={herbsName}
-                           onChange={ev => setHerbsName(ev.target.value)} disabled={true} />
+                           onChange={ev => setHerbsName(ev.target.value)} disabled={true}/>
                     <input className={'herbNameCategory'} type="text" placeholder={"Kategorie Pflanze"}
-                           value={herbsNameCategory} onChange={ev => setHerbsNameCategory(ev.target.value)}disabled={true}/>
+                           value={herbsNameCategory} onChange={ev => setHerbsNameCategory(ev.target.value)}
+                           disabled={true}/>
                     <textarea className={'herbDescription'} rows={10} placeholder={"Beschreibung"}
-                              value={herbsDescription} onChange={ev => setHerbsDescription(ev.target.value)}disabled={true}/>
+                              value={herbsDescription} onChange={ev => setHerbsDescription(ev.target.value)}
+                              disabled={true}/>
                     <input className={'herbDescriptionCategory'} type="text" placeholder={"Kategorie Beschreibung"}
                            value={herbsDescriptionCategory}
-                           onChange={ev => setHerbsDescriptionCategory(ev.target.value)}disabled={true}/>
+                           onChange={ev => setHerbsDescriptionCategory(ev.target.value)} disabled={true}/>
                     <textarea className={'herbApplication'} rows={10} placeholder={"Anwendung"} value={herbsApplication}
-                              onChange={ev => setHerbsApplication(ev.target.value)}disabled={true}/>
+                              onChange={ev => setHerbsApplication(ev.target.value)} disabled={true}/>
                     <input className={'herbApplicationCategory'} type="text" placeholder={"Kategorie Anwendung"}
                            value={herbsApplicationCategory}
-                           onChange={ev => setHerbsApplicationCategory(ev.target.value)}disabled={true}/>
+                           onChange={ev => setHerbsApplicationCategory(ev.target.value)} disabled={true}/>
                 </div>
-           */}
+            }
+            <button className={'buttonLogin'} onClick={Login}>anmelden</button>
         </div>
 
 

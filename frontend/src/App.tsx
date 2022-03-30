@@ -1,5 +1,5 @@
-import "./HerbsEdit.css";
-import HerbsPage from "./HerbsPage";
+import "./css/HerbsEdit.css";
+import HerbsPage from "./Herbs/HerbsPage";
 
 function App() {
     return (
