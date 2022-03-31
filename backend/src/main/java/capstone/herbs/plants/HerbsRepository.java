@@ -7,7 +7,5 @@ import java.util.Optional;
 
 @Repository
 public interface HerbsRepository extends MongoRepository<HerbsItem, String> {
-    Optional<HerbsItem> findAllByHerbsName(String herbsName);
-
-
+    Collection<HerbsItem> findAllByHerbsName(String herbsName);
 }
