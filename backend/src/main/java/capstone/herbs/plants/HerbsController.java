@@ -14,8 +14,6 @@ import java.util.List;
 public class HerbsController {
     private final HerbsService herbsService;
     private final UserService userService;
-    private final UserRepository userRepository;
-    private final HerbsRepository herbsRepository;
 
     @GetMapping
     public List<HerbsItemDTO> listAllHerbs(){
