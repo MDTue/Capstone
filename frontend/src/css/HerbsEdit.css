@@ -4,85 +4,63 @@ body, html {
     height: 100%;
     box-sizing: border-box;
 }
-.suche{
-    grid-column-start: 3;
-    grid-row-start: 1;
-    border: blue solid 1px;
-}
-.logo{
-    position: absolute;
-    top: 1rem;
-    right: 45rem;
-    border-radius: 70%;
-    width: 100px;
-}
-.header {
-    position: absolute;
-    top: 1rem;
-    left: 40rem;
-    font-size: 24px;
-    font-family: "American Typewriter";
-}
-.leftSide {
-    background-color: #cccccc;
-    width:15rem;
-    }
 .page{
     display: grid;
-    grid-template-columns: 15% 80% 2%;
+    grid-template-columns: 20% 70% 10%;
 }
-.buttonLogin{
-    grid-column-start: 3;
-    position: absolute;
-}
-.buttonSave{
-    position: absolute;
-    top: 5rem;
-    right: 10rem;
+.leftSide {
+    display: grid;
+    grid-column: 1;
+    grid-row: 2;
+    background-color: #cccccc;
+
 }
 .rightSide {
-    background-color: #cccccc;
     display: grid;
-    grid-template-columns: 20% 80% ;
-    align-items: center;
-    grid-template-rows: 1fr 1fr 5fr;
-    grid-column-start: 2;
+    grid-column: 2;
+    grid-row: 3;
+    background-color: #cccccc;
 }
 .herbName{
     font-size: large;
     border: gold solid 1px;
-    grid-column-start: 2;
-    grid-row-start: 2;
+    grid-column: 2;
+    grid-row: 2;
     list-style: none;
 }
 .herbNameCategory{
-    grid-column-start: 3;
-    grid-row-start: 2;
+    grid-column: 3;
+    grid-row: 2;
     width:15rem;
     margin: auto;
 }
 .herbDescription{
     border: red solid 1px;
-    grid-column-start: 2;
-    grid-row-start: 3;
+    grid-column: 2;
+    grid-row: 3;
     }
 .herbDescriptionCategory{
-    grid-column-start: 3;
-    grid-row-start: 3;
+    grid-column: 3;
+    grid-row: 3;
     width:15rem;
     margin: auto;
 }
 .herbApplication{
     border: blue solid 1px;
-    grid-column-start: 2;
-    grid-row-start: 6;
-    grid-row-end: 8;
+    grid-column: 2;
+    grid-row: 6;
 }
 .herbApplicationCategory{
     border: green solid 1px;
-    grid-column-start: 3;
-    grid-row-start: 6;
+    grid-column: 3;
+    grid-row: 6;
     width:15rem;
     margin: auto;
-     }
+}
+.buttonSaveHerb{
+    grid-column: 3;
+    grid-row: 7;
+    width:15rem;
+    margin: auto;
+}
 

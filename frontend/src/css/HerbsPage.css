@@ -1,5 +1,30 @@
 .error{
-    font-palette: red;
-
+    color: red;
+    border-color: red;
+    border-width: 2px;
+    border-style: solid;
+    position: absolute;
 }
-
+.suche{
+    grid-column-start: 3;
+    grid-row-start: 1;
+    border: blue solid 1px;
+}
+.header {
+    position: absolute;
+    top: 1rem;
+    left: 40rem;
+    font-size: 24px;
+    font-family: "American Typewriter";
+}
+.logo{
+    position: absolute;
+    top: 1rem;
+    left: 20rem;
+    width: 200px;
+}
+.buttonSave{
+    position: absolute;
+    top: 5rem;
+    right: 10rem;
+}

@@ -1,7 +1,9 @@
-
-import '../css/Login.css'
+import "../css/HerbsEdit.css";
+import "../css/HerbsPage.css";
+import "../css/HerbsItem.css"
+import "../css/Login.css"
 import {useNavigate} from "react-router-dom";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import OnLogout from "./OnLogout";
 
 
@@ -11,10 +13,10 @@ export default function Login() {
     const [errorMessage, setErrorMessage] = useState('')
     const nav = useNavigate()
 
-   // OnLogout()
+    // OnLogout()
 
     const loginUser = () => {
-        fetch(`${process.env.REACT_APP_BASE_URL}/api/login`,{
+        fetch(`${process.env.REACT_APP_BASE_URL}/api/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -28,30 +30,37 @@ export default function Login() {
                 if (response.status === 200) {
                     return response.json()
                 }
-                throw new Error("Unbekannter Loginname. Bitte zuerst registrieren!")
+                throw new Error("Die Logindaten stimmen nicht!")
             })
-            .then (response=>{
-                localStorage.setItem('token',response.token)
-                nav("/HerbsPage")
+            .then(response => {
+                localStorage.setItem('token', response.token)
+                nav("/herbsPage")
             })
-
-            .catch(e=> setErrorMessage(errorMessage));
-        nav("/HerbsPage")
+            .catch(e => setErrorMessage(e.message));
     }
+    useEffect(() => {
+            const timoutId = setTimeout(() => setErrorMessage(''), 10000)
+            return () => clearTimeout(timoutId)
+        }, [errorMessage]
+    )
 
-
-    return(
+    return (
         <div>
-            <div className="login">
-                <div className="header">
-                    <h1> Login für angemeldete User</h1>
-                </div>
-
-                <div>
-                    <input className={'login'} type="text" placeholder={"Name"} value ={loginName} onChange={ev => setLoginName(ev.target.value)}/>
-                    <input className={'login'} type="password" placeholder={"Passwort"} value={loginPW} onChange={ev => setLoginPW(ev.target.value)} />
-                    <button onClick={loginUser}>  Anmelden </button>
-
+            <div className="loginpage">
+                <div className={"loginContainer"}>
+                    <div className={'loginError'}> {errorMessage}  </div>
+                    <br></br>
+                    <br></br>
+                    <span><h2>Login für registrierte User </h2></span>
+                    <input className={'Login'} type="text" placeholder={"Name"} value={loginName}
+                           onChange={ev => setLoginName(ev.target.value)}/>
+                    <br></br>
+                    <br></br>
+                    <input className={'Login'} type="password" placeholder={"Passwort"} value={loginPW}
+                           onChange={ev => setLoginPW(ev.target.value)}/>
+                    <br></br>
+                    <br></br>
+                    <button onClick={loginUser}> Anmelden</button>
                 </div>
             </div>
         </div>

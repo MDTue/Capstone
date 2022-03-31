@@ -2,8 +2,9 @@ import {useEffect, useState} from "react";
 import {HerbsItemDTO} from "../Herbs/HerbsModel";
 import "../css/HerbsEdit.css";
 import "../css/HerbsPage.css";
-import logo from "../images/LogoHoerbs.png"
-import Login from "../User/Login";
+import "../css/HerbsItem.css"
+import "../css/Login.css"
+import logo from "../images/Logo_Hoerbs_Transparent.jpg"
 
 interface HerbsFromProps{
     onHerbsCreation: ()=> void;
@@ -85,11 +86,12 @@ export default function HerbsEdit(props:HerbsFromProps){
                     <input className={'herbApplicationCategory'} type="text" placeholder={"Kategorie Anwendung"}
                            value={herbsApplicationCategory}
                            onChange={ev => setHerbsApplicationCategory(ev.target.value)}/>
-                    <button type="submit" >Speichern</button>
+                    <div className={'buttonSaveHerb'}>
+                        <button type="submit" >Speichern</button>
+                    </div>
                 </form>
             :
                 <div className={'rightSide'}>
-
                     <input className={'herbName'} type="text" placeholder={"Name"} value={herbsName}
                            onChange={ev => setHerbsName(ev.target.value)} disabled={true}/>
                     <input className={'herbNameCategory'} type="text" placeholder={"Kategorie Pflanze"}
@@ -108,7 +110,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                            onChange={ev => setHerbsApplicationCategory(ev.target.value)} disabled={true}/>
                 </div>
             }
-            <button className={'buttonLogin'} onClick={Login}>anmelden</button>
+
         </div>
 
 
