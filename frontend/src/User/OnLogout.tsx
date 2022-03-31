@@ -8,5 +8,7 @@ export default function OnLogout(){
     localStorage.setItem('token', '')
     nav("/LOGIN")
 
-    return
+    return(
+        <div>Auf Wiedersehen</div>
+    )
 }
