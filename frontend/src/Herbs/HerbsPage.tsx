@@ -4,8 +4,6 @@ import {useCallback, useEffect, useState} from "react";
 import {HerbsItemDTO} from "../Herbs/HerbsModel";
 import "../css/HerbsEdit.css";
 import "../css/HerbsPage.css";
-import "../css/HerbsItem.css"
-import "../css/Login.css"
 
 
 export default function HerbsPage(){

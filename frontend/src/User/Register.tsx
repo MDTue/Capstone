@@ -1,6 +1,3 @@
-import "../css/HerbsEdit.css";
-import "../css/HerbsPage.css";
-import "../css/HerbsItem.css"
 import "../css/Login.css"
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
