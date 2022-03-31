@@ -4,7 +4,9 @@ import "../css/HerbsEdit.css";
 import "../css/HerbsPage.css";
 import "../css/HerbsItem.css"
 import "../css/Login.css"
-import logo from "../images/Logo_Hoerbs_Transparent.jpg"
+import logo from "../images/Logo_Hoerbs_Transparent.png"
+import knopfRezepte from "../images/KnopfRezepte.png"
+
 
 interface HerbsFromProps{
     onHerbsCreation: ()=> void;
@@ -68,8 +70,8 @@ export default function HerbsEdit(props:HerbsFromProps){
 
         <div className={'page'}>
             <div className={'error'} > {errorMessage}  </div>
-            <div className={'header'}>Wildkräuter</div>
             <img src={logo} alt="Logo" className={'logo'} />
+            <img src={knopfRezepte} alt="Rezepte" className={'knopfRezepte'}/>
             {token ?
                 <form onSubmit={createHerb}  className={'rightSide'}>
                     <input className={'herbName'} type="text" placeholder={"Name"} value={herbsName}
@@ -88,6 +90,9 @@ export default function HerbsEdit(props:HerbsFromProps){
                            onChange={ev => setHerbsApplicationCategory(ev.target.value)}/>
                     <div className={'buttonSaveHerb'}>
                         <button type="submit" >Speichern</button>
+                    </div>
+                    <div className={'searchHerbsName'}>
+                        <button type="submit" >Suchen</button>
                     </div>
                 </form>
             :
@@ -110,7 +115,6 @@ export default function HerbsEdit(props:HerbsFromProps){
                            onChange={ev => setHerbsApplicationCategory(ev.target.value)} disabled={true}/>
                 </div>
             }
-
         </div>
 
 

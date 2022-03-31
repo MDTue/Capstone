@@ -1,13 +1,13 @@
 .error{
-    color: red;
-    border-color: red;
-    border-width: 2px;
-    border-style: solid;
+    display: grid;
+    grid-row: 2;
     position: absolute;
+    color: red;
+    top: 2.5em;
 }
-.suche{
-    grid-column-start: 3;
-    grid-row-start: 1;
+.searchHerbsName{
+    display:grid;
+    position:absolute;
     border: blue solid 1px;
 }
 .header {
@@ -21,10 +21,25 @@
     position: absolute;
     top: 1rem;
     left: 20rem;
-    width: 200px;
+    width: 150px;
+}
+.knopfRezepte{
+    display: grid;
+    grid-column: 1;
+    position: absolute;
+    top: 1rem;
+    left: 60rem;
+    width: 80px;
 }
 .buttonSave{
     position: absolute;
     top: 5rem;
     right: 10rem;
 }
+.buttonSaveHerb{
+    grid-column: 3;
+    grid-row: 7;
+    width:15rem;
+    margin: auto;
+}
+

@@ -13,11 +13,11 @@ body, html {
     grid-column: 1;
     grid-row: 2;
     background-color: #cccccc;
-
 }
 .rightSide {
     display: grid;
-    grid-column: 2;
+    grid-column-start: 1;
+    grid-column-end: 4;
     grid-row: 3;
     background-color: #cccccc;
 }
@@ -54,12 +54,6 @@ body, html {
     border: green solid 1px;
     grid-column: 3;
     grid-row: 6;
-    width:15rem;
-    margin: auto;
-}
-.buttonSaveHerb{
-    grid-column: 3;
-    grid-row: 7;
     width:15rem;
     margin: auto;
 }
