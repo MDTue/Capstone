@@ -1,5 +1,3 @@
-import "../css/HerbsEdit.css";
-import "../css/HerbsPage.css";
 
 import {HerbsItemDTO} from "../Herbs/HerbsModel";
 
