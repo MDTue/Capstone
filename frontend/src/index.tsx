@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import HerbsPage from "./HerbsPage";
+
 
 ReactDOM.render(
     <React.StrictMode>
+        <Suspense fallback="Loading.."/>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/herbsList" element={<HerbsPage/>}/>
+                    <Route path='*' element={<App/>} />
+                </Routes>
+
+
+            </BrowserRouter>
         <App />
     </React.StrictMode>,
   document.getElementById('root')
