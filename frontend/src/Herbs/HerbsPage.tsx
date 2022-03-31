@@ -11,8 +11,6 @@ import "../css/Login.css"
 export default function HerbsPage(){
     const[herbs, setHerbs] = useState([] as Array<HerbsItemDTO>);
     const[errorMessage, setErrorMessage]= useState('');
-    const[token, setToken] = useState(localStorage.getItem('token') ?? '');
-
     const fetchAll = useCallback(() => {
         fetch(`${process.env.REACT_APP_BASE_URL}/api/items`,{
             method: 'GET',

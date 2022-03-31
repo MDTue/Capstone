@@ -2,7 +2,7 @@ import "../css/HerbsEdit.css";
 import "../css/HerbsPage.css";
 import "../css/HerbsItem.css"
 import "../css/Login.css"
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 
 export default function Register() {
