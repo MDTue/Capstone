@@ -1,14 +1,14 @@
-import HerbsList from "./HerbList";
-import HerbsEdit from "./HerbsEdit";
+import HerbsList from "../Herbs/HerbList";
+import HerbsEdit from "../Herbs/HerbsEdit";
 import {useCallback, useEffect, useState} from "react";
-import {HerbsItemDTO} from "./HerbsModel";
-import "./HerbsPage.css"
-import "./HerbsEdit.css"
+import {HerbsItemDTO} from "../Herbs/HerbsModel";
+import "../css/HerbsEdit.css";
+import "../css/HerbsPage.css";
+
 
 export default function HerbsPage(){
     const[herbs, setHerbs] = useState([] as Array<HerbsItemDTO>);
     const[errorMessage, setErrorMessage]= useState('');
-
     const fetchAll = useCallback(() => {
         fetch(`${process.env.REACT_APP_BASE_URL}/api/items`,{
             method: 'GET',
@@ -22,7 +22,9 @@ export default function HerbsPage(){
                 }
                 throw new Error('NotFound')
             })
+
             .then((herbsFromBackend: Array<HerbsItemDTO>) => setHerbs(herbsFromBackend))
+
             .catch(e  => {
                 setErrorMessage(e.message)
             })
@@ -49,9 +51,5 @@ export default function HerbsPage(){
                 </div>
             </div>
         </div>
-
     )
-
-
-
 }

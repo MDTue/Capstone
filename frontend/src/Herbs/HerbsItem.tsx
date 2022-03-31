@@ -1,5 +1,5 @@
-import 'HerbsItem.css'
-import {HerbsItemDTO} from "./HerbsModel";
+
+import {HerbsItemDTO} from "../Herbs/HerbsModel";
 
 interface HerbsItemProps{
     herbsItem : HerbsItemDTO

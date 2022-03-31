@@ -1,0 +1,60 @@
+body, html {
+    background-color: #cccccc;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+.page{
+    display: grid;
+    grid-template-columns: 20% 70% 10%;
+}
+.leftSide {
+    display: grid;
+    grid-column: 1;
+    grid-row: 2;
+    background-color: #cccccc;
+}
+.rightSide {
+    display: grid;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row: 3;
+    background-color: #cccccc;
+}
+.herbName{
+    font-size: large;
+    border: gold solid 1px;
+    grid-column: 2;
+    grid-row: 2;
+    list-style: none;
+}
+.herbNameCategory{
+    grid-column: 3;
+    grid-row: 2;
+    width:15rem;
+    margin: auto;
+}
+.herbDescription{
+    border: red solid 1px;
+    grid-column: 2;
+    grid-row: 3;
+    }
+.herbDescriptionCategory{
+    grid-column: 3;
+    grid-row: 3;
+    width:15rem;
+    margin: auto;
+}
+.herbApplication{
+    border: blue solid 1px;
+    grid-column: 2;
+    grid-row: 6;
+}
+.herbApplicationCategory{
+    border: green solid 1px;
+    grid-column: 3;
+    grid-row: 6;
+    width:15rem;
+    margin: auto;
+}
+

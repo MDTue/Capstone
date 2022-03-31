@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import HerbsPage from "./HerbsPage";
+import HerbsPage from "./Herbs/HerbsPage";
+import Login from "./User/Login";
+import OnLogout from "./User/OnLogout";
+import Register from "./User/Register";
 
 
 ReactDOM.render(
@@ -12,12 +15,12 @@ ReactDOM.render(
             <BrowserRouter>
                 <Routes>
                     <Route path="/herbsList" element={<HerbsPage/>}/>
-                    <Route path='*' element={<App/>} />
+                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/onlogout" element={<OnLogout/>}/>
+                    <Route path="/register" element={<Register/>}/>
+                    <Route path='/*' element={<App/>} />
                 </Routes>
-
-
             </BrowserRouter>
-        <App />
     </React.StrictMode>,
   document.getElementById('root')
 );

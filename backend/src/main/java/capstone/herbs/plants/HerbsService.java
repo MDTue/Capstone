@@ -1,7 +1,7 @@
 package capstone.herbs.plants;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -12,7 +12,7 @@ public class HerbsService {
         this.herbsRepository = herbsRepository;
     }
 
-    public void createHerbsItem(HerbsItem newHerb) {
+    public void createHerbsItem(HerbsItem newHerb ) {
         herbsRepository.save(newHerb);
     }
 

@@ -1,6 +1,7 @@
 package capstone.herbs;
 
 import capstone.herbs.plants.HerbsItem;
+import capstone.herbs.plants.HerbsItemDTO;
 import capstone.herbs.plants.HerbsRepository;
 import capstone.herbs.plants.HerbsService;
 import org.junit.jupiter.api.Test;

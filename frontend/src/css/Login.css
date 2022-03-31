@@ -1,0 +1,33 @@
+.loginpage{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-rows: auto;
+}
+
+.loginContainer{
+    displpay: grid;
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.login{
+    displpay: grid;
+    grid-column: 2;
+    grid-row: 3;
+    font-family: Helvetica;
+    font-size: medium;
+    }
+.buttonLogin{
+    grid-column-start: 3;
+    position: absolute;
+}
+.register{
+    box-decoration-break: clone;
+}
+.loginError {
+    display: grid;
+    grid-row: 2;
+    position: absolute;
+    color: red;
+    top: 2.5em;
+}

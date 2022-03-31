@@ -1,0 +1,45 @@
+.error{
+    display: grid;
+    grid-row: 2;
+    position: absolute;
+    color: red;
+    top: 2.5em;
+}
+.searchHerbsName{
+    display:grid;
+    position:absolute;
+    border: blue solid 1px;
+}
+.header {
+    position: absolute;
+    top: 1rem;
+    left: 40rem;
+    font-size: 24px;
+    font-family: "American Typewriter";
+}
+.logo{
+    position: absolute;
+    top: 1rem;
+    left: 20rem;
+    width: 150px;
+}
+.knopfRezepte{
+    display: grid;
+    grid-column: 1;
+    position: absolute;
+    top: 1rem;
+    left: 60rem;
+    width: 80px;
+}
+.buttonSave{
+    position: absolute;
+    top: 5rem;
+    right: 10rem;
+}
+.buttonSaveHerb{
+    grid-column: 3;
+    grid-row: 7;
+    width:15rem;
+    margin: auto;
+}
+
