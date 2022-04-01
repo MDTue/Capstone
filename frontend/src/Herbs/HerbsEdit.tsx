@@ -42,7 +42,7 @@ export default function HerbsEdit(props:HerbsFromProps){
     }
 
     const editItem = () => {
-        fetch(`${process.env.REACT_APP_BASE_URL}${props.herbToChange.links.find(l=>l.rel== 'self')?.href}`, {
+        fetch(`${process.env.REACT_APP_BASE_URL}${props.herbToChange.links.find(l=>l.rel=== 'self')?.href}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

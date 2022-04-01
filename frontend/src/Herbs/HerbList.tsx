@@ -1,5 +1,4 @@
 import {HerbsItemDTO} from "../Herbs/HerbsModel";
-import {useState} from "react";
 
 interface HerbsListProps{
     herbs: HerbsItemDTO[]

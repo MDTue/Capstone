@@ -7,7 +7,6 @@ import "../css/HerbsPage.css";
 
 
 export default function HerbsPage(){
-    const[HerbNameToSeek, setHerbsName] = useState('');
     const[herbs, setHerbs] = useState([] as Array<HerbsItemDTO>);
     const[errorMessage, setErrorMessage]= useState('');
     const[herbToChange, setHerbToChange]=useState({}as HerbsItemDTO);
