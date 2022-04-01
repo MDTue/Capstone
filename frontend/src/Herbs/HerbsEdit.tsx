@@ -4,6 +4,7 @@ import "../css/HerbsEdit.css";
 import "../css/HerbsPage.css";
 import logo from "../images/Logo_Hoerbs_Transparent.png"
 import knopfRezepte from "../images/KnopfRezepte.png"
+import {useNavigate} from "react-router-dom";
 
 
 interface HerbsFromProps{
@@ -12,6 +13,7 @@ interface HerbsFromProps{
 }
 
 export default function HerbsEdit(props:HerbsFromProps){
+    const nav = useNavigate()
     const[herbsName, setHerbsName] = useState(localStorage.getItem('herbsName')??'')
     const[herbsNameCategory, setHerbsNameCategory] = useState('')
     const[herbsDescription, setHerbsDescription] = useState(localStorage.getItem('herbDescription')??'')
@@ -37,11 +39,10 @@ export default function HerbsEdit(props:HerbsFromProps){
         }else{
             createHerb()
         }
-
     }
 
     const editItem = () => {
-        fetch(`${process.env.REACT_APP_BASE_URL}`+"/api/items"+`${props.herbToChange.links.find(l=>l.rel== 'self')?.href}`, {
+        fetch(`${process.env.REACT_APP_BASE_URL}${props.herbToChange.links.find(l=>l.rel== 'self')?.href}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -61,10 +62,10 @@ export default function HerbsEdit(props:HerbsFromProps){
                     return response.json()
                 }
                 if (response.status === 403){
-                    throw new Error("Session ist abgelaufen. Bitte neu anmelden!")
+                    nav("/login")
+                }else {
+                    throw new Error("Fehler beim Speichern.")
                 }
-                throw new Error("Fehler beim Speichern.")
-
             })
             .then((herbsFromBackend: Array<HerbsItemDTO>) => {
                 setHerbsName('');
@@ -82,10 +83,6 @@ export default function HerbsEdit(props:HerbsFromProps){
             .catch(e=> setErrorMessage(e.message));
 
     }
-
-
-
-
 
     const createHerb = () => {
         fetch(`${process.env.REACT_APP_BASE_URL}/api/items`,{
