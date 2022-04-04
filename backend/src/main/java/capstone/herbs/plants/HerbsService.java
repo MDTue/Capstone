@@ -1,7 +1,8 @@
 package capstone.herbs.plants;
 
-import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -16,8 +17,18 @@ public class HerbsService {
         herbsRepository.save(newHerb);
     }
 
+    public void changeHerbsItem(HerbsItem herbsItem){
+       herbsRepository.save(herbsItem);
+    }
+
     public List<HerbsItem> getAllHerbs() {
-        List<HerbsItem> allHerbs = herbsRepository.findAll();
+        List<HerbsItem> allHerbs = herbsRepository.findAll(Sort.by("herbsName"));
         return allHerbs;
+    }
+
+    public List<HerbsItem> herbsToEdit(String herbsName) {
+        List<HerbsItem> allHerbsByName = herbsRepository.findAllByHerbsName(herbsName);
+        return allHerbsByName;
+
     }
 }

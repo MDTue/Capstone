@@ -9,7 +9,11 @@ import "../css/HerbsPage.css";
 export default function HerbsPage(){
     const[herbs, setHerbs] = useState([] as Array<HerbsItemDTO>);
     const[errorMessage, setErrorMessage]= useState('');
+    const[herbToChange, setHerbToChange]=useState({}as HerbsItemDTO);
+
+
     const fetchAll = useCallback(() => {
+        setHerbToChange({}as HerbsItemDTO)
         fetch(`${process.env.REACT_APP_BASE_URL}/api/items`,{
             method: 'GET',
             headers: {
@@ -23,7 +27,9 @@ export default function HerbsPage(){
                 throw new Error('NotFound')
             })
 
-            .then((herbsFromBackend: Array<HerbsItemDTO>) => setHerbs(herbsFromBackend))
+            .then((herbsFromBackend: Array<HerbsItemDTO>) =>
+                setHerbs(herbsFromBackend))
+
 
             .catch(e  => {
                 setErrorMessage(e.message)
@@ -41,13 +47,16 @@ export default function HerbsPage(){
     )
     return(
         <div>
-            <div className={'error'} > {errorMessage}  </div>
+
+
+
             <div className={"page"}>
+                <div className={'error'} > {errorMessage}  </div>
                 <div className={"leftSide"}>
-                    <HerbsList herbs={herbs} />
+                    <HerbsList herbs={herbs} onHerbsToChange={setHerbToChange} />
                 </div>
                 <div className={"rightSide"}>
-                    <HerbsEdit onHerbsCreation={fetchAll}/>
+                    <HerbsEdit onHerbsCreation={fetchAll} herbToChange={herbToChange}/>
                 </div>
             </div>
         </div>

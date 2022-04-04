@@ -1,9 +1,9 @@
 package capstone.herbs.plants;
 
-import capstone.herbs.user.UserRepository;
-import capstone.herbs.user.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 
@@ -13,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class HerbsController {
     private final HerbsService herbsService;
-    private final UserService userService;
+    private final HerbsRepository herbsRepository;
 
     @GetMapping
     public List<HerbsItemDTO> listAllHerbs(){
@@ -28,4 +28,12 @@ public class HerbsController {
         return listAllHerbs();
     }
 
+    @PutMapping("/{id}")
+    public List<HerbsItemDTO> changeHerb(@PathVariable String id, @RequestBody HerbsItemDTO herbToChange){
+        herbsService.changeHerbsItem(herbToChange.toItem(id));
+        return herbsService.getAllHerbs().stream()
+                .map(herbsItem -> HerbsItemDTO.of(herbsItem))
+                .toList();
+
+    }
 }

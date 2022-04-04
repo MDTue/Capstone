@@ -4,13 +4,16 @@ import "../css/HerbsEdit.css";
 import "../css/HerbsPage.css";
 import logo from "../images/Logo_Hoerbs_Transparent.png"
 import knopfRezepte from "../images/KnopfRezepte.png"
+import {useNavigate} from "react-router-dom";
 
 
 interface HerbsFromProps{
     onHerbsCreation: ()=> void;
+    herbToChange: HerbsItemDTO;
 }
 
 export default function HerbsEdit(props:HerbsFromProps){
+    const nav = useNavigate()
     const[herbsName, setHerbsName] = useState(localStorage.getItem('herbsName')??'')
     const[herbsNameCategory, setHerbsNameCategory] = useState('')
     const[herbsDescription, setHerbsDescription] = useState(localStorage.getItem('herbDescription')??'')
@@ -19,9 +22,69 @@ export default function HerbsEdit(props:HerbsFromProps){
     const[herbsApplicationCategory, setHerbsApplicationCategory] = useState('')
     const[errorMessage, setErrorMessage] = useState('')
     const[token] = useState(localStorage.getItem('token') ?? '');
+    useEffect(()=>{
+        setHerbsName(props.herbToChange.herbsName);
+        setHerbsNameCategory(props.herbToChange.herbsNameCategory)
+        setHerbsDescription(props.herbToChange.herbsDescription);
+        setHerbsDescriptionCategory(props.herbToChange.herbsDescriptionCategory)
+        setHerbsApplication(props.herbToChange.herbsApplication);
+        setHerbsApplicationCategory(props.herbToChange.herbsApplicationCategory)
 
-    const createHerb = (event:React.FormEvent) => {
-        event.preventDefault()
+    }, [props.herbToChange])
+
+    const CreateOrEdit= (event:React.FormEvent) => {
+            event.preventDefault()
+        if(props.herbToChange.links != null){
+            editItem()
+        }else{
+            createHerb()
+        }
+    }
+
+    const editItem = () => {
+        fetch(`${process.env.REACT_APP_BASE_URL}${props.herbToChange.links.find(l=>l.rel=== 'self')?.href}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify({
+                herbsName: herbsName,
+                herbsNameCategory: herbsNameCategory,
+                herbsDescription: herbsDescription,
+                herbsDescriptionCategory: herbsDescriptionCategory,
+                herbsApplication: herbsApplication,
+                herbsApplicationCategory: herbsApplicationCategory
+            }),
+        })
+            .then(response => {
+                if (response.status === 200) {
+                    return response.json()
+                }
+                if (response.status === 403){
+                    nav("/login")
+                }else {
+                    throw new Error("Fehler beim Speichern.")
+                }
+            })
+            .then((herbsFromBackend: Array<HerbsItemDTO>) => {
+                setHerbsName('');
+                setHerbsDescription('');
+                props.onHerbsCreation();
+            })
+            .then (() => {
+                localStorage.setItem('herbsName',herbsName);
+                setHerbsNameCategory('');
+                localStorage.setItem('herbsdescription',herbsDescription);
+                setHerbsDescriptionCategory('');
+                setHerbsApplication('');
+                setHerbsApplicationCategory('');
+            })
+            .catch(e=> setErrorMessage(e.message));
+
+    }
+
+    const createHerb = () => {
         fetch(`${process.env.REACT_APP_BASE_URL}/api/items`,{
             method: 'POST',
             headers: {
@@ -41,7 +104,11 @@ export default function HerbsEdit(props:HerbsFromProps){
                 if (response.status === 200) {
                     return response.json()
                 }
-                throw new Error("NotFound")
+                if (response.status === 403){
+                    throw new Error("Session ist abgelaufen. Bitte neu anmelden!")
+                }
+                throw new Error("Fehler beim Speichern.")
+
             })
             .then((herbsFromBackend: Array<HerbsItemDTO>) => {
                 setHerbsName('');
@@ -71,7 +138,7 @@ export default function HerbsEdit(props:HerbsFromProps){
             <img src={logo} alt="Logo" className={'logo'} />
             <img src={knopfRezepte} alt="Rezepte" className={'knopfRezepte'}/>
             {token ?
-                <form onSubmit={createHerb}  className={'rightSide'}>
+                <form onSubmit={CreateOrEdit}  className={'rightSide'}>
                     <input className={'herbName'} type="text" placeholder={"Name"} value={herbsName}
                            onChange={ev => setHerbsName(ev.target.value)}/>
                     <input className={'herbNameCategory'} type="text" placeholder={"Kategorie Pflanze"}
@@ -89,9 +156,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                     <div className={'buttonSaveHerb'}>
                         <button type="submit" >Speichern</button>
                     </div>
-                    <div className={'searchHerbsName'}>
-                        <button type="submit" >Suchen</button>
-                    </div>
+
                 </form>
             :
                 <div className={'rightSide'}>
