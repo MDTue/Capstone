@@ -1,4 +1,5 @@
 import {useNavigate} from "react-router-dom";
+import NavBar from "../Components/NavBar";
 
 
 export default function OnLogout(){
@@ -9,6 +10,9 @@ export default function OnLogout(){
     nav("/LOGIN")
 
     return(
-        <div>Auf Wiedersehen</div>
+        <div className={'navBar'}>
+            <NavBar/>
+            <div>Auf Wiedersehen</div>
+        </div>
     )
 }
