@@ -10,7 +10,6 @@ import {useNavigate} from "react-router-dom";
 interface HerbsFromProps{
     onHerbsCreation: ()=> void;
     herbToChange: HerbsItemDTO;
-    herbToDelete: HerbsItemDTO;
 }
 
 export default function HerbsEdit(props:HerbsFromProps){
@@ -31,17 +30,15 @@ export default function HerbsEdit(props:HerbsFromProps){
         setHerbsApplication(props.herbToChange.herbsApplication);
         setHerbsApplicationCategory(props.herbToChange.herbsApplicationCategory)
 
-    }, [props.herbToChange || props.herbToDelete])
+    }, [props.herbToChange])
 
     const CreateOrEdit= (event:React.FormEvent) => {
             event.preventDefault()
         if(props.herbToChange.links != null){
             editItem()
-        }else{if(props.herbToDelete.links != null){
-            deleteHerb()
         }else{
             createHerb()
-        }}
+        }
     }
 
     const editItem = () => {
@@ -135,20 +132,11 @@ export default function HerbsEdit(props:HerbsFromProps){
     )
 
     const deleteHerb = () => {
-        fetch(`${process.env.REACT_APP_BASE_URL}${props.herbToDelete.links.find(l=>l.rel=== 'self')?.href}`, {
+        fetch(`${process.env.REACT_APP_BASE_URL}${props.herbToChange.links.find(l=>l.rel=== 'self')?.href}`, {
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+               'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
-            body: JSON.stringify({
-                herbsName: herbsName,
-                herbsNameCategory: herbsNameCategory,
-                herbsDescription: herbsDescription,
-                herbsDescriptionCategory: herbsDescriptionCategory,
-                herbsApplication: herbsApplication,
-                herbsApplicationCategory: herbsApplicationCategory
-            }),
         })
             .then(response => {
                 if (response.status === 200) {
@@ -183,7 +171,7 @@ export default function HerbsEdit(props:HerbsFromProps){
             <img src={logo} alt="Logo" className={'logo'} />
             <img src={knopfRezepte} alt="Rezepte" className={'knopfRezepte'}/>
             {token ?
-                <form onSubmit={CreateOrEdit}  className={'rightSide'}>
+                <div className={'rightSide'}>
                     <input className={'herbName'} type="text" placeholder={"Name"} value={herbsName}
                            onChange={ev => setHerbsName(ev.target.value)}/>
                     <input className={'herbNameCategory'} type="text" placeholder={"Kategorie Pflanze"}
@@ -199,13 +187,13 @@ export default function HerbsEdit(props:HerbsFromProps){
                            value={herbsApplicationCategory}
                            onChange={ev => setHerbsApplicationCategory(ev.target.value)}/>
                     <div className={'buttonSaveHerb'}>
-                        <button type="submit" >Speichern</button>
+                        <button onClick={CreateOrEdit} >Speichern</button>
                     </div>
                     <div className={'buttonDeleteHerb'}>
-                        <button type="submit" >Löschen</button>
+                        <button onClick={deleteHerb}  >Löschen</button>
                     </div>
 
-                </form>
+                </div>
             :
                 <div className={'rightSide'}>
                     <input className={'herbName'} type="text" placeholder={"Name"} value={herbsName}
