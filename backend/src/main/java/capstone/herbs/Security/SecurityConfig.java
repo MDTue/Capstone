@@ -47,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .mvcMatchers(HttpMethod.POST, "/api/users","/api/login","/api/items").permitAll()
                 .mvcMatchers(HttpMethod.GET, "/api/items").permitAll()
                 .mvcMatchers(HttpMethod.GET, "/index*", "/static/**", "/*.js", "/*.json", "/*.ico","/*.png").permitAll()
-                .antMatchers(HttpMethod.GET, "/").permitAl
+                .antMatchers(HttpMethod.GET, "/").permitAll()
                 .antMatchers("/**").authenticated()
                 .and()
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
