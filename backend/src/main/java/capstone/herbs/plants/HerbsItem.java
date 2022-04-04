@@ -21,6 +21,12 @@ public class HerbsItem {
     private String herbsApplicationCategory;
     private String userId;
 
-    public HerbsItem(Object o, String herbsName, String herbsNameCategory, String herbsDescription, String herbsDescriptionCategory, String herbsApplication, String herbsApplicationCategory) {
+    public HerbsItem(String herbsName, String herbsNameCategory, String herbsDescription, String herbsDescriptionCategory, String herbsApplication, String herbsApplicationCategory) {
+        this.herbsName = herbsName;
+        this.herbsNameCategory = herbsNameCategory;
+        this.herbsDescription = herbsDescription;
+        this.herbsDescriptionCategory = herbsDescriptionCategory;
+        this.herbsApplication = herbsApplication;
+        this.herbsApplicationCategory = herbsApplicationCategory;
     }
 }
