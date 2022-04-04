@@ -3,6 +3,7 @@ import {HerbsItemDTO} from "../Herbs/HerbsModel";
 interface HerbsListProps{
     herbs: HerbsItemDTO[]
     onHerbsToChange: (herb:HerbsItemDTO)=> void;
+    onHerbsToDelete: (herb:HerbsItemDTO)=> void;
 }
 
 

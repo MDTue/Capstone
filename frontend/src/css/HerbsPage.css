@@ -42,4 +42,10 @@
     width:15rem;
     margin: auto;
 }
+.buttonDeleteHerb{
+    grid-column: 3;
+    grid-row: 8;
+    width:15rem;
+    margin: auto;
+}
 

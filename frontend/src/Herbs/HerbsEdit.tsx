@@ -10,6 +10,7 @@ import {useNavigate} from "react-router-dom";
 interface HerbsFromProps{
     onHerbsCreation: ()=> void;
     herbToChange: HerbsItemDTO;
+    herbToDelete: HerbsItemDTO;
 }
 
 export default function HerbsEdit(props:HerbsFromProps){
@@ -30,15 +31,17 @@ export default function HerbsEdit(props:HerbsFromProps){
         setHerbsApplication(props.herbToChange.herbsApplication);
         setHerbsApplicationCategory(props.herbToChange.herbsApplicationCategory)
 
-    }, [props.herbToChange])
+    }, [props.herbToChange || props.herbToDelete])
 
     const CreateOrEdit= (event:React.FormEvent) => {
             event.preventDefault()
         if(props.herbToChange.links != null){
             editItem()
+        }else{if(props.herbToDelete.links != null){
+            deleteHerb()
         }else{
             createHerb()
-        }
+        }}
     }
 
     const editItem = () => {
@@ -81,7 +84,6 @@ export default function HerbsEdit(props:HerbsFromProps){
                 setHerbsApplicationCategory('');
             })
             .catch(e=> setErrorMessage(e.message));
-
     }
 
     const createHerb = () => {
@@ -131,6 +133,49 @@ export default function HerbsEdit(props:HerbsFromProps){
             return () => clearTimeout(timoutId)
         }, [errorMessage]
     )
+
+    const deleteHerb = () => {
+        fetch(`${process.env.REACT_APP_BASE_URL}${props.herbToDelete.links.find(l=>l.rel=== 'self')?.href}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify({
+                herbsName: herbsName,
+                herbsNameCategory: herbsNameCategory,
+                herbsDescription: herbsDescription,
+                herbsDescriptionCategory: herbsDescriptionCategory,
+                herbsApplication: herbsApplication,
+                herbsApplicationCategory: herbsApplicationCategory
+            }),
+        })
+            .then(response => {
+                if (response.status === 200) {
+                    return response.json()
+                }
+                if (response.status === 403){
+                    nav("/login")
+                }else {
+                    throw new Error("Fehler beim Löschen.")
+                }
+            })
+            .then((herbsFromBackend: Array<HerbsItemDTO>) => {
+                setHerbsName('');
+                setHerbsDescription('');
+                props.onHerbsCreation();
+            })
+            .then (() => {
+                localStorage.setItem('herbsName',herbsName);
+                setHerbsNameCategory('');
+                localStorage.setItem('herbsdescription',herbsDescription);
+                setHerbsDescriptionCategory('');
+                setHerbsApplication('');
+                setHerbsApplicationCategory('');
+            })
+            .catch(e=> setErrorMessage(e.message));
+    }
+
     return(
 
         <div className={'page'}>
@@ -155,6 +200,9 @@ export default function HerbsEdit(props:HerbsFromProps){
                            onChange={ev => setHerbsApplicationCategory(ev.target.value)}/>
                     <div className={'buttonSaveHerb'}>
                         <button type="submit" >Speichern</button>
+                    </div>
+                    <div className={'buttonDeleteHerb'}>
+                        <button type="submit" >Löschen</button>
                     </div>
 
                 </form>

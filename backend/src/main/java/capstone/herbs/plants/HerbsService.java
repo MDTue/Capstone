@@ -31,4 +31,8 @@ public class HerbsService {
         return allHerbsByName;
 
     }
+
+    public void deleteHerbsItem(HerbsItem herbsItem) {
+        herbsRepository.delete(herbsItem);
+    }
 }
