@@ -32,7 +32,7 @@ public class HerbsService {
 
     }
 
-    public void deleteHerbsItem(HerbsItem herbsItem) {
-        herbsRepository.delete(herbsItem);
+    public void deleteHerbsItem(String id) {
+        herbsRepository.deleteById(id);
     }
 }

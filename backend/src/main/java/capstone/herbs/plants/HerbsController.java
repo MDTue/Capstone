@@ -38,8 +38,8 @@ public class HerbsController {
     }
 
     @DeleteMapping("/{id}")
-    public List<HerbsItemDTO> deleteHerb(@PathVariable String id, @RequestBody HerbsItemDTO herbToDelete){
-        herbsService.deleteHerbsItem(herbToDelete.toItem(id));
+    public List<HerbsItemDTO> deleteHerb(@PathVariable String id){
+        herbsService.deleteHerbsItem(id);
         return herbsService.getAllHerbs().stream()
                 .map(herbsItem -> HerbsItemDTO.of(herbsItem))
                 .toList();
