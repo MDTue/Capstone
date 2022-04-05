@@ -1,10 +1,5 @@
 import {Link, useNavigate} from "react-router-dom";
 import '../css/NavBar.css';
-import HerbsPage from "../Herbs/HerbsPage";
-import Login from "../User/Login";
-import Register from "../User/Register";
-import OnLogout from "../User/OnLogout";
-
 
 export default function NavBar(){
     const nav = useNavigate()
