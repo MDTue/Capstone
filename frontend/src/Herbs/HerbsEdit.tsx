@@ -6,13 +6,14 @@ import logo from "../images/Logo_Hoerbs_Transparent.png"
 import knopfRezepte from "../images/KnopfRezepte.png"
 import {useNavigate} from "react-router-dom";
 
-
 interface HerbsFromProps{
     onHerbsCreation: ()=> void;
     herbToChange: HerbsItemDTO;
 }
 
 export default function HerbsEdit(props:HerbsFromProps){
+    const[img, setImg] = useState({} as File)
+    const[url, setUrl] = useState('')
     const nav = useNavigate()
     const[herbsName, setHerbsName] = useState(localStorage.getItem('herbsName')??'')
     const[herbsNameCategory, setHerbsNameCategory] = useState('')
@@ -20,6 +21,7 @@ export default function HerbsEdit(props:HerbsFromProps){
     const[herbsDescriptionCategory, setHerbsDescriptionCategory] = useState('')
     const[herbsApplication, setHerbsApplication] = useState('')
     const[herbsApplicationCategory, setHerbsApplicationCategory] = useState('')
+    const[herbsPic_Url1, setHerbsPicUrl1] = useState('')
     const[errorMessage, setErrorMessage] = useState('')
     const[token] = useState(localStorage.getItem('token') ?? '');
     useEffect(()=>{
@@ -29,6 +31,7 @@ export default function HerbsEdit(props:HerbsFromProps){
         setHerbsDescriptionCategory(props.herbToChange.herbsDescriptionCategory)
         setHerbsApplication(props.herbToChange.herbsApplication);
         setHerbsApplicationCategory(props.herbToChange.herbsApplicationCategory)
+        setHerbsPicUrl1(props.herbToChange.herbsPicUrl1)
 
     }, [props.herbToChange])
 
@@ -54,7 +57,8 @@ export default function HerbsEdit(props:HerbsFromProps){
                 herbsDescription: herbsDescription,
                 herbsDescriptionCategory: herbsDescriptionCategory,
                 herbsApplication: herbsApplication,
-                herbsApplicationCategory: herbsApplicationCategory
+                herbsApplicationCategory: herbsApplicationCategory,
+                herbsPicUrl1 : url
             }),
         })
             .then(response => {
@@ -79,6 +83,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                 setHerbsDescriptionCategory('');
                 setHerbsApplication('');
                 setHerbsApplicationCategory('');
+                setHerbsPicUrl1('');
             })
             .catch(e=> setErrorMessage(e.message));
     }
@@ -96,7 +101,8 @@ export default function HerbsEdit(props:HerbsFromProps){
                 herbsDescription: herbsDescription,
                 herbsDescriptionCategory : herbsDescriptionCategory,
                 herbsApplication : herbsApplication,
-                herbsApplicationCategory : herbsApplicationCategory
+                herbsApplicationCategory : herbsApplicationCategory,
+                herbsPicUrl1 : url
             })
         })
             .then(response => {
@@ -121,6 +127,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                 setHerbsDescriptionCategory('');
                 setHerbsApplication('');
                 setHerbsApplicationCategory('');
+                setHerbsPicUrl1('')
             })
             .catch(e=> setErrorMessage(e.message));
     }
@@ -160,16 +167,37 @@ export default function HerbsEdit(props:HerbsFromProps){
                 setHerbsDescriptionCategory('');
                 setHerbsApplication('');
                 setHerbsApplicationCategory('');
+                setHerbsPicUrl1('');
             })
             .catch(e=> setErrorMessage(e.message));
     }
 
+    const handleUpload = () => {
+        const formData = new FormData()
+        formData.append('file', img)
+        formData.append('upload_preset', 'uploadHoerbs')
+
+//  CLOUDINARY_URL=cloudinary://451966847885484:y5O6P7bqJd-8WtHirg5S6-a0a8Y@hoerbs
+
+        fetch(`https://api.cloudinary.com/v1_1/hoerbs/image/upload`, {
+            method : 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => setUrl(data.secure_url))
+    }
     return(
 
         <div className={'page'}>
             <div className={'error'} > {errorMessage}  </div>
             <img src={logo} alt="Logo" className={'logo'} />
             <img src={knopfRezepte} alt="Rezepte" className={'knopfRezepte'}/>
+
+            {url ?
+                <img src={url} alt="uploaded pic" className={'picturePlant1'} />
+                :
+                <img src={herbsPic_Url1} alt ="Bild Pflanze" className={'picturePlant1'}/>
+            }
             {token ?
                 <div className={'rightSide'}>
                     <input className={'herbName'} type="text" placeholder={"Name"} value={herbsName}
@@ -191,6 +219,18 @@ export default function HerbsEdit(props:HerbsFromProps){
                     </div>
                     <div className={'buttonDeleteHerb'}>
                         <button onClick={deleteHerb}  >Löschen</button>
+                    </div>
+                    <div className={'uploadBilder'}>
+                         <input type="file" accept="image/*"  onChange={ev => {
+                             if(ev.target.files !=null){
+                                 setImg(ev.target.files[0]);
+                             }
+                         } }/>
+                        {img.size>0 && <button onClick={handleUpload}>upload</button>}
+
+
+
+
                     </div>
 
                 </div>

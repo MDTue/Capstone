@@ -1,0 +1,26 @@
+.parent {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.div1 { grid-area: 1 / 6 / 2 / 9; }
+.div2 { grid-area: 2 / 1 / 13 / 2; }
+.div3 { grid-area: 1 / 2 / 3 / 3; }
+.div4 { grid-area: 3 / 4 / 4 / 6; }
+.div5 { grid-area: 4 / 4 / 8 / 7; }
+.div6 { grid-area: 8 / 4 / 12 / 7; }
+.div7 { grid-area: 4 / 7 / 5 / 8; }
+.div8 { grid-area: 8 / 7 / 9 / 8; }
+.div9 { grid-area: 8 / 7 / 9 / 8; }
+.div10 { grid-area: 2 / 3 / 3 / 4; }
+.div11 { grid-area: 2 / 4 / 3 / 5; }
+.div12 { grid-area: 2 / 5 / 3 / 6; }
+.div13 { grid-area: 2 / 6 / 3 / 7; }
+.div14 { grid-area: 10 / 7 / 13 / 8; }
+.div15 { grid-area: 3 / 3 / 6 / 4; }
+.div16 { grid-area: 6 / 3 / 9 / 4; }
+.div17 { grid-area: 9 / 3 / 12 / 4; }
+.div18 { grid-area: 3 / 7 / 4 / 8; }

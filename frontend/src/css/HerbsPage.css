@@ -44,4 +44,13 @@
     width:15rem;
     margin: auto;
 }
+.uploadBilder{
+    grid-column: 3;
+    grid-row:9;
+}
+.picturePlant1{
+    grid-column: 1;
+    width: 150px;
+    heights : 150px;
+}
 
