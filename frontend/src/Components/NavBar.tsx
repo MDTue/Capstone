@@ -1,4 +1,4 @@
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import '../css/NavBar.css';
 import HerbsPage from "../Herbs/HerbsPage";
 import Login from "../User/Login";
@@ -11,15 +11,11 @@ export default function NavBar(){
 
     return(
         <div className={'navBar'}>
-            <li> <a href="/herbsPage" onClick={HerbsPage}>Home</a></li>
-            <li><a href="/login" onClick={Login}>Login</a></li>
-            <li><a href="/register" onClick={Register}>Registrierung</a></li>
-            <li><a href="onLogout" onClick={OnLogout}>Abmelden</a></li>
-            <li><a href="/login" onClick={Login}>Account löschen</a></li>
-
-
-
-
+            <li><Link to="/herbsPage">Home</Link></li>
+            <li><Link to="/login">Login</Link></li>
+            <li><Link to="/register">Registrierung</Link></li>
+            <li><Link to="/onLogout">Abmelden</Link></li>
+            <li><Link to="/login">Account löschen</Link></li>
         </div>
     )
 }

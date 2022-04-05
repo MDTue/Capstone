@@ -5,11 +5,7 @@
     color: red;
     top: 2.5em;
 }
-.searchHerbsName{
-    display:grid;
-    position:absolute;
-    border: blue solid 1px;
-}
+
 .header {
     position: absolute;
     top: 1rem;

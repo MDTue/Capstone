@@ -3,12 +3,17 @@
     height: 40px;
     margin: 0;
     list-style-type: none;
+    top: 1rem;
+    left: 800rem;
 }
 
-li a {
+
+li {
+    float: left;
     display: block;
     padding: 8px;
     background-color: #dddddd;
-    float: left;
+
+
 
 }
