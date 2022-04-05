@@ -44,9 +44,7 @@ export default function Register() {
 
     return (
         <div className="loginpage">
-            <div className={'navBar'}>
                 <NavBar/>
-            </div>
             <div className={"loginContainer"}>
                 <div className={'loginError'}> {errorMessage}  </div>
                 <br></br>
