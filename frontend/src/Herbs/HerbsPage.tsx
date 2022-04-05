@@ -2,7 +2,6 @@ import HerbsList from "../Herbs/HerbList";
 import HerbsEdit from "../Herbs/HerbsEdit";
 import {useCallback, useEffect, useState} from "react";
 import {HerbsItemDTO} from "../Herbs/HerbsModel";
-import NavBar from "../Components/NavBar";
 import "../css/HerbsEdit.css";
 import "../css/HerbsPage.css";
 
