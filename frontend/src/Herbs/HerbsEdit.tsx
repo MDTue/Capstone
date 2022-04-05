@@ -81,7 +81,6 @@ export default function HerbsEdit(props:HerbsFromProps){
                 setHerbsApplicationCategory('');
             })
             .catch(e=> setErrorMessage(e.message));
-
     }
 
     const createHerb = () => {
@@ -131,6 +130,40 @@ export default function HerbsEdit(props:HerbsFromProps){
             return () => clearTimeout(timoutId)
         }, [errorMessage]
     )
+
+    const deleteHerb = () => {
+        fetch(`${process.env.REACT_APP_BASE_URL}${props.herbToChange.links.find(l=>l.rel=== 'self')?.href}`, {
+            method: 'DELETE',
+            headers: {
+               'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+        })
+            .then(response => {
+                if (response.status === 200) {
+                    return response.json()
+                }
+                if (response.status === 403){
+                    nav("/login")
+                }else {
+                    throw new Error("Fehler beim Löschen.")
+                }
+            })
+            .then((herbsFromBackend: Array<HerbsItemDTO>) => {
+                setHerbsName('');
+                setHerbsDescription('');
+                props.onHerbsCreation();
+            })
+            .then (() => {
+                localStorage.setItem('herbsName',herbsName);
+                setHerbsNameCategory('');
+                localStorage.setItem('herbsdescription',herbsDescription);
+                setHerbsDescriptionCategory('');
+                setHerbsApplication('');
+                setHerbsApplicationCategory('');
+            })
+            .catch(e=> setErrorMessage(e.message));
+    }
+
     return(
 
         <div className={'page'}>
@@ -138,7 +171,7 @@ export default function HerbsEdit(props:HerbsFromProps){
             <img src={logo} alt="Logo" className={'logo'} />
             <img src={knopfRezepte} alt="Rezepte" className={'knopfRezepte'}/>
             {token ?
-                <form onSubmit={CreateOrEdit}  className={'rightSide'}>
+                <div className={'rightSide'}>
                     <input className={'herbName'} type="text" placeholder={"Name"} value={herbsName}
                            onChange={ev => setHerbsName(ev.target.value)}/>
                     <input className={'herbNameCategory'} type="text" placeholder={"Kategorie Pflanze"}
@@ -154,10 +187,13 @@ export default function HerbsEdit(props:HerbsFromProps){
                            value={herbsApplicationCategory}
                            onChange={ev => setHerbsApplicationCategory(ev.target.value)}/>
                     <div className={'buttonSaveHerb'}>
-                        <button type="submit" >Speichern</button>
+                        <button onClick={CreateOrEdit} >Speichern</button>
+                    </div>
+                    <div className={'buttonDeleteHerb'}>
+                        <button onClick={deleteHerb}  >Löschen</button>
                     </div>
 
-                </form>
+                </div>
             :
                 <div className={'rightSide'}>
                     <input className={'herbName'} type="text" placeholder={"Name"} value={herbsName}

@@ -5,11 +5,7 @@
     color: red;
     top: 2.5em;
 }
-.searchHerbsName{
-    display:grid;
-    position:absolute;
-    border: blue solid 1px;
-}
+
 .header {
     position: absolute;
     top: 1rem;
@@ -39,6 +35,12 @@
 .buttonSaveHerb{
     grid-column: 3;
     grid-row: 7;
+    width:15rem;
+    margin: auto;
+}
+.buttonDeleteHerb{
+    grid-column: 3;
+    grid-row: 8;
     width:15rem;
     margin: auto;
 }

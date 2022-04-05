@@ -1,0 +1,19 @@
+.navBar{
+    list-style-type: none;
+    height: 40px;
+    margin: 0;
+    list-style-type: none;
+    top: 1rem;
+    left: 800rem;
+}
+
+
+li {
+    float: left;
+    display: block;
+    padding: 8px;
+    background-color: #dddddd;
+
+
+
+}

@@ -1,6 +1,7 @@
 import "../css/Login.css"
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
+import NavBar from "../Components/NavBar";
 
 export default function Register() {
     const [loginName, setLoginName] = useState('')
@@ -43,6 +44,7 @@ export default function Register() {
 
     return (
         <div className="loginpage">
+                <NavBar/>
             <div className={"loginContainer"}>
                 <div className={'loginError'}> {errorMessage}  </div>
                 <br></br>

@@ -47,9 +47,6 @@ export default function HerbsPage(){
     )
     return(
         <div>
-
-
-
             <div className={"page"}>
                 <div className={'error'} > {errorMessage}  </div>
                 <div className={"leftSide"}>
