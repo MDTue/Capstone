@@ -1,22 +1,16 @@
-# spring-boot-react-bundle
+# Hoerbs Webanwendung
 
-This is a demo project that shows how it is possible to deploy a react frontend and a Spring Boot backend into a heroku dyno. The following paragraphs describe the actions you need to perform.
+Die Anwendung spiegelt den Instagram Account 'hoerbs' wider.
+Daher kommt auch die ungewöhnliche Schreibweise: Alle möglichen Schreibweisen von Kräutern waren bereits vergeben, 
+daher wurde als Accountname die lautmalerische Schreibweise übernommen.
 
-## Creating an heroku app
-When creating the heroku app I recommend to use the heroku cli. Use the following commands to create the app and add the required buildpack.
-* `heroku create <your-app-name>`
-* `heroku buildpacks:set heroku/java --app=<your-app-name>`
+Die Anwendung bietet die Online-PLattform für ein offenes Herbarium. 
+Auf der linken Seite werden alle bereits erfassten Pflanzen aufgeführt.
+Mit Klick auf eine Pflanze werden deren Eigenschaften im mittleren Block angezeigt.
 
-## Project structure
+Je nach Rechten haben angemeldete User unterschiedliche Befugnisse:
+User mit der Rolle 'User' können eine neue Pflanze eingeben. Dieser Datensatz braucht aber die Freigabe eines Admin-Users, um in den Pool aufgenommen zu werden.
+Admin-User können demzufolge die Freigabe für einen Datensatz erteilen und Datensätze löschen.
 
-The project consists of to sub projects. The react project is located in the frontend directory and the Spring Boot project in the backend directory. To let heroku know that the main project is the Spring Boot project, there is a parent pom.xml in the root directory. That way, when heroku builds checks out the code and starts the build the parent pom and the backend module are built.<br />
-To let heroku know that the jar file is now in the target directory of the backend, the `Procfile` is needed.
 
-## Bundling the frontend into the backend jar
 
-The frontend project is built using the `com.github.eirslett:frontend-maven-plugin`. The `maven-resources-plugin` is used to copy the content of the resulting `build` directory to the backend's `target/classes/static` directory.<br />
-
-## Deployment to heroku
-
-Just connect your heroku app and yout GitHub repository on the heroku app's "Deploy"-tab.
-# Capstone
