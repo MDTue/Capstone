@@ -39,9 +39,7 @@ export default function Login() {
 
     return (
         <div>
-            <div className={'navBar'}>
                 <NavBar/>
-            </div>
             <div className="loginpage">
                 <div className={"loginContainer"}>
                     <div className={'loginError'}> {errorMessage}  </div>
