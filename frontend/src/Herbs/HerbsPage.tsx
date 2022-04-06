@@ -4,6 +4,12 @@ import {useCallback, useEffect, useState} from "react";
 import {HerbsItemDTO} from "../Herbs/HerbsModel";
 import "../css/HerbsEdit.css";
 import "../css/HerbsPage.css";
+import logo from "../images/Logo_Hoerbs_Transparent.png";
+import knopfRezepte from "../images/KnopfRezepte.png";
+import knopfWissen from "../images/KnopfWissen.png";
+import knopfBestimmen from "../images/KnopfBestimmen.png";
+import knopfSirup from "../images/KnopfSirup.png"
+import NavBar from "../Components/NavBar";
 
 
 export default function HerbsPage(){
@@ -46,16 +52,27 @@ export default function HerbsPage(){
         }, [errorMessage]
     )
     return(
-        <div>
-            <div className={"page"}>
-                <div className={'error'} > {errorMessage}  </div>
-                <div className={"leftSide"}>
+            <div className={'page'}>
+                <div className={'menue'}>
+
+                    <img src={logo} alt="Logo" className={'logo'} />
+                    <div className={'navBar'}>
+                        <NavBar />
+                    </div>
+                    <div className ={'knopf'}>
+                    <img src={knopfBestimmen} alt='Rezepte' />
+                    <img src={knopfWissen} alt='Rezepte' />
+                    <img src={knopfSirup} alt='Rezepte' />
+                    <img src={knopfRezepte} alt='Rezepte' />
+                    </div>
+
+                </div>
+                <div className={'leftSide'}>
                     <HerbsList herbs={herbs} onHerbsToChange={setHerbToChange} />
                 </div>
-                <div className={"rightSide"}>
-                    <HerbsEdit onHerbsCreation={fetchAll} herbToChange={herbToChange}/>
-                </div>
+                <HerbsEdit onHerbsCreation={fetchAll} herbToChange={herbToChange}/>
+
             </div>
-        </div>
+
     )
 }

@@ -1,10 +1,9 @@
 import {useEffect, useState} from "react";
 import {HerbsItemDTO} from "../Herbs/HerbsModel";
+import {useNavigate} from "react-router-dom";
+
 import "../css/HerbsEdit.css";
 import "../css/HerbsPage.css";
-import logo from "../images/Logo_Hoerbs_Transparent.png"
-import knopfRezepte from "../images/KnopfRezepte.png"
-import {useNavigate} from "react-router-dom";
 
 interface HerbsFromProps{
     onHerbsCreation: ()=> void;
@@ -177,8 +176,6 @@ export default function HerbsEdit(props:HerbsFromProps){
         formData.append('file', img)
         formData.append('upload_preset', 'uploadHoerbs')
 
-//  CLOUDINARY_URL=cloudinary://451966847885484:y5O6P7bqJd-8WtHirg5S6-a0a8Y@hoerbs
-
         fetch(`https://api.cloudinary.com/v1_1/hoerbs/image/upload`, {
             method : 'POST',
             body: formData
@@ -188,18 +185,14 @@ export default function HerbsEdit(props:HerbsFromProps){
     }
     return(
 
-        <div className={'page'}>
-            <div className={'error'} > {errorMessage}  </div>
-            <img src={logo} alt="Logo" className={'logo'} />
-            <img src={knopfRezepte} alt="Rezepte" className={'knopfRezepte'}/>
-
+        <div className={'rightSide'}>
             {url ?
                 <img src={url} alt="uploaded pic" className={'picturePlant1'} />
                 :
                 <img src={herbsPic_Url1} alt ="Bild Pflanze" className={'picturePlant1'}/>
             }
             {token ?
-                <div className={'rightSide'}>
+                <div >
                     <input className={'herbName'} type="text" placeholder={"Name"} value={herbsName}
                            onChange={ev => setHerbsName(ev.target.value)}/>
                     <input className={'herbNameCategory'} type="text" placeholder={"Kategorie Pflanze"}
@@ -227,15 +220,10 @@ export default function HerbsEdit(props:HerbsFromProps){
                              }
                          } }/>
                         {img.size>0 && <button onClick={handleUpload}>upload</button>}
-
-
-
-
                     </div>
-
                 </div>
             :
-                <div className={'rightSide'}>
+                <div >
                     <input className={'herbName'} type="text" placeholder={"Name"} value={herbsName}
                            onChange={ev => setHerbsName(ev.target.value)} disabled={true}/>
                     <input className={'herbNameCategory'} type="text" placeholder={"Kategorie Pflanze"}

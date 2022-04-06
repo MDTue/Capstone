@@ -6,51 +6,45 @@
     top: 2.5em;
 }
 
-.header {
-    position: absolute;
-    top: 1rem;
-    left: 40rem;
-    font-size: 24px;
-    font-family: "American Typewriter";
+.page{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    background-color: #cccccc;
+    height: 100%;
+    width: 100%;
+}
+.leftSide{ grid-area: 3 / 1 / 13 / 4; }
+.rightSide { grid-area: 3 / 4 / 13 / 13; }
+.menue {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
 }
 .logo{
-    position: absolute;
-    top: 1rem;
-    left: 20rem;
-    width: 150px;
+    grid-area: 1 / 1 / 3 / 2;
+    width: 100px;
 }
-.knopfRezepte{
-    display: grid;
-    grid-column: 1;
-    position: absolute;
-    top: 1rem;
-    left: 60rem;
-    width: 80px;
-}
-.buttonSave{
-    position: absolute;
-    top: 5rem;
-    right: 10rem;
+.knopf{
+    grid-area: 2 / 2 / 3 / 3;
+    width: 50px;
 }
 .buttonSaveHerb{
-    grid-column: 3;
-    grid-row: 7;
-    width:15rem;
-    margin: auto;
+    grid-area: 12 / 9 / 13 / 10;
 }
 .buttonDeleteHerb{
-    grid-column: 3;
-    grid-row: 8;
-    width:15rem;
-    margin: auto;
+    grid-area: 12 / 10 / 13 / 11;
 }
 .uploadBilder{
-    grid-column: 3;
-    grid-row:9;
+    grid-area: 12 / 12 / 13 / 13;
 }
 .picturePlant1{
-    grid-column: 1;
-    width: 150px;
-    heights : 150px;
+    grid-area: 4 / 4 / 6 / 6;
+    width: 100px;
+    heights : 100px;
 }
 

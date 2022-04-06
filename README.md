@@ -1,8 +1,8 @@
 # Hoerbs Webanwendung
 
 Die Anwendung spiegelt den Instagram Account 'hoerbs' wider.
-Daher kommt auch die ungewöhnliche Schreibweise: Alle möglichen Schreibweisen von Kräutern waren bereits vergeben, 
-daher wurde als Accountname die lautmalerische Schreibweise übernommen.
+Daher kommt auch die ungewöhnliche Schreibweise: Da alle möglichen Schreibweisen bereits vergeben waren, 
+wurde als Accountname die lautmalerische Schreibweise übernommen.
 
 Die Anwendung bietet die Online-PLattform für ein offenes Herbarium. 
 Auf der linken Seite werden alle bereits erfassten Pflanzen aufgeführt.
