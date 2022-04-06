@@ -17,16 +17,18 @@ public class HerbsItem {
     private String herbsDescriptionCategory;
     private String herbsApplication;
     private String herbsApplicationCategory;
+    private boolean herbsOk;
     private String herbsPicUrl1;
 
     public HerbsItem(String herbsName, String herbsNameCategory, String herbsDescription, String herbsDescriptionCategory, String herbsApplication,
-                     String herbsApplicationCategory, String picUrl1) {
+                     String herbsApplicationCategory, boolean herbsOk,String picUrl1) {
         this.herbsName = herbsName;
         this.herbsNameCategory = herbsNameCategory;
         this.herbsDescription = herbsDescription;
         this.herbsDescriptionCategory = herbsDescriptionCategory;
         this.herbsApplication = herbsApplication;
         this.herbsApplicationCategory = herbsApplicationCategory;
+        this.herbsOk = herbsOk;
         this.herbsPicUrl1 = picUrl1;
     }
 }

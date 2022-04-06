@@ -7,6 +7,7 @@ export default function Register() {
     const [loginName, setLoginName] = useState('')
     const [loginPW, setLoginPW] = useState('')
     const [loginPWAgain, setLoginPWAgain] = useState('')
+    const [role, setRole] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
     const nav = useNavigate()
 
@@ -21,7 +22,8 @@ export default function Register() {
                 },
                 body: JSON.stringify({
                     username: loginName,
-                    password: loginPW
+                    password: loginPW,
+                    role: role
                 })
             })
                 .then(response => {
@@ -62,6 +64,10 @@ export default function Register() {
                 <br></br>
                 <input className={'login'} type="password" placeholder={"Passwortwiederholung"} value={loginPWAgain}
                        onChange={ev => setLoginPWAgain(ev.target.value)}/>
+                <br></br>
+                <br></br>
+                <input className={'login'} type="text" placeholder={"Role"} value={role}
+                       onChange={ev => setRole(ev.target.value)}/>
                 <br></br>
                 <br></br>
                 <button onClick={Register}> Anmelden</button>

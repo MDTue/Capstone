@@ -21,6 +21,7 @@ export default function HerbsEdit(props:HerbsFromProps){
     const[herbsApplication, setHerbsApplication] = useState('')
     const[herbsApplicationCategory, setHerbsApplicationCategory] = useState('')
     const[herbsPic_Url1, setHerbsPicUrl1] = useState('')
+    const[herbsOk, setHerbsOk] = useState(true)
     const[errorMessage, setErrorMessage] = useState('')
     const[token] = useState(localStorage.getItem('token') ?? '');
     useEffect(()=>{
@@ -30,6 +31,7 @@ export default function HerbsEdit(props:HerbsFromProps){
         setHerbsDescriptionCategory(props.herbToChange.herbsDescriptionCategory)
         setHerbsApplication(props.herbToChange.herbsApplication);
         setHerbsApplicationCategory(props.herbToChange.herbsApplicationCategory)
+        setHerbsOk(props.herbToChange.herbsOk)
         setHerbsPicUrl1(props.herbToChange.herbsPicUrl1)
 
     }, [props.herbToChange])
@@ -57,6 +59,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                 herbsDescriptionCategory: herbsDescriptionCategory,
                 herbsApplication: herbsApplication,
                 herbsApplicationCategory: herbsApplicationCategory,
+                herbsOk: herbsOk,
                 herbsPicUrl1 : url
             }),
         })
@@ -82,6 +85,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                 setHerbsDescriptionCategory('');
                 setHerbsApplication('');
                 setHerbsApplicationCategory('');
+                herbsOk: herbsOk;
                 setHerbsPicUrl1('');
             })
             .catch(e=> setErrorMessage(e.message));
@@ -101,6 +105,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                 herbsDescriptionCategory : herbsDescriptionCategory,
                 herbsApplication : herbsApplication,
                 herbsApplicationCategory : herbsApplicationCategory,
+                herbsOk: herbsOk,
                 herbsPicUrl1 : url
             })
         })
@@ -126,6 +131,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                 setHerbsDescriptionCategory('');
                 setHerbsApplication('');
                 setHerbsApplicationCategory('');
+                setHerbsOk(true),
                 setHerbsPicUrl1('')
             })
             .catch(e=> setErrorMessage(e.message));
@@ -166,6 +172,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                 setHerbsDescriptionCategory('');
                 setHerbsApplication('');
                 setHerbsApplicationCategory('');
+                setHerbsOk(true);
                 setHerbsPicUrl1('');
             })
             .catch(e=> setErrorMessage(e.message));

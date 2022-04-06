@@ -4,6 +4,7 @@ import {useCallback, useEffect, useState} from "react";
 import {HerbsItemDTO} from "../Herbs/HerbsModel";
 import "../css/HerbsEdit.css";
 import "../css/HerbsPage.css";
+import "../css/NavBar.css"
 import logo from "../images/Logo_Hoerbs_Transparent.png";
 import knopfRezepte from "../images/KnopfRezepte.png";
 import knopfWissen from "../images/KnopfWissen.png";
@@ -54,15 +55,14 @@ export default function HerbsPage(){
     return(
             <div className={'page'}>
                 <div className={'menue'}>
-
                     <img src={logo} alt="Logo" className={'logo'} />
                     <div className={'navBar'}>
                         <NavBar />
                     </div>
                     <div className ={'knopf'}>
-                    <img src={knopfBestimmen} alt='Rezepte' />
-                    <img src={knopfWissen} alt='Rezepte' />
-                    <img src={knopfSirup} alt='Rezepte' />
+                    <img src={knopfBestimmen} alt='bestimmen' />
+                    <img src={knopfWissen} alt='Wissen' />
+                    <img src={knopfSirup} alt='Sirup' />
                     <img src={knopfRezepte} alt='Rezepte' />
                     </div>
 

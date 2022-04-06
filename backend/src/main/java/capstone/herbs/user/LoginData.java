@@ -8,6 +8,5 @@ import lombok.Data;
         private String password;
         private String email;
         private String role;
-
     }
 
