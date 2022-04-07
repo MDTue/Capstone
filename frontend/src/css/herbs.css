@@ -38,7 +38,7 @@
     grid-area: herbEdit;
 }
 .picture1 {
-    width:50px;
+    width:200px;
     grid-area: picture1; }
 .picture2 { grid-area: picture2; }
 .herbName { grid-area: herbName; }

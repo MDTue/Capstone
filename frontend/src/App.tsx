@@ -1,6 +1,5 @@
 
 import HerbsPage from "./Herbs/HerbsPage";
-import NavBar from "./Components/NavBar";
 
 function App() {
 

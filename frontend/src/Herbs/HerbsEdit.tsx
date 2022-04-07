@@ -3,6 +3,7 @@ import {HerbsItemDTO} from "../Herbs/HerbsModel";
 import {useNavigate} from "react-router-dom";
 import "../css/herbs.css"
 
+
 interface HerbsFromProps{
     onHerbsCreation: ()=> void;
     herbToChange: HerbsItemDTO;
@@ -191,78 +192,44 @@ export default function HerbsEdit(props:HerbsFromProps){
     return(
         <div className={'herbEdit'}>
             {url ?
-
                 <img src={url} alt="uploaded pic" className={'picture1'} />
-
             :
-
                 <img src={herbsPic_Url1} alt ="Bild Pflanze" className={'picture1'}/>
-
             }
             <div className={'picture2'}>
                 bild2
             </div>
-
-
-                        <input className={'herbName'} type="text" placeholder={"Name"} value={herbsName}
-                               onChange={ev => setHerbsName(ev.target.value)}/>
-                        <textarea className={'herbDescription'} rows={10} placeholder={"Beschreibung"}
-                                  value={herbsDescription} onChange={ev => setHerbsDescription(ev.target.value)}/>
-
-                        <textarea className={'herbApplication'} rows={10} placeholder={"Anwendung"} value={herbsApplication}
-                                  onChange={ev => setHerbsApplication(ev.target.value)}/>
-
-
-
-                        <input className={'herbNameCategory'} type="text" placeholder={"Kategorie Pflanze"}
-                        value={herbsNameCategory} onChange={ev => setHerbsNameCategory(ev.target.value)}/>
-                        <input className={'herbDescriptionCategory'} type="text" placeholder={"Kategorie Beschreibung"}
-                               value={herbsDescriptionCategory}
-                               onChange={ev => setHerbsDescriptionCategory(ev.target.value)}/>
-                    <div className={'herbApplicationCategory'}>
-                        <input type="text" placeholder={"Kategorie Anwendung"}
-                               value={herbsApplicationCategory}
-                               onChange={ev => setHerbsApplicationCategory(ev.target.value)}/>
-                        <div className={'saveButton'}>
-                            <button onClick={CreateOrEdit} >Speichern</button>
-                        </div>
-                        <div className={'deleteButton'}>
-                            <button onClick={deleteHerb}>Löschen</button>
-                        </div>
-                        <div className={'seekPicture'}>
-                            <input type="file" accept="image/*"  onChange={ev => {
-                                if(ev.target.files !=null){
-                                    setImg(ev.target.files[0]);
-                                }
-                            } }/>
-                        </div>
-                        <div className={'uploadButton'}>
-                            {img.size>0 && <button onClick={handleUpload}>upload</button>}
-                        </div>
-                    </div>
-
-
-                {/*
-                <div >
-                    <input className={'herbName'} type="text" placeholder={"Name"} value={herbsName}
-                           onChange={ev => setHerbsName(ev.target.value)} disabled={true}/>
-                    <input className={'herbNameCategory'} type="text" placeholder={"Kategorie Pflanze"}
-                           value={herbsNameCategory} onChange={ev => setHerbsNameCategory(ev.target.value)}
-                           disabled={true}/>
-                    <textarea className={'herbDescription'} rows={10} placeholder={"Beschreibung"}
-                              value={herbsDescription} onChange={ev => setHerbsDescription(ev.target.value)}
-                              disabled={true}/>
-                    <input className={'herbDescriptionCategory'} type="text" placeholder={"Kategorie Beschreibung"}
-                           value={herbsDescriptionCategory}
-                           onChange={ev => setHerbsDescriptionCategory(ev.target.value)} disabled={true}/>
-                    <textarea className={'herbApplication'} rows={10} placeholder={"Anwendung"} value={herbsApplication}
-                              onChange={ev => setHerbsApplication(ev.target.value)} disabled={true}/>
-                    <input className={'herbApplicationCategory'} type="text" placeholder={"Kategorie Anwendung"}
+            <input className={'herbName'} type="text" placeholder={"Name"} value={herbsName}
+                   onChange={ev => setHerbsName(ev.target.value)} disabled={!token}/>
+            <textarea className={'herbDescription'} rows={10} placeholder={"Beschreibung"}
+                   value={herbsDescription} onChange={ev => setHerbsDescription(ev.target.value)}disabled={!token}/>
+            <textarea className={'herbApplication'} rows={10} placeholder={"Anwendung"} value={herbsApplication}
+                   onChange={ev => setHerbsApplication(ev.target.value)} disabled={!token} />
+            <input className={'herbNameCategory'} type="text" placeholder={"Kategorie Pflanze"}
+                   value={herbsNameCategory} onChange={ev => setHerbsNameCategory(ev.target.value)} disabled={!token}/>
+            <input className={'herbDescriptionCategory'} type="text" placeholder={"Kategorie Beschreibung"}
+                   value={herbsDescriptionCategory}
+                   onChange={ev => setHerbsDescriptionCategory(ev.target.value)}disabled={!token} />
+            <div className={'herbApplicationCategory'}>
+                    <input type="text" placeholder={"Kategorie Anwendung"}
                            value={herbsApplicationCategory}
-                           onChange={ev => setHerbsApplicationCategory(ev.target.value)} disabled={true}/>
-                </div>
-                */}
+                           onChange={ev => setHerbsApplicationCategory(ev.target.value)}disabled={!token} />
 
+                <div className={'saveButton'}>
+                    <button onClick={CreateOrEdit} disabled={!token} >Speichern</button>
+                </div>
+                <div className={'deleteButton'}>
+                                    <button onClick={deleteHerb} disabled={!token} >Löschen</button>
+                </div>
+
+                <div className={'seekPicture'}>
+                    <input type="file" accept="image/*"  onChange={ev => {
+                    if(ev.target.files !=null){setImg(ev.target.files[0]);}} } disabled={!token} />
+                </div>
+
+                <div className={'uploadButton'}>{img.size>0 && <button onClick={handleUpload}disabled={!token} >upload</button>}
+                </div>
+            </div>
         </div>
     )
 }
