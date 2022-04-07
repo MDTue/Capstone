@@ -1,9 +1,7 @@
 import {useEffect, useState} from "react";
 import {HerbsItemDTO} from "../Herbs/HerbsModel";
 import {useNavigate} from "react-router-dom";
-
-import "../css/HerbsEdit.css";
-import "../css/HerbsPage.css";
+import "../css/herbs.css"
 
 interface HerbsFromProps{
     onHerbsCreation: ()=> void;
@@ -85,7 +83,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                 setHerbsDescriptionCategory('');
                 setHerbsApplication('');
                 setHerbsApplicationCategory('');
-                herbsOk: herbsOk;
+                setHerbsOk(true);
                 setHerbsPicUrl1('');
             })
             .catch(e=> setErrorMessage(e.message));
@@ -131,7 +129,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                 setHerbsDescriptionCategory('');
                 setHerbsApplication('');
                 setHerbsApplicationCategory('');
-                setHerbsOk(true),
+                setHerbsOk(true);
                 setHerbsPicUrl1('')
             })
             .catch(e=> setErrorMessage(e.message));
@@ -191,45 +189,60 @@ export default function HerbsEdit(props:HerbsFromProps){
             .then(data => setUrl(data.secure_url))
     }
     return(
-
-        <div className={'rightSide'}>
+        <div className={'herbEdit'}>
             {url ?
-                <img src={url} alt="uploaded pic" className={'picturePlant1'} />
-                :
-                <img src={herbsPic_Url1} alt ="Bild Pflanze" className={'picturePlant1'}/>
-            }
-            {token ?
-                <div >
-                    <input className={'herbName'} type="text" placeholder={"Name"} value={herbsName}
-                           onChange={ev => setHerbsName(ev.target.value)}/>
-                    <input className={'herbNameCategory'} type="text" placeholder={"Kategorie Pflanze"}
-                           value={herbsNameCategory} onChange={ev => setHerbsNameCategory(ev.target.value)}/>
-                    <textarea className={'herbDescription'} rows={10} placeholder={"Beschreibung"}
-                              value={herbsDescription} onChange={ev => setHerbsDescription(ev.target.value)}/>
-                    <input className={'herbDescriptionCategory'} type="text" placeholder={"Kategorie Beschreibung"}
-                           value={herbsDescriptionCategory}
-                           onChange={ev => setHerbsDescriptionCategory(ev.target.value)}/>
-                    <textarea className={'herbApplication'} rows={10} placeholder={"Anwendung"} value={herbsApplication}
-                              onChange={ev => setHerbsApplication(ev.target.value)}/>
-                    <input className={'herbApplicationCategory'} type="text" placeholder={"Kategorie Anwendung"}
-                           value={herbsApplicationCategory}
-                           onChange={ev => setHerbsApplicationCategory(ev.target.value)}/>
-                    <div className={'buttonSaveHerb'}>
-                        <button onClick={CreateOrEdit} >Speichern</button>
-                    </div>
-                    <div className={'buttonDeleteHerb'}>
-                        <button onClick={deleteHerb}  >Löschen</button>
-                    </div>
-                    <div className={'uploadBilder'}>
-                         <input type="file" accept="image/*"  onChange={ev => {
-                             if(ev.target.files !=null){
-                                 setImg(ev.target.files[0]);
-                             }
-                         } }/>
-                        {img.size>0 && <button onClick={handleUpload}>upload</button>}
-                    </div>
-                </div>
+
+                <img src={url} alt="uploaded pic" className={'picture1'} />
+
             :
+
+                <img src={herbsPic_Url1} alt ="Bild Pflanze" className={'picture1'}/>
+
+            }
+            <div className={'picture2'}>
+                bild2
+            </div>
+
+
+                        <input className={'herbName'} type="text" placeholder={"Name"} value={herbsName}
+                               onChange={ev => setHerbsName(ev.target.value)}/>
+                        <textarea className={'herbDescription'} rows={10} placeholder={"Beschreibung"}
+                                  value={herbsDescription} onChange={ev => setHerbsDescription(ev.target.value)}/>
+
+                        <textarea className={'herbApplication'} rows={10} placeholder={"Anwendung"} value={herbsApplication}
+                                  onChange={ev => setHerbsApplication(ev.target.value)}/>
+
+
+
+                        <input className={'herbNameCategory'} type="text" placeholder={"Kategorie Pflanze"}
+                        value={herbsNameCategory} onChange={ev => setHerbsNameCategory(ev.target.value)}/>
+                        <input className={'herbDescriptionCategory'} type="text" placeholder={"Kategorie Beschreibung"}
+                               value={herbsDescriptionCategory}
+                               onChange={ev => setHerbsDescriptionCategory(ev.target.value)}/>
+                    <div className={'herbApplicationCategory'}>
+                        <input type="text" placeholder={"Kategorie Anwendung"}
+                               value={herbsApplicationCategory}
+                               onChange={ev => setHerbsApplicationCategory(ev.target.value)}/>
+                        <div className={'saveButton'}>
+                            <button onClick={CreateOrEdit} >Speichern</button>
+                        </div>
+                        <div className={'deleteButton'}>
+                            <button onClick={deleteHerb}>Löschen</button>
+                        </div>
+                        <div className={'seekPicture'}>
+                            <input type="file" accept="image/*"  onChange={ev => {
+                                if(ev.target.files !=null){
+                                    setImg(ev.target.files[0]);
+                                }
+                            } }/>
+                        </div>
+                        <div className={'uploadButton'}>
+                            {img.size>0 && <button onClick={handleUpload}>upload</button>}
+                        </div>
+                    </div>
+
+
+                {/*
                 <div >
                     <input className={'herbName'} type="text" placeholder={"Name"} value={herbsName}
                            onChange={ev => setHerbsName(ev.target.value)} disabled={true}/>
@@ -248,10 +261,11 @@ export default function HerbsEdit(props:HerbsFromProps){
                            value={herbsApplicationCategory}
                            onChange={ev => setHerbsApplicationCategory(ev.target.value)} disabled={true}/>
                 </div>
-            }
+                */}
+
         </div>
-
-
-
     )
 }
+
+
+

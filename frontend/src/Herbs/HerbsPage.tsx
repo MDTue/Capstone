@@ -2,9 +2,9 @@ import HerbsList from "../Herbs/HerbList";
 import HerbsEdit from "../Herbs/HerbsEdit";
 import {useCallback, useEffect, useState} from "react";
 import {HerbsItemDTO} from "../Herbs/HerbsModel";
-import "../css/HerbsEdit.css";
-import "../css/HerbsPage.css";
-import "../css/NavBar.css"
+
+import "../css/herbs.css"
+
 import logo from "../images/Logo_Hoerbs_Transparent.png";
 import knopfRezepte from "../images/KnopfRezepte.png";
 import knopfWissen from "../images/KnopfWissen.png";
@@ -53,25 +53,24 @@ export default function HerbsPage(){
         }, [errorMessage]
     )
     return(
-            <div className={'page'}>
-                <div className={'menue'}>
+            <div>
+
+                <div className={'navBar'}>
                     <img src={logo} alt="Logo" className={'logo'} />
-                    <div className={'navBar'}>
-                        <NavBar />
+                    <div className ={'navBarLower'}>
+                            <img src={knopfBestimmen} alt='bestimmen' className={'knopf'} />
+                            <img src={knopfWissen} alt='Wissen'  className={'knopf'} />
+                            <img src={knopfSirup} alt='Sirup'  className={'knopf'} />
+                            <img src={knopfRezepte} alt='Rezepte'  className={'knopf'} />
                     </div>
-                    <div className ={'knopf'}>
-                    <img src={knopfBestimmen} alt='bestimmen' />
-                    <img src={knopfWissen} alt='Wissen' />
-                    <img src={knopfSirup} alt='Sirup' />
-                    <img src={knopfRezepte} alt='Rezepte' />
+                    <div className={'navBarUpper'}>
+                            <NavBar />
                     </div>
-
                 </div>
-                <div className={'leftSide'}>
+                <div className={'page'}>
                     <HerbsList herbs={herbs} onHerbsToChange={setHerbToChange} />
+                    <HerbsEdit onHerbsCreation={fetchAll} herbToChange={herbToChange}/>
                 </div>
-                <HerbsEdit onHerbsCreation={fetchAll} herbToChange={herbToChange}/>
-
             </div>
 
     )

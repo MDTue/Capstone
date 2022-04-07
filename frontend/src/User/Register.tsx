@@ -1,4 +1,3 @@
-import "../css/Login.css"
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import NavBar from "../Components/NavBar";
@@ -7,7 +6,6 @@ export default function Register() {
     const [loginName, setLoginName] = useState('')
     const [loginPW, setLoginPW] = useState('')
     const [loginPWAgain, setLoginPWAgain] = useState('')
-    const [role, setRole] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
     const nav = useNavigate()
 
@@ -22,8 +20,7 @@ export default function Register() {
                 },
                 body: JSON.stringify({
                     username: loginName,
-                    password: loginPW,
-                    role: role
+                    password: loginPW
                 })
             })
                 .then(response => {
@@ -46,30 +43,24 @@ export default function Register() {
 
     return (
         <div className="loginpage">
-            <div className={'navBar'}>
-                <NavBar/>
-            </div>
+            <NavBar/>
             <div className={"loginContainer"}>
-                <div className={'loginError'}> {errorMessage}  </div>
-                <br></br>
-                <br></br>
-                <span><h2>Registrierung neue User<br></br></h2></span>
+                <div className={'loginError'}>
+                    {errorMessage}
+                </div>
+                <h2>Registrierung neue User</h2>
                 <input className={'login'} type="text" placeholder={"Name"} value={loginName}
                        onChange={ev => setLoginName(ev.target.value)}/>
-                <br></br>
-                <br></br>
+                <br/>
+                <br/>
                 <input className={'login'} type="password" placeholder={"Passwort"} value={loginPW}
                        onChange={ev => setLoginPW(ev.target.value)}/>
-                <br></br>
-                <br></br>
+                <br/>
+                <br/>
                 <input className={'login'} type="password" placeholder={"Passwortwiederholung"} value={loginPWAgain}
                        onChange={ev => setLoginPWAgain(ev.target.value)}/>
-                <br></br>
-                <br></br>
-                <input className={'login'} type="text" placeholder={"Role"} value={role}
-                       onChange={ev => setRole(ev.target.value)}/>
-                <br></br>
-                <br></br>
+                <br/>
+                <br/>
                 <button onClick={Register}> Anmelden</button>
             </div>
         </div>
