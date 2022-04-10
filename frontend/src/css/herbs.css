@@ -4,6 +4,9 @@
     gap: 0px 0px;
     grid-template-areas:
     "herbList herbEdit";
+    height: 100%;
+    width: 100%;
+    background-color: #f3f2f0;
 }
 .navBar {
     display: grid;
@@ -14,18 +17,28 @@
     "logo . navBarUpper"
     "logo navBarLower .";
     grid-area: 1 / 1 / 2 / 3;
+    list-style-type: none;
+    background-color:#e3dedb ;
+}
+li {
+    float: left;
+    display: block;
+    padding: 8px;
 }
 .logo{
     width:10rem;
     grid-area: logo; }
 
 .knopf{
-    width: 3rem;
+    width: 4rem;
+    gap: 0px 5px;
 }
 
 .navBarLower { grid-area: navBarLower; }
 .navBarUpper { grid-area: navBarUpper; }
-.herbList { grid-area: herbList; }
+.herbList {
+    grid-area: herbList;
+}
 .herbEdit {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -38,7 +51,7 @@
     grid-area: herbEdit;
 }
 .picture1 {
-    width:200px;
+    width:180px;
     grid-area: picture1; }
 .picture2 { grid-area: picture2; }
 .herbName { grid-area: herbName; }

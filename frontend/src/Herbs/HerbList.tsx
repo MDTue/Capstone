@@ -1,6 +1,7 @@
 import {HerbsItemDTO} from "../Herbs/HerbsModel";
 import "../css/herbs.css"
 
+
 interface HerbsListProps{
     herbs: HerbsItemDTO[]
     onHerbsToChange: (herb:HerbsItemDTO)=> void;

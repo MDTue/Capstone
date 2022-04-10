@@ -1,7 +1,16 @@
-import "../css/Login.css"
+
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import NavBar from "../Components/NavBar";
+import logo from "../images/Logo_Hoerbs_Transparent.png";
+import knopfBestimmen from "../images/KnopfBestimmen.png";
+import knopfWissen from "../images/KnopfWissen.png";
+import knopfSirup from "../images/KnopfSirup.png";
+import knopfRezepte from "../images/KnopfRezepte.png";
+import "../css/Login.css"
+import "../css/herbs.css"
+import "../css/Fehler.css"
+
 
 export default function Login() {
     const [loginName, setLoginName] = useState('')
@@ -39,22 +48,31 @@ export default function Login() {
 
     return (
         <div>
-                <NavBar/>
-            <div className="loginpage">
-                <div className={"loginContainer"}>
-                    <div className={'loginError'}> {errorMessage}  </div>
-                    <br></br>
-                    <br></br>
-                    <span><h2>Login für registrierte User </h2></span>
-                    <input className={'Login'} type="text" placeholder={"Name"} value={loginName}
+             <div className={'navBar'}>
+                 <img src={logo} alt="Logo" className={'logo'} />
+                 <div className ={'navBarLower'}>
+                     <img src={knopfBestimmen} alt='bestimmen' className={'knopf'} />
+                     <img src={knopfWissen} alt='Wissen'  className={'knopf'} />
+                     <img src={knopfSirup} alt='Sirup'  className={'knopf'} />
+                     <img src={knopfRezepte} alt='Rezepte'  className={'knopf'} />
+                 </div>
+                 <div className={'navBarUpper'}>
+                        <NavBar />
+                 </div>
+             </div>
+            <div className={'loginContainer'}>
+                <div className={'login'}>
+                    <div className={'loginHeader'}>Login für registrierte User</div>
+                    <input className={'loginUserName'} type="text" placeholder={"Name"} value={loginName}
                            onChange={ev => setLoginName(ev.target.value)}/>
-                    <br></br>
-                    <br></br>
-                    <input className={'Login'} type="password" placeholder={"Passwort"} value={loginPW}
+                    <input className={'userPassword'} type="password" placeholder={"Passwort"} value={loginPW}
                            onChange={ev => setLoginPW(ev.target.value)}/>
-                    <br></br>
-                    <br></br>
-                    <button onClick={loginUser}> Anmelden</button>
+                    <button onClick={loginUser} className={'loginButtonSave'} > Anmelden </button>
+                </div>
+            </div>
+            <div className={'fehler'}>
+                <div className={'fehlerAusgabe'}>
+                    <div >{errorMessage}</div>
                 </div>
             </div>
         </div>

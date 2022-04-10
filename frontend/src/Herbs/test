@@ -1,0 +1,22 @@
+test('that component is deleted', (done) => {
+
+    jest.spyOn(window, 'fetch').mockImplementation(() => {
+        return Promise.resolve({} as Response)
+    });
+
+    const item = {
+        term: 'Java',
+        description: 'Bitte kein Frontend mehr',
+        category: 'Sprache',
+        links: []
+    }
+
+    const testDeleteFunction = () => {
+        done();
+    };
+
+    render(<GlossaryItem item={item} onItemDeleted={testDeleteFunction} />);
+
+    screen.getByTestId('delete-button').click();
+});
+

@@ -1,0 +1,15 @@
+.loginContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+}
+.navBar { grid-area: 1 / 1 / 2 / 4; }
+.login { grid-area: 2 / 2 / 3 / 3; }
+
+
+
+<div class="login">
+  <div class="navBar"></div>
+  <div class="login"></div>
+</div>

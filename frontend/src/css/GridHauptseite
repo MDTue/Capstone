@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="navBar">
+    <div class="logo"></div>
+    <div class="navBarLower"></div>
+    <div class="navBarUpper"></div>
+  </div>
+  <div class="herbList"></div>
+  <div class="herbEdit">
+    <div class="picture1"></div>
+    <div class="picture2"></div>
+    <div class="herbName"></div>
+    <div class="herbDescription"></div>
+    <div class="herbApplication"></div>
+    <div class="herbNameCategory"></div>
+    <div class="herbDescriptionCategory"></div>
+    <div class="herbApplicationCategory"></div>
+  </div>
+</div>
+
+.container {
+  display: grid;
+  grid-template-columns: 0.4fr 1.6fr;
+  grid-template-rows: 0.3fr 1.7fr;
+  gap: 0px 0px;
+}
+.navBar {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0px 0px;
+  grid-area: 1 / 1 / 2 / 3;
+}
+.logo { grid-area: 1 / 1 / 3 / 2; }
+.navBarLower { grid-area: 2 / 2 / 3 / 3; }
+.navBarUpper { grid-area: 1 / 3 / 2 / 4; }
+.herbList { grid-area: 2 / 1 / 3 / 2; }
+.herbEdit {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 0.3fr 1.3fr 1.4fr;
+  gap: 0px 0px;
+  grid-area: 2 / 2 / 3 / 3;
+}
+.picture1 { grid-area: 2 / 1 / 3 / 2; }
+.picture2 { grid-area: 3 / 1 / 4 / 2; }
+.herbName { grid-area: 1 / 2 / 2 / 3; }
+.herbDescription { grid-area: 2 / 2 / 3 / 3; }
+.herbApplication { grid-area: 3 / 2 / 4 / 3; }
+.herbNameCategory { grid-area: 1 / 3 / 2 / 4; }
+.herbDescriptionCategory { grid-area: 2 / 3 / 3 / 4; }
+.herbApplicationCategory { grid-area: 3 / 3 / 4 / 4; }

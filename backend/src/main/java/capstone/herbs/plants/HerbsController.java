@@ -19,6 +19,12 @@ public class HerbsController {
                 .map(herbsItem -> HerbsItemDTO.of(herbsItem))
                 .toList();
     }
+    @GetMapping
+    public List<HerbsItemDTO> listHerbsByCategoryApplication(@RequestBody HerbsItemDTO categoryApplicationToSeek){
+        return herbsService.getAllHerbsByCategoryApplication(String.valueOf(categoryApplicationToSeek)).stream()
+                .map(herbsItem -> HerbsItemDTO.of(herbsItem))
+                .toList();
+    }
 
     @PostMapping
     public List<HerbsItemDTO> createHerbsItem(@RequestBody HerbsItemDTO newHerb){

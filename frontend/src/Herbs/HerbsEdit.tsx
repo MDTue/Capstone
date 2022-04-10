@@ -154,6 +154,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                     return response.json()
                 }
                 if (response.status === 403){
+
                     nav("/login")
                 }else {
                     throw new Error("Fehler beim Löschen.")
@@ -199,7 +200,7 @@ export default function HerbsEdit(props:HerbsFromProps){
             <div className={'picture2'}>
                 bild2
             </div>
-            <input className={'herbName'} type="text" placeholder={"Name"} value={herbsName}
+            <input data-testid="herbName" className={'herbName'} type="text" placeholder={"Name"} value={herbsName}
                    onChange={ev => setHerbsName(ev.target.value)} disabled={!token}/>
             <textarea className={'herbDescription'} rows={10} placeholder={"Beschreibung"}
                    value={herbsDescription} onChange={ev => setHerbsDescription(ev.target.value)}disabled={!token}/>
@@ -216,10 +217,10 @@ export default function HerbsEdit(props:HerbsFromProps){
                            onChange={ev => setHerbsApplicationCategory(ev.target.value)}disabled={!token} />
 
                 <div className={'saveButton'}>
-                    <button onClick={CreateOrEdit} disabled={!token} >Speichern</button>
+                    <button  onClick={CreateOrEdit} disabled={!token} >Speichern</button>
                 </div>
                 <div className={'deleteButton'}>
-                                    <button onClick={deleteHerb} disabled={!token} >Löschen</button>
+                    <button  data-testid="delete-button" onClick={deleteHerb} disabled={!token} >Löschen</button>
                 </div>
 
                 <div className={'seekPicture'}>

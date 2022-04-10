@@ -3,6 +3,7 @@ package capstone.herbs.plants;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -34,5 +35,10 @@ public class HerbsService {
 
     public void deleteHerbsItem(String id) {
         herbsRepository.deleteById(id);
+    }
+
+    public List<HerbsItem> getAllHerbsByCategoryApplication(String categoryApplication) {
+        List<HerbsItem> allHerbsByCategoryApplication = herbsRepository.findAllByCategoryApplication(categoryApplication);
+        return allHerbsByCategoryApplication;
     }
 }

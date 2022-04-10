@@ -1,6 +1,13 @@
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
-//import NavBar from "../Components/NavBar";
+import NavBar from "../Components/NavBar";
+import logo from "../images/Logo_Hoerbs_Transparent.png";
+import knopfBestimmen from "../images/KnopfBestimmen.png";
+import knopfWissen from "../images/KnopfWissen.png";
+import knopfSirup from "../images/KnopfSirup.png";
+import knopfRezepte from "../images/KnopfRezepte.png";
+import "../css/Login.css"
+import "../css/herbs.css"
 
 export default function Register() {
     const [loginName, setLoginName] = useState('')
@@ -42,25 +49,31 @@ export default function Register() {
     )
 
     return (
-        <div className="loginpage">
-            <div className={"loginContainer"}>
-                <div className={'loginError'}>
-                    {errorMessage}
+        <div>
+            <div className={'navBar'}>
+                <img src={logo} alt="Logo" className={'logo'} />
+                <div className ={'navBarLower'}>
+                    <img src={knopfBestimmen} alt='bestimmen' className={'knopf'} />
+                    <img src={knopfWissen} alt='Wissen'  className={'knopf'} />
+                    <img src={knopfSirup} alt='Sirup'  className={'knopf'} />
+                    <img src={knopfRezepte} alt='Rezepte'  className={'knopf'} />
                 </div>
-                <h2>Registrierung neue User</h2>
-                <input className={'login'} type="text" placeholder={"Name"} value={loginName}
-                       onChange={ev => setLoginName(ev.target.value)}/>
-                <br/>
-                <br/>
-                <input className={'login'} type="password" placeholder={"Passwort"} value={loginPW}
-                       onChange={ev => setLoginPW(ev.target.value)}/>
-                <br/>
-                <br/>
-                <input className={'login'} type="password" placeholder={"Passwortwiederholung"} value={loginPWAgain}
-                       onChange={ev => setLoginPWAgain(ev.target.value)}/>
-                <br/>
-                <br/>
-                <button onClick={Register}> Anmelden</button>
+                <div className={'navBarUpper'}>
+                    <NavBar />
+                </div>
+            </div>
+            <div className={'loginContainer'}>
+                <div className={'loginError'}> {errorMessage}  </div>
+                <div className={'login'}>
+                    <div className={'loginHeader'}>Registrierung neuer User</div>
+                    <input className={'loginUserName'} type="text" placeholder={"Name"} value={loginName}
+                           onChange={ev => setLoginName(ev.target.value)}/>
+                    <input className={'userPassword'} type="password" placeholder={"Passwort"} value={loginPW}
+                           onChange={ev => setLoginPW(ev.target.value)}/>
+                    <input className={'userPasswordAgain'} type="password" placeholder={"Passwortwiederholung"} value={loginPWAgain}
+                           onChange={ev => setLoginPWAgain(ev.target.value)}/>
+                    <button onClick={Register} className={'loginButtonSave'} > Anmelden </button>
+                </div>
             </div>
         </div>
     )

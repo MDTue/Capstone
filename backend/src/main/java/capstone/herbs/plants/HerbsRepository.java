@@ -8,4 +8,6 @@ import java.util.List;
 @Repository
 public interface HerbsRepository extends MongoRepository<HerbsItem, String> {
     List<HerbsItem> findAllByHerbsName(String herbsName);
+
+    List<HerbsItem> findAllByCategoryApplication(String categoryApplication);
 }
