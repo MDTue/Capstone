@@ -19,12 +19,13 @@ public class HerbsController {
                 .map(herbsItem -> HerbsItemDTO.of(herbsItem))
                 .toList();
     }
-    @GetMapping
-    public List<HerbsItemDTO> listHerbsByCategoryApplication(@RequestBody HerbsItemDTO categoryApplicationToSeek){
-        return herbsService.getAllHerbsByCategoryApplication(String.valueOf(categoryApplicationToSeek)).stream()
+    @GetMapping("/category/{categoryToSeek}")
+    public List<HerbsItemDTO> listHerbsByCategoryApplication(@PathVariable String categoryToSeek){
+        return herbsService.getAllHerbsByCategory(categoryToSeek).stream()
                 .map(herbsItem -> HerbsItemDTO.of(herbsItem))
                 .toList();
     }
+
 
     @PostMapping
     public List<HerbsItemDTO> createHerbsItem(@RequestBody HerbsItemDTO newHerb){

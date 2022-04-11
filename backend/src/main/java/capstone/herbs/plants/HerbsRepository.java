@@ -9,5 +9,5 @@ import java.util.List;
 public interface HerbsRepository extends MongoRepository<HerbsItem, String> {
     List<HerbsItem> findAllByHerbsName(String herbsName);
 
-    List<HerbsItem> findAllByCategoryApplication(String categoryApplication);
+    List<HerbsItem> findAllByHerbsApplicationCategory(String categoryApplication);
 }
