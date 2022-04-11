@@ -25,10 +25,10 @@ export default function HerbsPage(){
         if (!seekId) {
             urlToSeek = `${process.env.REACT_APP_BASE_URL}/api/items`
 
-        }else if(seekId="1"){
+        }else if(seekId=="1"){
             urlToSeek = `${process.env.REACT_APP_BASE_URL}/api/items/category/Rezept`
 
-        }else if(seekId="2"){
+        }else if(seekId=="2"){
             urlToSeek = `${process.env.REACT_APP_BASE_URL}/api/items/category/wissen`
 
         }
