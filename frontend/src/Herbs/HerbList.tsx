@@ -1,4 +1,5 @@
 import {HerbsItemDTO} from "../Herbs/HerbsModel";
+import "../css/herbs.css"
 
 interface HerbsListProps{
     herbs: HerbsItemDTO[]
@@ -9,14 +10,13 @@ interface HerbsListProps{
 export default function HerbsList(props:HerbsListProps){
 
     return(
-
-
-        <div className="leftSide">
-            <ul>
-                {props.herbs.length>0 && props.herbs.map((herbs,index) => <li className={"herbName"}
-                                                                              onClick={()=>props.onHerbsToChange(herbs)}
-                                                                              key={herbs.herbsName+index}>{herbs.herbsName} </li>)}
-            </ul>
+        <div className={'herbList'}>
+                <ul>
+                    {props.herbs.length>0 && props.herbs.map((herbs,
+                                          index) => <li
+                                          onClick={()=>props.onHerbsToChange(herbs)}
+                                          key={herbs.herbsName+index}>{herbs.herbsName} </li>)}
+                </ul>
         </div>
     )
 }

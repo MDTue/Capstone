@@ -1,7 +1,6 @@
-import "../css/Login.css"
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
-import NavBar from "../Components/NavBar";
+//import NavBar from "../Components/NavBar";
 
 export default function Register() {
     const [loginName, setLoginName] = useState('')
@@ -44,24 +43,23 @@ export default function Register() {
 
     return (
         <div className="loginpage">
-                <NavBar/>
             <div className={"loginContainer"}>
-                <div className={'loginError'}> {errorMessage}  </div>
-                <br></br>
-                <br></br>
-                <span><h2>Registrierung neue User<br></br></h2></span>
+                <div className={'loginError'}>
+                    {errorMessage}
+                </div>
+                <h2>Registrierung neue User</h2>
                 <input className={'login'} type="text" placeholder={"Name"} value={loginName}
                        onChange={ev => setLoginName(ev.target.value)}/>
-                <br></br>
-                <br></br>
+                <br/>
+                <br/>
                 <input className={'login'} type="password" placeholder={"Passwort"} value={loginPW}
                        onChange={ev => setLoginPW(ev.target.value)}/>
-                <br></br>
-                <br></br>
+                <br/>
+                <br/>
                 <input className={'login'} type="password" placeholder={"Passwortwiederholung"} value={loginPWAgain}
                        onChange={ev => setLoginPWAgain(ev.target.value)}/>
-                <br></br>
-                <br></br>
+                <br/>
+                <br/>
                 <button onClick={Register}> Anmelden</button>
             </div>
         </div>
