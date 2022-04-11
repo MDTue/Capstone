@@ -35,7 +35,7 @@ export default function HerbsSeekCategory(props:HerbsFromProps){
 
 
     const seekCategoryApplication = () => {
-        fetch(`${process.env.REACT_APP_BASE_URL}${props.herbToShow.links.find(l=>l.rel=== 'self')?.href}`, {
+        fetch(`${process.env.REACT_APP_BASE_URL}/category/rezept`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -50,25 +50,23 @@ export default function HerbsSeekCategory(props:HerbsFromProps){
                 }
             })
             .then((herbsFromBackend: Array<HerbsItemDTO>) => {
-                herbsName: herbsName,
-                herbsNameCategory: herbsNameCategory,
-                herbsDescription: herbsDescription,
-                herbsDescriptionCategory : herbsDescriptionCategory,
-                herbsApplication : herbsApplication,
-                herbsApplicationCategory : herbsApplicationCategory,
-                herbsOk: herbsOk,
-                herbsPicUrl1: herbsPicUrl1
+                setHerbsName(herbsName),
+                setHerbsNameCategory(herbsNameCategory),
+                setHerbsDescription(herbsDescription),
+                setHerbsDescriptionCategory(herbsDescriptionCategory),
+                setHerbsApplication(herbsApplication),
+                setHerbsApplicationCategory(herbsApplicationCategory),
+                setHerbsOk(herbsOk),
+                setHerbsPicUrl1(herbsPicUrl1)
             })
 
             .catch(e=> setErrorMessage(e.message));
     }
 
+    return(
+        <div></div>
 
-
-
-
-
-
+    )
 
 
 }

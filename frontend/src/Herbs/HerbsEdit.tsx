@@ -5,7 +5,7 @@ import "../css/herbs.css"
 
 
 interface HerbsFromProps{
-    onHerbsCreation: ()=> void;
+    onHerbsCreation: (seekId?:string)=> void;
     herbToChange: HerbsItemDTO;
 }
 

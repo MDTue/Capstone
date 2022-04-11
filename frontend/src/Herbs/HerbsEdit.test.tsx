@@ -2,8 +2,9 @@
 import {getByTestId, render, screen} from "@testing-library/react";
 import HerbsEdit from "./HerbsEdit";
 import {BrowserRouter} from "react-router-dom";
-import {getValue} from "@testing-library/user-event/dist/utils";
 
+beforeEach(()=> localStorage.setItem("token", "123"))
+afterEach(()=> localStorage.clear())
 
 test('that component is rendered', () => {
 
@@ -25,11 +26,28 @@ test('that component is rendered', () => {
 
 
 test('that component is deleted', (done) => {
-    jest.spyOn(window, 'fetch').mockImplementation(() => {
-        return Promise.resolve({} as Response)
-    });
-    const editItem = {
+    const editItem =  [{
         herbsName: 'Zistrose',
+        herbsDescription: 'liebt die Sonne',
+        herbsApplication: 'Tee',
+        herbsNameCategory: 'Heilkraut',
+        herbsApplicationCategory: 'Tee',
+        herbsDescriptionCategory: 'sonnige Standorte',
+        herbsOk: true,
+        herbsPicUrl1: '',
+        links: []
+    }, {
+        herbsName: 'Pfefferminze',
+        herbsDescription: 'liebt die Sonne',
+        herbsApplication: 'Tee',
+        herbsNameCategory: 'Heilkraut',
+        herbsApplicationCategory: 'Tee',
+        herbsDescriptionCategory: 'sonnige Standorte',
+        herbsOk: true,
+        herbsPicUrl1: '',
+        links: []
+    }, {
+        herbsName: 'Salbei',
         herbsDescription : 'liebt die Sonne',
         herbsApplication : 'Tee',
         herbsNameCategory : 'Heilkraut',
@@ -38,12 +56,22 @@ test('that component is deleted', (done) => {
         herbsOk : true,
         herbsPicUrl1 : '',
         links : []
-    }
-
+    }]
+    jest.spyOn(window, 'fetch').mockImplementation(() => {
+        return Promise.resolve({
+            status: 200,
+            json: () => Promise.resolve({
+                info: {},
+                results: editItem
+            })
+        } as Response)
+    });
     const testDeleteFunction = () => {
         done();
     };
-    render( <BrowserRouter> <HerbsEdit herbToChange ={editItem} onHerbsCreation={testDeleteFunction} /></BrowserRouter>);
+    render( <BrowserRouter> <HerbsEdit herbToChange ={editItem[0]} onHerbsCreation={testDeleteFunction} /> </BrowserRouter>);
+
+   
 
     screen.getByTestId('delete-button').click();
 });
