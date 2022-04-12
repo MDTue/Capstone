@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {HerbsItemDTO} from "../Herbs/HerbsModel";
 import {useNavigate} from "react-router-dom";
 import "../css/herbs.css"
@@ -12,6 +12,7 @@ interface HerbsFromProps{
 export default function HerbsEdit(props:HerbsFromProps){
     const[img, setImg] = useState({} as File)
     const[url, setUrl] = useState('')
+    const ref = useRef <HTMLInputElement>(null) ;
     const nav = useNavigate()
     const[herbsName, setHerbsName] = useState(localStorage.getItem('herbsName')??'')
     const[herbsNameCategory, setHerbsNameCategory] = useState('')
@@ -43,7 +44,7 @@ export default function HerbsEdit(props:HerbsFromProps){
             createHerb()
         }
     }
-    const Create =() => {
+    const clearFields =() => {
         setHerbsName('');
         setHerbsNameCategory('');
         setHerbsDescription('');
@@ -52,6 +53,7 @@ export default function HerbsEdit(props:HerbsFromProps){
         setHerbsApplicationCategory('');
         setHerbsOk(true);
         setHerbsPicUrl1('');
+        setUrl('')
     }
 
     const editItem = () => {
@@ -88,14 +90,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                 props.onHerbsCreation();
             })
             .then (() => {
-                localStorage.setItem('herbsName',herbsName);
-                setHerbsNameCategory('');
-                localStorage.setItem('herbsdescription',herbsDescription);
-                setHerbsDescriptionCategory('');
-                setHerbsApplication('');
-                setHerbsApplicationCategory('');
-                setHerbsOk(true);
-                setHerbsPicUrl1('');
+                clearFields()
             })
             .catch(e=> setErrorMessage(e.message));
     }
@@ -134,14 +129,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                 props.onHerbsCreation();
             })
             .then (() => {
-                localStorage.setItem('herbsName',herbsName);
-                setHerbsNameCategory('');
-                localStorage.setItem('herbsdescription',herbsDescription);
-                setHerbsDescriptionCategory('');
-                setHerbsApplication('');
-                setHerbsApplicationCategory('');
-                setHerbsOk(true);
-                setHerbsPicUrl1('')
+                clearFields()
             })
             .catch(e=> setErrorMessage(e.message));
     }
@@ -158,7 +146,6 @@ export default function HerbsEdit(props:HerbsFromProps){
                     return response.json()
                 }
                 if (response.status === 403){
-
                     nav("/login")
                 }else {
                     throw new Error("Fehler beim Löschen.")
@@ -170,15 +157,8 @@ export default function HerbsEdit(props:HerbsFromProps){
                 props.onHerbsCreation();
             })
             .then (() => {
-                localStorage.setItem('herbsName',herbsName);
-                setHerbsNameCategory('');
-                localStorage.setItem('herbsdescription',herbsDescription);
-                setHerbsDescriptionCategory('');
-                setHerbsApplication('');
-                setHerbsApplicationCategory('');
-                setHerbsOk(true);
-                setHerbsPicUrl1('');
-            })
+                clearFields()
+                })
             .catch(e=> setErrorMessage(e.message));
     }
 
@@ -193,6 +173,11 @@ export default function HerbsEdit(props:HerbsFromProps){
         })
             .then(response => response.json())
             .then(data => setUrl(data.secure_url))
+            .then(()  => {
+                if(ref.current !== null){
+                    ref.current.value = ""
+                }
+            })
     }
     useEffect(() => {
             const timoutId = setTimeout(() => setErrorMessage(''), 10000)
@@ -211,10 +196,10 @@ export default function HerbsEdit(props:HerbsFromProps){
             {url ?
                 <img src={url} alt="uploaded pic" className={'picture1'} />
             :
-                <img src={herbsPic_Url1} alt ="Bild Pflanze" className={'picture1'}/>
+                <img src={herbsPic_Url1} alt ="." className={'picture1'}/>
             }
             <div className={'picture2'}>
-                bild2
+                .
             </div>
             <input data-testid="herbName" className={'herbName'} type="text" placeholder={"Name"} value={herbsName}
                    onChange={ev => setHerbsName(ev.target.value)} disabled={!token}/>
@@ -232,7 +217,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                            value={herbsApplicationCategory}
                            onChange={ev => setHerbsApplicationCategory(ev.target.value)}disabled={!token} />
                 <div className={'createButton'}>
-                    <button onClick={Create} disabled={!token} >Neuanlage</button>
+                    <button onClick={clearFields} disabled={!token} >Neuanlage</button>
                 </div>
                 <div className={'saveButton'}>
                     <button  onClick={CreateOrEdit} disabled={!token} >Speichern</button>
@@ -242,7 +227,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                 </div>
 
                 <div className={'seekPicture'}>
-                    <input type="file" accept="image/*"  onChange={ev => {
+                    <input type="file" accept="image/*" ref={ref}  onChange={ev => {
                     if(ev.target.files !=null){setImg(ev.target.files[0]);}} } disabled={!token} />
                 </div>
 

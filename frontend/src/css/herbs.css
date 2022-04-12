@@ -45,7 +45,7 @@ li {
 }
 .herbEdit {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 0.5fr 1.5fr 1fr;
     grid-template-rows: 0.3fr 1.3fr 1.4fr;
     gap: 5px 5px;
     grid-template-areas:
@@ -55,9 +55,8 @@ li {
     grid-area: herbEdit;
 }
 .picture1 {
-    width:300px;
+    height: 200px;
     grid-area: picture1;
-    align-items: center;
     }
 .picture2 { grid-area: picture2; }
 .herbName { grid-area: herbName; }
