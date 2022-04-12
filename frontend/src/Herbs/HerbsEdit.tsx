@@ -44,7 +44,7 @@ export default function HerbsEdit(props:HerbsFromProps){
             createHerb()
         }
     }
-    const create =() => {
+    const clearFields =() => {
         setHerbsName('');
         setHerbsNameCategory('');
         setHerbsDescription('');
@@ -90,15 +90,8 @@ export default function HerbsEdit(props:HerbsFromProps){
                 props.onHerbsCreation();
             })
             .then (() => {
-                localStorage.setItem('herbsName',herbsName);
-                setHerbsNameCategory('');
-                localStorage.setItem('herbsdescription',herbsDescription);
-                setHerbsDescriptionCategory('');
-                setHerbsApplication('');
-                setHerbsApplicationCategory('');
-                setHerbsOk(true);
-                setHerbsPicUrl1('');
-                setUrl('')
+                { clearFields() }
+
             })
             .catch(e=> setErrorMessage(e.message));
     }
@@ -137,15 +130,8 @@ export default function HerbsEdit(props:HerbsFromProps){
                 props.onHerbsCreation();
             })
             .then (() => {
-                localStorage.setItem('herbsName',herbsName);
-                setHerbsNameCategory('');
-                localStorage.setItem('herbsdescription',herbsDescription);
-                setHerbsDescriptionCategory('');
-                setHerbsApplication('');
-                setHerbsApplicationCategory('');
-                setHerbsOk(true);
-                setHerbsPicUrl1('')
-                setUrl('')
+                {clearFields()}
+
             })
             .catch(e=> setErrorMessage(e.message));
     }
@@ -174,15 +160,8 @@ export default function HerbsEdit(props:HerbsFromProps){
                 props.onHerbsCreation();
             })
             .then (() => {
-                localStorage.setItem('herbsName',herbsName);
-                setHerbsNameCategory('');
-                localStorage.setItem('herbsdescription',herbsDescription);
-                setHerbsDescriptionCategory('');
-                setHerbsApplication('');
-                setHerbsApplicationCategory('');
-                setHerbsOk(true);
-                setHerbsPicUrl1('');
-                setUrl('')
+                {clearFields()}
+
             })
             .catch(e=> setErrorMessage(e.message));
     }
@@ -246,7 +225,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                            value={herbsApplicationCategory}
                            onChange={ev => setHerbsApplicationCategory(ev.target.value)}disabled={!token} />
                 <div className={'createButton'}>
-                    <button onClick={create} disabled={!token} >Neuanlage</button>
+                    <button onClick={clearFields} disabled={!token} >Neuanlage</button>
                 </div>
                 <div className={'saveButton'}>
                     <button  onClick={CreateOrEdit} disabled={!token} >Speichern</button>
