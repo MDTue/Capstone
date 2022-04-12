@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {HerbsItemDTO} from "../Herbs/HerbsModel";
 import {useNavigate} from "react-router-dom";
 import "../css/herbs.css"
@@ -12,6 +12,7 @@ interface HerbsFromProps{
 export default function HerbsEdit(props:HerbsFromProps){
     const[img, setImg] = useState({} as File)
     const[url, setUrl] = useState('')
+    const ref = useRef <HTMLInputElement>(null) ;
     const nav = useNavigate()
     const[herbsName, setHerbsName] = useState(localStorage.getItem('herbsName')??'')
     const[herbsNameCategory, setHerbsNameCategory] = useState('')
@@ -43,7 +44,7 @@ export default function HerbsEdit(props:HerbsFromProps){
             createHerb()
         }
     }
-    const Create =() => {
+    const create =() => {
         setHerbsName('');
         setHerbsNameCategory('');
         setHerbsDescription('');
@@ -52,6 +53,7 @@ export default function HerbsEdit(props:HerbsFromProps){
         setHerbsApplicationCategory('');
         setHerbsOk(true);
         setHerbsPicUrl1('');
+        setUrl('')
     }
 
     const editItem = () => {
@@ -96,6 +98,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                 setHerbsApplicationCategory('');
                 setHerbsOk(true);
                 setHerbsPicUrl1('');
+                setUrl('')
             })
             .catch(e=> setErrorMessage(e.message));
     }
@@ -142,6 +145,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                 setHerbsApplicationCategory('');
                 setHerbsOk(true);
                 setHerbsPicUrl1('')
+                setUrl('')
             })
             .catch(e=> setErrorMessage(e.message));
     }
@@ -178,6 +182,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                 setHerbsApplicationCategory('');
                 setHerbsOk(true);
                 setHerbsPicUrl1('');
+                setUrl('')
             })
             .catch(e=> setErrorMessage(e.message));
     }
@@ -193,7 +198,16 @@ export default function HerbsEdit(props:HerbsFromProps){
         })
             .then(response => response.json())
             .then(data => setUrl(data.secure_url))
+            .then(()  => {
+                if(ref.current !== null){
+                    ref.current.value = ""
+                }
+            })
     }
+
+
+
+
     useEffect(() => {
             const timoutId = setTimeout(() => setErrorMessage(''), 10000)
             return () => clearTimeout(timoutId)
@@ -232,7 +246,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                            value={herbsApplicationCategory}
                            onChange={ev => setHerbsApplicationCategory(ev.target.value)}disabled={!token} />
                 <div className={'createButton'}>
-                    <button onClick={Create} disabled={!token} >Neuanlage</button>
+                    <button onClick={create} disabled={!token} >Neuanlage</button>
                 </div>
                 <div className={'saveButton'}>
                     <button  onClick={CreateOrEdit} disabled={!token} >Speichern</button>
@@ -242,7 +256,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                 </div>
 
                 <div className={'seekPicture'}>
-                    <input type="file" accept="image/*"  onChange={ev => {
+                    <input type="file" accept="image/*" ref={ref}  onChange={ev => {
                     if(ev.target.files !=null){setImg(ev.target.files[0]);}} } disabled={!token} />
                 </div>
 
