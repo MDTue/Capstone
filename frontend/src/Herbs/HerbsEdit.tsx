@@ -90,10 +90,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                 props.onHerbsCreation();
             })
             .then (() => {
-                {
-                    clearFields()
-                }
-
+                clearFields()
             })
             .catch(e=> setErrorMessage(e.message));
     }
@@ -132,9 +129,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                 props.onHerbsCreation();
             })
             .then (() => {
-                {
-                    clearFields()
-                }
+                clearFields()
             })
             .catch(e=> setErrorMessage(e.message));
     }
@@ -151,7 +146,6 @@ export default function HerbsEdit(props:HerbsFromProps){
                     return response.json()
                 }
                 if (response.status === 403){
-
                     nav("/login")
                 }else {
                     throw new Error("Fehler beim Löschen.")
@@ -163,11 +157,8 @@ export default function HerbsEdit(props:HerbsFromProps){
                 props.onHerbsCreation();
             })
             .then (() => {
-                {
-                    clearFields()
-                }
-
-            })
+                clearFields()
+                })
             .catch(e=> setErrorMessage(e.message));
     }
 
@@ -205,10 +196,10 @@ export default function HerbsEdit(props:HerbsFromProps){
             {url ?
                 <img src={url} alt="uploaded pic" className={'picture1'} />
             :
-                <img src={herbsPic_Url1} alt ="Bild Pflanze" className={'picture1'}/>
+                <img src={herbsPic_Url1} alt ="." className={'picture1'}/>
             }
             <div className={'picture2'}>
-                bild2
+                .
             </div>
             <input data-testid="herbName" className={'herbName'} type="text" placeholder={"Name"} value={herbsName}
                    onChange={ev => setHerbsName(ev.target.value)} disabled={!token}/>
