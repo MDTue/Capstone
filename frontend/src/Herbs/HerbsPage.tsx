@@ -1,6 +1,6 @@
 import HerbsList from "../Herbs/HerbList";
 import HerbsEdit from "../Herbs/HerbsEdit";
-import {useCallback, useEffect, useState} from "react";
+import {useCallback, useEffect, useRef, useState} from "react";
 import {HerbsItemDTO} from "../Herbs/HerbsModel";
 import "../css/herbs.css"
 
@@ -17,10 +17,11 @@ export default function HerbsPage(){
     const[errorMessage, setErrorMessage]= useState('');
     const[herbToChange, setHerbToChange]=useState({}as HerbsItemDTO);
     const seekId = '';
-    let urlToSeek= `${process.env.REACT_APP_BASE_URL}/api/items`;
+
 
 
     const fetchAll = useCallback((seekId?:string) => {
+        let urlToSeek= `${process.env.REACT_APP_BASE_URL}/api/items`;
         setHerbToChange({} as HerbsItemDTO)
         if (!seekId) {
             urlToSeek = `${process.env.REACT_APP_BASE_URL}/api/items`
