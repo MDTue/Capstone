@@ -43,6 +43,16 @@ export default function HerbsEdit(props:HerbsFromProps){
             createHerb()
         }
     }
+    const Create =() => {
+        setHerbsName('');
+        setHerbsNameCategory('');
+        setHerbsDescription('');
+        setHerbsDescriptionCategory('');
+        setHerbsApplication('');
+        setHerbsApplicationCategory('');
+        setHerbsOk(true);
+        setHerbsPicUrl1('');
+    }
 
     const editItem = () => {
         fetch(`${process.env.REACT_APP_BASE_URL}${props.herbToChange.links.find(l=>l.rel=== 'self')?.href}`, {
@@ -136,12 +146,6 @@ export default function HerbsEdit(props:HerbsFromProps){
             .catch(e=> setErrorMessage(e.message));
     }
 
-    useEffect(() => {
-            const timoutId = setTimeout(() => setErrorMessage(''), 10000)
-            return () => clearTimeout(timoutId)
-        }, [errorMessage]
-    )
-
     const deleteHerb = () => {
         fetch(`${process.env.REACT_APP_BASE_URL}${props.herbToChange.links.find(l=>l.rel=== 'self')?.href}`, {
             method: 'DELETE',
@@ -190,7 +194,19 @@ export default function HerbsEdit(props:HerbsFromProps){
             .then(response => response.json())
             .then(data => setUrl(data.secure_url))
     }
+    useEffect(() => {
+            const timoutId = setTimeout(() => setErrorMessage(''), 10000)
+            return () => clearTimeout(timoutId)
+        }, [errorMessage]
+    )
+
     return(
+     <div>
+         <div className={'navBarLower'}>
+             <div className={'fehler'}>
+                 <h3>{errorMessage}</h3>
+             </div>
+         </div>
         <div className={'herbEdit'}>
             {url ?
                 <img src={url} alt="uploaded pic" className={'picture1'} />
@@ -215,7 +231,9 @@ export default function HerbsEdit(props:HerbsFromProps){
                     <input type="text" placeholder={"Kategorie Anwendung"}
                            value={herbsApplicationCategory}
                            onChange={ev => setHerbsApplicationCategory(ev.target.value)}disabled={!token} />
-
+                <div className={'createButton'}>
+                    <button onClick={Create} disabled={!token} >Neuanlage</button>
+                </div>
                 <div className={'saveButton'}>
                     <button  onClick={CreateOrEdit} disabled={!token} >Speichern</button>
                 </div>
@@ -232,6 +250,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                 </div>
             </div>
         </div>
+     </div>
     )
 }
 

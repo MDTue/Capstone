@@ -4,7 +4,7 @@ import '../css/herbs.css';
 export default function NavBar(){
 
     return(
-             <div className={'navUpperMenue'}>
+             <div className={'navBarUpper'}>
                 <li><Link to="/herbsPage">Home</Link></li>
                 <li><Link to="/login">Login</Link></li>
                 <li><Link to="/register">Registrierung</Link></li>
