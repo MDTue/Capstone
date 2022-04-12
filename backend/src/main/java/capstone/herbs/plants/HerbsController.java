@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 
 @RestController
 @RequestMapping("/api/items")
@@ -19,6 +21,13 @@ public class HerbsController {
                 .map(herbsItem -> HerbsItemDTO.of(herbsItem))
                 .toList();
     }
+    @GetMapping("/category/{categoryToSeek}")
+    public List<HerbsItemDTO> listHerbsByCategoryApplication(@PathVariable String categoryToSeek){
+        return herbsService.getAllHerbsByCategory(categoryToSeek).stream()
+                .map(herbsItem -> HerbsItemDTO.of(herbsItem))
+                .toList();
+    }
+
 
     @PostMapping
     public List<HerbsItemDTO> createHerbsItem(@RequestBody HerbsItemDTO newHerb){

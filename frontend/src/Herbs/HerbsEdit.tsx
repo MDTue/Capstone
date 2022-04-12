@@ -5,7 +5,7 @@ import "../css/herbs.css"
 
 
 interface HerbsFromProps{
-    onHerbsCreation: ()=> void;
+    onHerbsCreation: (seekId?:string)=> void;
     herbToChange: HerbsItemDTO;
 }
 
@@ -42,6 +42,16 @@ export default function HerbsEdit(props:HerbsFromProps){
         }else{
             createHerb()
         }
+    }
+    const Create =() => {
+        setHerbsName('');
+        setHerbsNameCategory('');
+        setHerbsDescription('');
+        setHerbsDescriptionCategory('');
+        setHerbsApplication('');
+        setHerbsApplicationCategory('');
+        setHerbsOk(true);
+        setHerbsPicUrl1('');
     }
 
     const editItem = () => {
@@ -136,12 +146,6 @@ export default function HerbsEdit(props:HerbsFromProps){
             .catch(e=> setErrorMessage(e.message));
     }
 
-    useEffect(() => {
-            const timoutId = setTimeout(() => setErrorMessage(''), 10000)
-            return () => clearTimeout(timoutId)
-        }, [errorMessage]
-    )
-
     const deleteHerb = () => {
         fetch(`${process.env.REACT_APP_BASE_URL}${props.herbToChange.links.find(l=>l.rel=== 'self')?.href}`, {
             method: 'DELETE',
@@ -154,6 +158,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                     return response.json()
                 }
                 if (response.status === 403){
+
                     nav("/login")
                 }else {
                     throw new Error("Fehler beim Löschen.")
@@ -189,7 +194,19 @@ export default function HerbsEdit(props:HerbsFromProps){
             .then(response => response.json())
             .then(data => setUrl(data.secure_url))
     }
+    useEffect(() => {
+            const timoutId = setTimeout(() => setErrorMessage(''), 10000)
+            return () => clearTimeout(timoutId)
+        }, [errorMessage]
+    )
+
     return(
+     <div>
+         <div className={'navBarLower'}>
+             <div className={'fehler'}>
+                 <h3>{errorMessage}</h3>
+             </div>
+         </div>
         <div className={'herbEdit'}>
             {url ?
                 <img src={url} alt="uploaded pic" className={'picture1'} />
@@ -199,7 +216,7 @@ export default function HerbsEdit(props:HerbsFromProps){
             <div className={'picture2'}>
                 bild2
             </div>
-            <input className={'herbName'} type="text" placeholder={"Name"} value={herbsName}
+            <input data-testid="herbName" className={'herbName'} type="text" placeholder={"Name"} value={herbsName}
                    onChange={ev => setHerbsName(ev.target.value)} disabled={!token}/>
             <textarea className={'herbDescription'} rows={10} placeholder={"Beschreibung"}
                    value={herbsDescription} onChange={ev => setHerbsDescription(ev.target.value)}disabled={!token}/>
@@ -214,12 +231,14 @@ export default function HerbsEdit(props:HerbsFromProps){
                     <input type="text" placeholder={"Kategorie Anwendung"}
                            value={herbsApplicationCategory}
                            onChange={ev => setHerbsApplicationCategory(ev.target.value)}disabled={!token} />
-
+                <div className={'createButton'}>
+                    <button onClick={Create} disabled={!token} >Neuanlage</button>
+                </div>
                 <div className={'saveButton'}>
-                    <button onClick={CreateOrEdit} disabled={!token} >Speichern</button>
+                    <button  onClick={CreateOrEdit} disabled={!token} >Speichern</button>
                 </div>
                 <div className={'deleteButton'}>
-                                    <button onClick={deleteHerb} disabled={!token} >Löschen</button>
+                    <button  data-testid="delete-button" onClick={deleteHerb} disabled={!token} >Löschen</button>
                 </div>
 
                 <div className={'seekPicture'}>
@@ -231,6 +250,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                 </div>
             </div>
         </div>
+     </div>
     )
 }
 

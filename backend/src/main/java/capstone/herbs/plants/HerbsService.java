@@ -3,6 +3,7 @@ package capstone.herbs.plants;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -26,13 +27,17 @@ public class HerbsService {
         return allHerbs;
     }
 
-    public List<HerbsItem> herbsToEdit(String herbsName) {
+ /*   public List<HerbsItem> herbsToEdit(String herbsName) {
         List<HerbsItem> allHerbsByName = herbsRepository.findAllByHerbsName(herbsName);
         return allHerbsByName;
-
     }
-
+*/
     public void deleteHerbsItem(String id) {
         herbsRepository.deleteById(id);
+    }
+
+    public List<HerbsItem> getAllHerbsByCategory(String categoryApplication) {
+        List<HerbsItem> allHerbsByCategoryApplication = herbsRepository.findAllByHerbsApplicationCategory(categoryApplication, Sort.by("herbsName"));
+        return allHerbsByCategoryApplication;
     }
 }
