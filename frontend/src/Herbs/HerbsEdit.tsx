@@ -90,7 +90,9 @@ export default function HerbsEdit(props:HerbsFromProps){
                 props.onHerbsCreation();
             })
             .then (() => {
-                { clearFields() }
+                {
+                    clearFields()
+                }
 
             })
             .catch(e=> setErrorMessage(e.message));
@@ -130,8 +132,9 @@ export default function HerbsEdit(props:HerbsFromProps){
                 props.onHerbsCreation();
             })
             .then (() => {
-                {clearFields()}
-
+                {
+                    clearFields()
+                }
             })
             .catch(e=> setErrorMessage(e.message));
     }
@@ -160,7 +163,9 @@ export default function HerbsEdit(props:HerbsFromProps){
                 props.onHerbsCreation();
             })
             .then (() => {
-                {clearFields()}
+                {
+                    clearFields()
+                }
 
             })
             .catch(e=> setErrorMessage(e.message));
@@ -183,10 +188,6 @@ export default function HerbsEdit(props:HerbsFromProps){
                 }
             })
     }
-
-
-
-
     useEffect(() => {
             const timoutId = setTimeout(() => setErrorMessage(''), 10000)
             return () => clearTimeout(timoutId)
