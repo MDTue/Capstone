@@ -17,6 +17,7 @@ test('that component is rendered', () => {
         herbsDescriptionCategory: 'sonnige Standorte',
         herbsOk: true,
         herbsPicUrl1: '',
+        herbsPicUrl2: '',
         links: []
     }
     const testChangeFunction = () => {    };
@@ -35,6 +36,7 @@ test('that component is deleted', (done) => {
         herbsDescriptionCategory: 'sonnige Standorte',
         herbsOk: true,
         herbsPicUrl1: '',
+        herbsPicUrl2: '',
         links: []
     }, {
         herbsName: 'Pfefferminze',
@@ -45,6 +47,7 @@ test('that component is deleted', (done) => {
         herbsDescriptionCategory: 'sonnige Standorte',
         herbsOk: true,
         herbsPicUrl1: '',
+        herbsPicUrl2: '',
         links: []
     }, {
         herbsName: 'Salbei',
@@ -55,6 +58,7 @@ test('that component is deleted', (done) => {
         herbsDescriptionCategory : 'sonnige Standorte',
         herbsOk : true,
         herbsPicUrl1 : '',
+        herbsPicUrl2: '',
         links : []
     }]
     jest.spyOn(window, 'fetch').mockImplementation(() => {

@@ -63,7 +63,7 @@ export default function Register() {
                 </div>
             </div>
             <div className={'loginContainer'}>
-                <div className={'loginError'}> {errorMessage}  </div>
+                <div className={'loginFehler'}> {errorMessage}  </div>
                 <div className={'login'}>
                     <div className={'loginHeader'}>Registrierung neuer User</div>
                     <input className={'loginUserName'} type="text" placeholder={"Name"} value={loginName}

@@ -9,7 +9,6 @@ import knopfSirup from "../images/KnopfSirup.png";
 import knopfRezepte from "../images/KnopfRezepte.png";
 import "../css/Login.css"
 import "../css/herbs.css"
-import "../css/Fehler.css"
 
 
 export default function Login() {
@@ -26,6 +25,7 @@ export default function Login() {
             body: JSON.stringify({
                 username: loginName,
                 password: loginPW
+
             })
         })
             .then(response => {
@@ -60,7 +60,11 @@ export default function Login() {
                         <NavBar />
                  </div>
              </div>
+
             <div className={'loginContainer'}>
+                <div className={'loginFehler'}>
+                    <h3>{errorMessage}</h3>
+                </div>
                 <div className={'login'}>
                     <div className={'loginHeader'}>Login für registrierte User</div>
                     <input className={'loginUserName'} type="text" placeholder={"Name"} value={loginName}
@@ -70,11 +74,7 @@ export default function Login() {
                     <button onClick={loginUser} className={'loginButtonSave'} > Anmelden </button>
                 </div>
             </div>
-            <div className={'fehler'}>
-                <div className={'fehlerAusgabe'}>
-                    <div >{errorMessage}</div>
-                </div>
-            </div>
+
         </div>
     )
 }

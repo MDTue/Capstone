@@ -19,9 +19,10 @@ public class HerbsItem {
     private String herbsApplicationCategory;
     private boolean herbsOk;
     private String herbsPicUrl1;
+    private String herbsPicUrl2;
 
     public HerbsItem(String herbsName, String herbsNameCategory, String herbsDescription, String herbsDescriptionCategory, String herbsApplication,
-                     String herbsApplicationCategory, boolean herbsOk,String picUrl1) {
+                     String herbsApplicationCategory, boolean herbsOk,String picUrl1, String herbsPicUrl2) {
         this.herbsName = herbsName;
         this.herbsNameCategory = herbsNameCategory;
         this.herbsDescription = herbsDescription;
@@ -30,5 +31,6 @@ public class HerbsItem {
         this.herbsApplicationCategory = herbsApplicationCategory;
         this.herbsOk = herbsOk;
         this.herbsPicUrl1 = picUrl1;
+        this.herbsPicUrl2 = herbsPicUrl2;
     }
 }

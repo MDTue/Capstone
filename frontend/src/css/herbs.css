@@ -15,7 +15,7 @@
     gap: 0px 0px;
     grid-template-areas:
     "logo . navBarUpper"
-    "logo navBarLower fehler";
+    "logo navBarLower .";
     grid-area: 1 / 1 / 2 / 3;
     list-style-type: none;
     background-color:#e3dedb ;
@@ -38,6 +38,7 @@ li {
   grid-area: fehler;
   color: #c12127;
 }
+
 .navBarLower { grid-area: navBarLower; }
 .navBarUpper { grid-area: navBarUpper; }
 .herbList {
@@ -55,10 +56,13 @@ li {
     grid-area: herbEdit;
 }
 .picture1 {
-    height: 200px;
     grid-area: picture1;
+    height: 200px;
     }
-.picture2 { grid-area: picture2; }
+.picture2 {
+    grid-area: picture2;
+    height: 200px;
+}
 .herbName { grid-area: herbName; }
 .herbDescription { grid-area: herbDescription; }
 .herbApplication { grid-area: herbApplication; }

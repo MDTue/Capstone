@@ -35,3 +35,7 @@
     height: 30px;
     width: 300px;
 }
+.loginFehler{
+    grid-area: 5 / 2 / 6/ 3;
+    color: #c12127;
+}

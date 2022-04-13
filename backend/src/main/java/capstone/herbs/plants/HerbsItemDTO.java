@@ -19,6 +19,7 @@ public class HerbsItemDTO {
     private String herbsApplication;
     private String herbsApplicationCategory;
     private String herbsPicUrl1;
+    private String herbsPicUrl2;
     private boolean herbsOk;
     private List<Link> links;
 
@@ -29,10 +30,11 @@ public class HerbsItemDTO {
         return new HerbsItemDTO(herbsItem.getHerbsName(), herbsItem.getHerbsNameCategory(),
                                 herbsItem.getHerbsDescription(), herbsItem.getHerbsDescriptionCategory(),
                                 herbsItem.getHerbsApplication(), herbsItem.getHerbsApplicationCategory(),
-                                herbsItem.getHerbsPicUrl1(), herbsItem.isHerbsOk(), links );
+                                herbsItem.getHerbsPicUrl1(), herbsItem.getHerbsPicUrl2() , herbsItem.isHerbsOk(), links );
     }
     public HerbsItem toItem(){
-        return new HerbsItem(herbsName, herbsNameCategory, herbsDescription, herbsDescriptionCategory,herbsApplication,herbsApplicationCategory, herbsOk, herbsPicUrl1);
+        return new HerbsItem(herbsName, herbsNameCategory, herbsDescription, herbsDescriptionCategory,herbsApplication,herbsApplicationCategory,
+                herbsOk, herbsPicUrl1, herbsPicUrl2);
     }
 
     public HerbsItem toItem(String id) {
