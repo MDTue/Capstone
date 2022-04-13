@@ -35,7 +35,7 @@ export default function HerbsEdit(props:HerbsFromProps){
         setHerbsApplicationCategory(props.herbToChange.herbsApplicationCategory)
         setHerbsOk(props.herbToChange.herbsOk)
         setHerbsPicUrl1(props.herbToChange.herbsPicUrl1)
-        setHerbsPicUrl2(props.herbToChange.herbsPicUrl2)
+       // setHerbsPicUrl2(props.herbToChange.herbsPicUrl2)
 
     }, [props.herbToChange])
 
@@ -60,7 +60,7 @@ export default function HerbsEdit(props:HerbsFromProps){
         setHerbsApplicationCategory('');
         setHerbsOk(true);
         setHerbsPicUrl1('');
-        setHerbsPicUrl2('');
+     //   setHerbsPicUrl2('');
         setUrl('')
     }
 
@@ -80,7 +80,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                 herbsApplicationCategory: herbsApplicationCategory,
                 herbsOk: herbsOk,
                 herbsPicUrl1 : url,
-                herbsPicUrl2 : url2
+        //        herbsPicUrl2 : url2
             }),
         })
             .then(response => {
@@ -121,7 +121,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                  herbsApplicationCategory: herbsApplicationCategory,
                  herbsOk: herbsOk,
                  herbsPicUrl1: url,
-                 herbsPicUrl2: url2
+         //        herbsPicUrl2: url2
              })
             })
                 .then(response => {
