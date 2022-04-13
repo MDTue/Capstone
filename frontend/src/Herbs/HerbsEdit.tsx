@@ -12,7 +12,7 @@ interface HerbsFromProps{
 export default function HerbsEdit(props:HerbsFromProps){
     const[img, setImg] = useState({} as File)
     const[url, setUrl] = useState('')
-    const[url2, setUrl2] = useState('')
+    //const[url2, setUrl2] = useState('')
     const ref = useRef <HTMLInputElement>(null) ;
     const nav = useNavigate()
     const[herbsName, setHerbsName] = useState(localStorage.getItem('herbsName')??'')
@@ -22,7 +22,7 @@ export default function HerbsEdit(props:HerbsFromProps){
     const[herbsApplication, setHerbsApplication] = useState('')
     const[herbsApplicationCategory, setHerbsApplicationCategory] = useState('')
     const[herbsPic_Url1, setHerbsPicUrl1] = useState('')
-    const[herbsPic_Url2, setHerbsPicUrl2] = useState('')
+    // const[herbsPic_Url2, setHerbsPicUrl2] = useState('')
     const[herbsOk, setHerbsOk] = useState(true)
     const[errorMessage, setErrorMessage] = useState('')
     const[token] = useState(localStorage.getItem('token') ?? '');
