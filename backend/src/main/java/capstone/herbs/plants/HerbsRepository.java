@@ -11,4 +11,6 @@ public interface HerbsRepository extends MongoRepository<HerbsItem, String> {
     List<HerbsItem> findAllByHerbsName(String herbsName);
 
     List<HerbsItem> findAllByHerbsApplicationCategory(String categoryApplication, Sort herbsName);
+
+    List<HerbsItem> findAllByHerbsDescriptionCategory(String categoryDescription, Sort herbsName);
 }

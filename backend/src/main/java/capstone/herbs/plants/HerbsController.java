@@ -28,6 +28,17 @@ public class HerbsController {
                 .toList();
     }
 
+    @GetMapping("/categoryDesc/{categoryDescToSeek}")
+    public List<HerbsItemDTO> listHerbsByCategoryDescription(@PathVariable String categoryDescToSeek){
+        return herbsService.getAllHerbsByCategoryDescription(categoryDescToSeek).stream()
+                .map(herbsItem -> HerbsItemDTO.of(herbsItem))
+                .toList();
+    }
+
+
+
+
+
 
     @PostMapping
     public List<HerbsItemDTO> createHerbsItem(@RequestBody HerbsItemDTO newHerb){

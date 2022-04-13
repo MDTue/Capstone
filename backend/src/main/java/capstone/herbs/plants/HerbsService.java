@@ -27,11 +27,6 @@ public class HerbsService {
         return allHerbs;
     }
 
- /*   public List<HerbsItem> herbsToEdit(String herbsName) {
-        List<HerbsItem> allHerbsByName = herbsRepository.findAllByHerbsName(herbsName);
-        return allHerbsByName;
-    }
-*/
     public void deleteHerbsItem(String id) {
         herbsRepository.deleteById(id);
     }
@@ -40,4 +35,9 @@ public class HerbsService {
         List<HerbsItem> allHerbsByCategoryApplication = herbsRepository.findAllByHerbsApplicationCategory(categoryApplication, Sort.by("herbsName"));
         return allHerbsByCategoryApplication;
     }
+    public List<HerbsItem> getAllHerbsByCategoryDescription(String categoryDescription) {
+        List<HerbsItem> allHerbsByCategoryDescription = herbsRepository.findAllByHerbsDescriptionCategory(categoryDescription, Sort.by("herbsName"));
+        return allHerbsByCategoryDescription;
+    }
+
 }

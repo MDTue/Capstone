@@ -189,6 +189,8 @@ export default function HerbsEdit(props:HerbsFromProps){
                 }
             })
     }
+
+
     useEffect(() => {
             const timoutId = setTimeout(() => setErrorMessage(''), 10000)
             return () => clearTimeout(timoutId)
@@ -202,51 +204,49 @@ export default function HerbsEdit(props:HerbsFromProps){
                  <h3>{errorMessage}</h3>
              </div>
          </div>
+         <div className={'createButton'}>
+             <button onClick={clearFields} hidden={!token} >Neuanlage </button>
+         </div>
         <div className={'herbEdit'}>
             {url ?
                 <img src={url} alt="" className={'picture1'} />
             :
                 <img src={herbsPic_Url1} alt ="." className={'picture1'}/>
             }
-            <div className={'picture2'}>
-                {url ?
-                <img src={url2} alt="" className={'picture2'} />
-                :
-                <img src={herbsPic_Url2} alt ="." className={'picture2'}/>
-            }
-            </div>
+
+
+
             <input data-testid="herbName" className={'herbName'} type="text" placeholder={"Name"} value={herbsName}
                    onChange={ev => setHerbsName(ev.target.value)} disabled={!token}  />
-            <textarea className={'herbDescription'} rows={10} placeholder={"Beschreibung"}
+            <textarea className={'herbDescription'} rows={15} placeholder={"Beschreibung"}
                    value={herbsDescription} onChange={ev => setHerbsDescription(ev.target.value)}disabled={!token}/>
             <textarea className={'herbApplication'} rows={10} placeholder={"Anwendung"} value={herbsApplication}
                    onChange={ev => setHerbsApplication(ev.target.value)} disabled={!token} />
             <input className={'herbNameCategory'} type="text" placeholder={"Kategorie Pflanze"}
                    value={herbsNameCategory} onChange={ev => setHerbsNameCategory(ev.target.value)} disabled={!token}/>
-            <input className={'herbDescriptionCategory'} type="text" placeholder={"Kategorie Beschreibung"}
+            <input className={'herbDescriptionCategory'} type="text" placeholder="Kategorie Pflanzenbeschreibung"
                    value={herbsDescriptionCategory}
                    onChange={ev => setHerbsDescriptionCategory(ev.target.value)}disabled={!token} />
+
             <div className={'herbApplicationCategory'}>
                     <input type="text" placeholder={"Kategorie Anwendung"}
                            value={herbsApplicationCategory}
                            onChange={ev => setHerbsApplicationCategory(ev.target.value)}disabled={!token} />
-                <div className={'createButton'}>
-                    <button onClick={clearFields} disabled={!token} >Neuanlage</button>
-                </div>
+
+
                 <div className={'saveButton'}>
-                    <button  onClick={CreateOrEdit} disabled={!token} >Speichern</button>
+                    <button  onClick={CreateOrEdit} hidden={!token} >Speichern</button>
                 </div>
                 <div className={'deleteButton'}>
-                    <button  data-testid="delete-button" onClick={deleteHerb} disabled={!token} >Löschen</button>
+                    <button  data-testid="delete-button" onClick={deleteHerb} hidden={!token} >Löschen</button>
                 </div>
 
                 <div className={'seekPicture'}>
                     <input type="file" accept="image/*" ref={ref}  onChange={ev => {
-                    if(ev.target.files !=null){setImg(ev.target.files[0]);}} } disabled={!token} />
+                    if(ev.target.files !=null){setImg(ev.target.files[0]);}} } hidden={!token} />
                 </div>
 
-                <div className={'uploadButton'}>{img.size>0 && <button onClick={handleUpload}disabled={!token} >upload</button>}
-                </div>
+                <div className={'uploadButton'}>{img.size>0 && <button onClick={handleUpload}hidden={!token} >upload</button>}     </div>
             </div>
         </div>
      </div>
