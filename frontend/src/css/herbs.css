@@ -1,3 +1,7 @@
+.body{
+    background-color: #f3f2f0;
+}
+
 .page {
     display: grid;
     grid-template-columns: 15% 85%;
@@ -11,11 +15,11 @@
 .navBar {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr 0.5fr;
     gap: 0px 0px;
     grid-template-areas:
     "logo . navBarUpper"
-    "logo navBarLower fehler";
+    "logo navBarLower .";
     grid-area: 1 / 1 / 2 / 3;
     list-style-type: none;
     background-color:#e3dedb ;
@@ -26,18 +30,21 @@ li {
     padding: 8px;
 }
 .logo{
-    width:10rem;
-    grid-area: logo; }
+    grid-area: logo;
+    width:20rem;
+    float: left;
+}
 
 .knopf{
-    width: 4rem;
-    gap: 0px 5px;
+    width: 5rem;
+    gap: 6px 6px;
     cursor: pointer;
 }
 .fehler{
   grid-area: fehler;
   color: #c12127;
 }
+
 .navBarLower { grid-area: navBarLower; }
 .navBarUpper { grid-area: navBarUpper; }
 .herbList {
@@ -54,14 +61,89 @@ li {
     "picture2 herbApplication herbApplicationCategory";
     grid-area: herbEdit;
 }
-.picture1 {
-    height: 200px;
+.seekPicture1{
     grid-area: picture1;
+}
+.seekPicture2{
+    grid-area: picture2;
+}
+uploadButton1{
+    grid-area: picture1;
+}
+uploadButton2{
+    grid-area: picture2;
+}
+.picture1 {
+    grid-area: picture1;
+    height: 300px;
     }
-.picture2 { grid-area: picture2; }
-.herbName { grid-area: herbName; }
-.herbDescription { grid-area: herbDescription; }
-.herbApplication { grid-area: herbApplication; }
-.herbNameCategory { grid-area: herbNameCategory; }
-.herbDescriptionCategory { grid-area: herbDescriptionCategory; }
-.herbApplicationCategory { grid-area: herbApplicationCategory; }
+.picture2 {
+    grid-area: picture2;
+    height: 300px;
+}
+
+.herbName {
+    grid-area: herbName;
+    background-color: #e3dedb;
+    font-family: Arial;
+    font-size: 30px;
+    border: #eeeeee;
+
+}
+.herbDescription {
+    grid-area: herbDescription;
+    background-color: #e3dedb;
+    font-family: "Arial";
+    font-size: 15px;
+    border: none;
+}
+.herbApplication {
+    grid-area: herbApplication;
+    background-color: #e3dedb;
+    font-family: Arial;
+    font-size: 15px;
+    border: none;
+
+}
+.herbNameCategory {
+    grid-area: herbNameCategory;
+    background-color: #e3dedb;
+    font-family: Arial;
+    font-size: 13px;
+    border: none;
+}
+.herbDescriptionCategory {
+    grid-area: herbDescriptionCategory;
+    background-color: #e3dedb;
+    font-family: Arial;
+    font-size: 13px;
+    border: none;
+
+}
+
+
+.herbApplicationCategory {
+    grid-area: herbApplicationCategory;
+
+    background-color: #e3dedb;
+    font-family: Arial;
+    font-size: 13px;
+    border: none;
+
+}
+
+.createButton{
+    grid-area: herbList;
+    gap: 10px 5px;
+    cursor: pointer;
+
+}
+.saveButton{
+    padding: 30px 0px 0px 0px;
+
+    cursor: pointer;
+}
+.deleteButton{
+    padding: 30px 0px;
+    cursor: pointer;
+}

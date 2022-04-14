@@ -3,13 +3,11 @@ import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import NavBar from "../Components/NavBar";
 import logo from "../images/Logo_Hoerbs_Transparent.png";
-import knopfBestimmen from "../images/KnopfBestimmen.png";
-import knopfWissen from "../images/KnopfWissen.png";
-import knopfSirup from "../images/KnopfSirup.png";
-import knopfRezepte from "../images/KnopfRezepte.png";
+import knopfRezepte from "../images/Rezepte.png";
+import knopfApplication from "../images/Heilpflanzen.png";
+import knopfAlle from "../images/allePflanzen.png";
 import "../css/Login.css"
 import "../css/herbs.css"
-import "../css/Fehler.css"
 
 
 export default function Login() {
@@ -26,6 +24,7 @@ export default function Login() {
             body: JSON.stringify({
                 username: loginName,
                 password: loginPW
+
             })
         })
             .then(response => {
@@ -51,16 +50,19 @@ export default function Login() {
              <div className={'navBar'}>
                  <img src={logo} alt="Logo" className={'logo'} />
                  <div className ={'navBarLower'}>
-                     <img src={knopfBestimmen} alt='bestimmen' className={'knopf'} />
-                     <img src={knopfWissen} alt='Wissen'  className={'knopf'} />
-                     <img src={knopfSirup} alt='Sirup'  className={'knopf'} />
+                     <img src={knopfAlle} alt='alle' className={'knopf'} />
+                     <img src={knopfApplication} alt='Heilpflanze'  className={'knopf'} />
                      <img src={knopfRezepte} alt='Rezepte'  className={'knopf'} />
                  </div>
                  <div className={'navBarUpper'}>
                         <NavBar />
                  </div>
              </div>
+
             <div className={'loginContainer'}>
+                <div className={'loginFehler'}>
+                    <h3>{errorMessage}</h3>
+                </div>
                 <div className={'login'}>
                     <div className={'loginHeader'}>Login für registrierte User</div>
                     <input className={'loginUserName'} type="text" placeholder={"Name"} value={loginName}
@@ -70,11 +72,7 @@ export default function Login() {
                     <button onClick={loginUser} className={'loginButtonSave'} > Anmelden </button>
                 </div>
             </div>
-            <div className={'fehler'}>
-                <div className={'fehlerAusgabe'}>
-                    <div >{errorMessage}</div>
-                </div>
-            </div>
+
         </div>
     )
 }

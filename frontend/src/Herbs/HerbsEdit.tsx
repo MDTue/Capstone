@@ -12,6 +12,7 @@ interface HerbsFromProps{
 export default function HerbsEdit(props:HerbsFromProps){
     const[img, setImg] = useState({} as File)
     const[url, setUrl] = useState('')
+    //const[url2, setUrl2] = useState('')
     const ref = useRef <HTMLInputElement>(null) ;
     const nav = useNavigate()
     const[herbsName, setHerbsName] = useState(localStorage.getItem('herbsName')??'')
@@ -21,6 +22,7 @@ export default function HerbsEdit(props:HerbsFromProps){
     const[herbsApplication, setHerbsApplication] = useState('')
     const[herbsApplicationCategory, setHerbsApplicationCategory] = useState('')
     const[herbsPic_Url1, setHerbsPicUrl1] = useState('')
+    // const[herbsPic_Url2, setHerbsPicUrl2] = useState('')
     const[herbsOk, setHerbsOk] = useState(true)
     const[errorMessage, setErrorMessage] = useState('')
     const[token] = useState(localStorage.getItem('token') ?? '');
@@ -33,16 +35,21 @@ export default function HerbsEdit(props:HerbsFromProps){
         setHerbsApplicationCategory(props.herbToChange.herbsApplicationCategory)
         setHerbsOk(props.herbToChange.herbsOk)
         setHerbsPicUrl1(props.herbToChange.herbsPicUrl1)
+       // setHerbsPicUrl2(props.herbToChange.herbsPicUrl2)
 
     }, [props.herbToChange])
 
     const CreateOrEdit= (event:React.FormEvent) => {
-            event.preventDefault()
-        if(props.herbToChange.links != null){
-            editItem()
-        }else{
-            createHerb()
-        }
+        event.preventDefault()
+        if (herbsName.length > 0) {
+            if (props.herbToChange.links != null) {
+                editItem()
+            } else {
+                createHerb()
+            }
+        } else{
+            setErrorMessage("Bitte einen Pflanzennamen eingeben!")
+            }
     }
     const clearFields =() => {
         setHerbsName('');
@@ -53,6 +60,7 @@ export default function HerbsEdit(props:HerbsFromProps){
         setHerbsApplicationCategory('');
         setHerbsOk(true);
         setHerbsPicUrl1('');
+     //   setHerbsPicUrl2('');
         setUrl('')
     }
 
@@ -71,7 +79,8 @@ export default function HerbsEdit(props:HerbsFromProps){
                 herbsApplication: herbsApplication,
                 herbsApplicationCategory: herbsApplicationCategory,
                 herbsOk: herbsOk,
-                herbsPicUrl1 : url
+                herbsPicUrl1 : url,
+        //        herbsPicUrl2 : url2
             }),
         })
             .then(response => {
@@ -96,42 +105,43 @@ export default function HerbsEdit(props:HerbsFromProps){
     }
 
     const createHerb = () => {
-        fetch(`${process.env.REACT_APP_BASE_URL}/api/items`,{
-            method: 'POST',
-            headers: {
-               'Content-Type' : 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`,
-            },
-            body: JSON.stringify({
-                herbsName: herbsName,
-                herbsNameCategory: herbsNameCategory,
-                herbsDescription: herbsDescription,
-                herbsDescriptionCategory : herbsDescriptionCategory,
-                herbsApplication : herbsApplication,
-                herbsApplicationCategory : herbsApplicationCategory,
-                herbsOk: herbsOk,
-                herbsPicUrl1 : url
-            })
-        })
-            .then(response => {
-                if (response.status === 200) {
-                    return response.json()
-                }
-                if (response.status === 403){
-                    throw new Error("Session ist abgelaufen. Bitte neu anmelden!")
-                }
-                throw new Error("Fehler beim Speichern.")
 
+        fetch(`${process.env.REACT_APP_BASE_URL}/api/items`, {
+             method: 'POST',
+             headers: {
+                 'Content-Type': 'application/json',
+                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
+             },
+             body: JSON.stringify({
+                 herbsName: herbsName,
+                 herbsNameCategory: herbsNameCategory,
+                 herbsDescription: herbsDescription,
+                 herbsDescriptionCategory: herbsDescriptionCategory,
+                 herbsApplication: herbsApplication,
+                 herbsApplicationCategory: herbsApplicationCategory,
+                 herbsOk: herbsOk,
+                 herbsPicUrl1: url,
+         //        herbsPicUrl2: url2
+             })
             })
-            .then((herbsFromBackend: Array<HerbsItemDTO>) => {
-                setHerbsName('');
-                setHerbsDescription('');
-                props.onHerbsCreation();
+                .then(response => {
+                    if (response.status === 200) {
+                        return response.json()
+                    }
+                    if (response.status === 403) {
+                        throw new Error("Session ist abgelaufen. Bitte neu anmelden!")
+                    }
+                    throw new Error("Fehler beim Speichern.")
             })
-            .then (() => {
-                clearFields()
-            })
-            .catch(e=> setErrorMessage(e.message));
+                .then((herbsFromBackend: Array<HerbsItemDTO>) => {
+                    setHerbsName('');
+                    setHerbsDescription('');
+                    props.onHerbsCreation();
+                })
+                .then(() => {
+                    clearFields()
+                })
+                .catch(e => setErrorMessage(e.message));
     }
 
     const deleteHerb = () => {
@@ -179,6 +189,8 @@ export default function HerbsEdit(props:HerbsFromProps){
                 }
             })
     }
+
+
     useEffect(() => {
             const timoutId = setTimeout(() => setErrorMessage(''), 10000)
             return () => clearTimeout(timoutId)
@@ -192,47 +204,49 @@ export default function HerbsEdit(props:HerbsFromProps){
                  <h3>{errorMessage}</h3>
              </div>
          </div>
+         <div className={'createButton'}>
+             <button onClick={clearFields} hidden={!token} >Neuanlage </button>
+         </div>
         <div className={'herbEdit'}>
             {url ?
-                <img src={url} alt="uploaded pic" className={'picture1'} />
+                <img src={url} alt="" className={'picture1'} />
             :
                 <img src={herbsPic_Url1} alt ="." className={'picture1'}/>
             }
-            <div className={'picture2'}>
-                .
-            </div>
+
+
+
             <input data-testid="herbName" className={'herbName'} type="text" placeholder={"Name"} value={herbsName}
-                   onChange={ev => setHerbsName(ev.target.value)} disabled={!token}/>
-            <textarea className={'herbDescription'} rows={10} placeholder={"Beschreibung"}
+                   onChange={ev => setHerbsName(ev.target.value)} disabled={!token}  />
+            <textarea className={'herbDescription'} rows={15} placeholder={"Beschreibung"}
                    value={herbsDescription} onChange={ev => setHerbsDescription(ev.target.value)}disabled={!token}/>
             <textarea className={'herbApplication'} rows={10} placeholder={"Anwendung"} value={herbsApplication}
                    onChange={ev => setHerbsApplication(ev.target.value)} disabled={!token} />
             <input className={'herbNameCategory'} type="text" placeholder={"Kategorie Pflanze"}
                    value={herbsNameCategory} onChange={ev => setHerbsNameCategory(ev.target.value)} disabled={!token}/>
-            <input className={'herbDescriptionCategory'} type="text" placeholder={"Kategorie Beschreibung"}
+            <input className={'herbDescriptionCategory'} type="text" placeholder="Kategorie Pflanzenbeschreibung"
                    value={herbsDescriptionCategory}
                    onChange={ev => setHerbsDescriptionCategory(ev.target.value)}disabled={!token} />
+
             <div className={'herbApplicationCategory'}>
                     <input type="text" placeholder={"Kategorie Anwendung"}
                            value={herbsApplicationCategory}
                            onChange={ev => setHerbsApplicationCategory(ev.target.value)}disabled={!token} />
-                <div className={'createButton'}>
-                    <button onClick={clearFields} disabled={!token} >Neuanlage</button>
-                </div>
+
+
                 <div className={'saveButton'}>
-                    <button  onClick={CreateOrEdit} disabled={!token} >Speichern</button>
+                    <button  onClick={CreateOrEdit} hidden={!token} >Speichern</button>
                 </div>
                 <div className={'deleteButton'}>
-                    <button  data-testid="delete-button" onClick={deleteHerb} disabled={!token} >Löschen</button>
+                    <button  data-testid="delete-button" onClick={deleteHerb} hidden={!token} >Löschen</button>
                 </div>
 
                 <div className={'seekPicture'}>
                     <input type="file" accept="image/*" ref={ref}  onChange={ev => {
-                    if(ev.target.files !=null){setImg(ev.target.files[0]);}} } disabled={!token} />
+                    if(ev.target.files !=null){setImg(ev.target.files[0]);}} } hidden={!token} />
                 </div>
 
-                <div className={'uploadButton'}>{img.size>0 && <button onClick={handleUpload}disabled={!token} >upload</button>}
-                </div>
+                <div className={'uploadButton'}>{img.size>0 && <button onClick={handleUpload}hidden={!token} >upload</button>}     </div>
             </div>
         </div>
      </div>

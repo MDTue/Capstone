@@ -6,10 +6,9 @@ import "../css/herbs.css"
 
 
 import logo from "../images/Logo_Hoerbs_Transparent.png";
-import knopfRezepte from "../images/KnopfRezepte.png";
-import knopfWissen from "../images/KnopfWissen.png";
-import knopfBestimmen from "../images/KnopfBestimmen.png";
-import knopfSirup from "../images/KnopfSirup.png"
+import knopfRezepte from "../images/Rezepte.png";
+import knopfApplication from "../images/Heilpflanzen.png";
+import knopfAlle from "../images/allePflanzen.png";
 import NavBar from "../Components/NavBar";
 
 export default function HerbsPage(){
@@ -23,14 +22,14 @@ export default function HerbsPage(){
     const fetchAll = useCallback((seekId?:string) => {
         let urlToSeek= `${process.env.REACT_APP_BASE_URL}/api/items`;
         setHerbToChange({} as HerbsItemDTO)
-        if (!seekId) {
+        if (seekId==='') {
             urlToSeek = `${process.env.REACT_APP_BASE_URL}/api/items`
 
         }else if(seekId==="1"){
             urlToSeek = `${process.env.REACT_APP_BASE_URL}/api/items/category/Rezept`
 
         }else if(seekId==="2"){
-            urlToSeek = `${process.env.REACT_APP_BASE_URL}/api/items/category/wissen`
+            urlToSeek = `${process.env.REACT_APP_BASE_URL}/api/items/categoryDesc/Heilpflanze`
 
         }
         fetch(urlToSeek,{
@@ -67,10 +66,9 @@ export default function HerbsPage(){
                 <div className={'navBar'}>
                     <img src={logo} alt="Logo" className={'logo'} />
                     <div className ={'navBarLower'}>
-                            <img src={knopfBestimmen} alt='bestimmen' className={'knopf'} />
-                            <img onClick={()=>fetchAll("2")} src={knopfWissen} alt='Wissen'  className={'knopf'} />
-                            <img onClick={()=>fetchAll()} src={knopfSirup} alt='Sirup'  className={'knopf'} />
-                            <img onClick={()=>fetchAll("1")} src={knopfRezepte} alt='Rezepte'  className={'knopf'} />
+                            <img onClick={()=>fetchAll('')} src={knopfAlle} alt='alle' className={'knopf'} />
+                            <img onClick={()=>fetchAll('2')} src={knopfApplication} alt='Heilpflanze'  className={'knopf'} />
+                            <img onClick={()=>fetchAll('1')} src={knopfRezepte} alt='Rezepte'  className={'knopf'} />
                     </div>
                     <div className={'navBarUpper'}>
                             <NavBar />
