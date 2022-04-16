@@ -53,7 +53,4 @@ public class HerbsServiceTest {
         List<HerbsItem> actual = herbsService.getAllHerbs();
         assertThat(actual).isEqualTo(List.of(herbsItem1, herbsItem2, herbsItem3));
     }
-
-
-
 }

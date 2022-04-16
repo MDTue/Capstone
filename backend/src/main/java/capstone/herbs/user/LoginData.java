@@ -7,5 +7,13 @@ import lombok.Data;
         private String username;
         private String password;
         private String email;
+
+    public LoginData(String testuser, String s, String s1) {
+        this.username = testuser;
+        this.password = s;
+        this.email = s1;
     }
+}
+
+
 

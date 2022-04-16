@@ -95,7 +95,7 @@ uploadButton2{
     background-color: #e3dedb;
     font-family: "Arial";
     font-size: 15px;
-    border: none;
+
 }
 .herbApplication {
     grid-area: herbApplication;
@@ -107,43 +107,37 @@ uploadButton2{
 }
 .herbNameCategory {
     grid-area: herbNameCategory;
-    background-color: #e3dedb;
+    background-color: #f3f2f0;
     font-family: Arial;
     font-size: 13px;
-    border: none;
+    margin-inside: 3px;
+    padding: 30px 0px 0px 0px;
 }
 .herbDescriptionCategory {
     grid-area: herbDescriptionCategory;
-    background-color: #e3dedb;
+    background-color: #f3f2f0;
     font-family: Arial;
     font-size: 13px;
     border: none;
-
 }
-
-
 .herbApplicationCategory {
     grid-area: herbApplicationCategory;
-
-    background-color: #e3dedb;
+    background-color: #f3f2f0;
     font-family: Arial;
     font-size: 13px;
     border: none;
-
 }
 
 .createButton{
     grid-area: herbList;
     gap: 10px 5px;
-    cursor: pointer;
-
 }
 .saveButton{
     padding: 30px 0px 0px 0px;
-
+}
+.pointer {
     cursor: pointer;
 }
 .deleteButton{
     padding: 30px 0px;
-    cursor: pointer;
 }

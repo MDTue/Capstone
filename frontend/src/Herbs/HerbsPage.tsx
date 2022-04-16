@@ -16,8 +16,27 @@ export default function HerbsPage(){
     const[errorMessage, setErrorMessage]= useState('');
     const[herbToChange, setHerbToChange]=useState({}as HerbsItemDTO);
     const seekId = '';
+    const[token] = useState(localStorage.getItem('token') ?? '');
+ /*
+    const[sessionEnd, setSessionEnd] = useState(0);
+    const [username, setUsername] = useState('');
+    let x;
+    useEffect(() => {
+        if (localStorage.getItem('token')) {
+            const tokenDetails = JSON.parse(window.atob(token.split('.')[1]));
+            setUsername(tokenDetails.sub);
+            setSessionEnd(tokenDetails.exp);
+
+            let x = tokenDetails.exp
+
+            let a = new Date( 1000*60*60*24*365)
+            console.log("X: "+x);
+            console.log("a: "+a);
 
 
+        }
+    }, [token])
+*/
 
     const fetchAll = useCallback((seekId?:string) => {
         let urlToSeek= `${process.env.REACT_APP_BASE_URL}/api/items`;
@@ -69,6 +88,9 @@ export default function HerbsPage(){
                             <img onClick={()=>fetchAll('')} src={knopfAlle} alt='alle' className={'knopf'} />
                             <img onClick={()=>fetchAll('2')} src={knopfApplication} alt='Heilpflanze'  className={'knopf'} />
                             <img onClick={()=>fetchAll('1')} src={knopfRezepte} alt='Rezepte'  className={'knopf'} />
+                        {/*            <h3> {username} </h3>    */}
+                        {/*        <h3> {sessionEnd.toLocaleString()} </h3>   */}
+
                     </div>
                     <div className={'navBarUpper'}>
                             <NavBar />
