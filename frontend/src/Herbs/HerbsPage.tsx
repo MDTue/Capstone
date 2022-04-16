@@ -16,7 +16,7 @@ export default function HerbsPage(){
     const[errorMessage, setErrorMessage]= useState('');
     const[herbToChange, setHerbToChange]=useState({}as HerbsItemDTO);
     const seekId = '';
-    const[token] = useState(localStorage.getItem('token') ?? '');
+   // const[token] = useState(localStorage.getItem('token') ?? '');
  /*
     const[sessionEnd, setSessionEnd] = useState(0);
     const [username, setUsername] = useState('');
