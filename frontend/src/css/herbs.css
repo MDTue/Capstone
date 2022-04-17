@@ -50,6 +50,11 @@ li {
 .herbList {
     grid-area: herbList;
 }
+.herbListHeader {
+    grid-area: herbList;
+    font-size: larger;
+    color: #008800;
+}
 .herbEdit {
     display: grid;
     grid-template-columns: 0.5fr 1.5fr 1fr;
@@ -67,15 +72,14 @@ li {
 .seekPicture2{
     grid-area: picture2;
 }
-uploadButton1{
-    grid-area: picture1;
-}
+
 uploadButton2{
     grid-area: picture2;
 }
 .picture1 {
     grid-area: picture1;
     height: 300px;
+    width: 300px;
     }
 .picture2 {
     grid-area: picture2;

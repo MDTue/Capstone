@@ -1,0 +1,172 @@
+.body{
+    background-color: #f3f2f0;
+}
+
+.page {  display: grid;
+    grid-template-columns: 0.5fr 1fr 1.8fr 0.7fr;
+    grid-template-rows: 0.6fr 1.4fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+}
+
+.navBar {  display: grid;
+    grid-template-columns: 0.1fr 0.7fr 2.2fr 1fr;
+    grid-template-rows: 1.1fr 0.9fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-area: 1 / 1 / 2 / 5;
+    list-style-type: none;
+    background-color:#e3dedb ;
+}
+li {
+    float: left;
+    display: block;
+    padding: 8px;
+}
+
+.logo {
+    grid-area: 1 / 2 / 3 / 3;
+    width:20rem;
+    float: left;
+}
+
+.navBarLower { grid-area: 2 / 3 / 3 / 4; }
+.knopf{
+    grid-area:navBarLower;
+    width: 5rem;
+    gap: 6px 6px;
+    cursor: pointer;
+}
+
+.navBarUpper { grid-area: 1 / 4 / 2 / 5; }
+
+.messages { grid-area: 2 / 4 / 3 / 5; }
+
+.messagesMistake { grid-area: 1 / 3 / 2 / 4; }
+
+.fehler{
+    grid-area: messagesMistake;
+    color: #c12127;
+}
+
+.herbList {  display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.1fr 1.9fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-area: 2 / 1 / 4 / 2;
+}
+
+.herbListHeader { grid-area: 1 / 1 / 2 / 2; }
+
+.picture1 {  display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1.8fr 0.2fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-area: 2 / 2 / 3 / 3;
+    height: 300px;
+    width: 300px;
+}
+
+.seekPicture1 { grid-area: 2 / 1 / 3 / 2; }
+.uploadButton1{grid-area: seekPicture1;}
+
+.picture2 {  display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1.8fr 0.2fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-area: 3 / 2 / 4 / 3;
+    height: 300px;
+    width: 300px;
+}
+
+.seekPicture2 { grid-area: 2 / 1 / 3 / 2; }
+.uploadButton1{grid-area: seekPicture1;}
+
+
+.herbDescription {  display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.3fr 1.7fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-area: 2 / 3 / 3 / 4;
+}
+
+.herbName {
+    grid-area: 1 / 1 / 2 / 2;
+    background-color: #e3dedb;
+    font-family: Arial;
+    font-size: 30px;
+    border: #eeeeee;
+}
+
+.HerbDescription {
+    grid-area: 2 / 1 / 3 / 2;
+    background-color: #e3dedb;
+    font-family: "Arial";
+    font-size: 15px;
+}
+
+
+
+.herbApplication {
+    grid-area: 3 / 3 / 4 / 4;
+    font-family: Arial;
+    font-size: 15px;
+    border: none;
+}
+
+.category1 {  display: grid;
+    grid-template-columns: 1.2fr 0.8fr 1fr;
+    grid-template-rows: 0.5fr 0.5fr 2fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-area: 2 / 4 / 3 / 5;
+}
+
+.herbsNameCategory {
+    grid-area: 1 / 1 / 2 / 4;
+    font-family: Arial;
+    font-size: 13px;
+    margin-inside: 3px;
+    padding: 30px 0px 0px 0px;
+}
+
+.herbsDescriptionCategory {
+    grid-area: 2 / 1 / 3 / 4;
+    background-color: #f3f2f0;
+    font-family: Arial;
+    font-size: 13px;
+    border: none;
+}
+
+.herbApplicationCategory {  display: grid;
+    grid-template-columns: 0.9fr 1.1fr 1fr;
+    grid-template-rows: 0.5fr 0.4fr 0.5fr 0.5fr 0.5fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-area: 3 / 4 / 4 / 5;
+    background-color: #f3f2f0;
+    font-family: Arial;
+    font-size: 13px;
+    border: none;
+}
+
+.saveButton {
+    grid-area: 3 / 1 / 4 / 4;
+    padding: 30px 0px;
+}
+
+.deleteButton {
+    grid-area: 4 / 1 / 5 / 4;
+    padding: 30px 0px;
+}
+.createButton {
+    grid-area: 2 / 1 / 3 / 4;
+    gap: 10px 5px;
+}
+.pointer {
+    cursor: pointer;
+}
