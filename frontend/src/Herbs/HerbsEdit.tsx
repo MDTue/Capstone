@@ -10,6 +10,8 @@ interface HerbsFromProps{
 }
 
 export default function HerbsEdit(props:HerbsFromProps){
+
+
     const[img, setImg] = useState({} as File)
     const[url, setUrl] = useState('')
     //const[url2, setUrl2] = useState('')
@@ -26,6 +28,8 @@ export default function HerbsEdit(props:HerbsFromProps){
     const[herbsOk, setHerbsOk] = useState(true)
     const[errorMessage, setErrorMessage] = useState('')
     const[token] = useState(localStorage.getItem('token') ?? '');
+
+
     useEffect(()=>{
         setHerbsName(props.herbToChange.herbsName);
         setHerbsNameCategory(props.herbToChange.herbsNameCategory)
@@ -224,9 +228,9 @@ export default function HerbsEdit(props:HerbsFromProps){
                    onChange={ev => setHerbsApplication(ev.target.value)} disabled={!token} />
             <input className={'herbNameCategory'} type="text" placeholder={"Kategorie Pflanze"}
                    value={herbsNameCategory} onChange={ev => setHerbsNameCategory(ev.target.value)} disabled={!token}/>
-            <input className={'herbDescriptionCategory'} type="text" placeholder="Kategorie Pflanzenbeschreibung"
-                   value={herbsDescriptionCategory}
-                   onChange={ev => setHerbsDescriptionCategory(ev.target.value)}disabled={!token} />
+            <textarea className={'herbDescriptionCategory'} rows={1} placeholder={"Kategorie Pflanzenbeschreibung"}
+                    value={herbsDescriptionCategory}
+                    onChange={ev => setHerbsDescriptionCategory(ev.target.value)} disabled={!token} />
 
             <div className={'herbApplicationCategory'}>
                     <input type="text" placeholder={"Kategorie Anwendung"}
@@ -234,19 +238,19 @@ export default function HerbsEdit(props:HerbsFromProps){
                            onChange={ev => setHerbsApplicationCategory(ev.target.value)}disabled={!token} />
 
 
-                <div className={'saveButton'}>
-                    <button  onClick={CreateOrEdit} hidden={!token} >Speichern</button>
+                <div  className={'saveButton'}>
+                    <button  onClick={CreateOrEdit} className='pointer' hidden={!token} >Speichern</button>
                 </div>
                 <div className={'deleteButton'}>
-                    <button  data-testid="delete-button" onClick={deleteHerb} hidden={!token} >Löschen</button>
+                    <button  data-testid="delete-button" onClick={deleteHerb} className='pointer' hidden={!token} >Löschen</button>
                 </div>
 
                 <div className={'seekPicture'}>
                     <input type="file" accept="image/*" ref={ref}  onChange={ev => {
-                    if(ev.target.files !=null){setImg(ev.target.files[0]);}} } hidden={!token} />
+                    if(ev.target.files !=null){setImg(ev.target.files[0]);}} } className='pointer' hidden={!token} />
                 </div>
 
-                <div className={'uploadButton'}>{img.size>0 && <button onClick={handleUpload}hidden={!token} >upload</button>}     </div>
+                <div className={'uploadButton'}>{img.size>0 && <button onClick={handleUpload} className='pointer' hidden={!token} >upload</button>}     </div>
             </div>
         </div>
      </div>

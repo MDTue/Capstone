@@ -1,7 +1,6 @@
 package capstone.herbs;
 
 import capstone.herbs.plants.HerbsItem;
-import capstone.herbs.plants.HerbsItemDTO;
 import capstone.herbs.plants.HerbsRepository;
 import capstone.herbs.plants.HerbsService;
 import org.junit.jupiter.api.Test;
@@ -13,6 +12,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.*;
 
 public class HerbsServiceTest {
+
     @Test
     void shouldCreateNewHerb(){
         HerbsItem herbsItem = new HerbsItem();
@@ -53,7 +53,4 @@ public class HerbsServiceTest {
         List<HerbsItem> actual = herbsService.getAllHerbs();
         assertThat(actual).isEqualTo(List.of(herbsItem1, herbsItem2, herbsItem3));
     }
-
-
-
 }
