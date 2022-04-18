@@ -18,12 +18,12 @@ export default function HerbsPage(){
     const[herbToChange, setHerbToChange]=useState({}as HerbsItemDTO);
     const seekId = '';
     const[token] = useState(localStorage.getItem('token') ?? '');
-
-    const[sessionEnd, setSessionEnd] = useState(0);
-    const [username, setUsername] = useState('');
     const [headerListe, setHeaderListe] = useState('')
+ //   const[sessionEnd, setSessionEnd] = useState(0);
+ //   const [username, setUsername] = useState('');
 
 
+/*
     useEffect(() => {
         if (localStorage.getItem('token')) {
             const tokenDetails = JSON.parse(window.atob(token.split('.')[1]));
@@ -31,7 +31,7 @@ export default function HerbsPage(){
             setSessionEnd(tokenDetails.exp)
         }
     }, [token])
-
+*/
     const fetchAll = useCallback((seekId?:string) => {
         let urlToSeek= `${process.env.REACT_APP_BASE_URL}/api/items`;
         setHerbToChange({} as HerbsItemDTO)
