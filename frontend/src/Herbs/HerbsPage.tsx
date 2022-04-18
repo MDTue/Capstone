@@ -10,8 +10,7 @@ import knopfRezepte from "../images/Rezepte.png";
 import knopfApplication from "../images/Heilpflanzen.png";
 import knopfAlle from "../images/allePflanzen.png";
 import NavBar from "../Components/NavBar";
-import {format} from "util";
-import {TIMEOUT} from "dns";
+
 
 export default function HerbsPage(){
     const[herbs, setHerbs] = useState([] as Array<HerbsItemDTO>);
@@ -22,7 +21,7 @@ export default function HerbsPage(){
 
     const[sessionEnd, setSessionEnd] = useState(0);
     const [username, setUsername] = useState('');
-    let headerListe = ''
+    const [headerListe, setHeaderListe] = useState('')
 
 
     useEffect(() => {
@@ -30,33 +29,23 @@ export default function HerbsPage(){
             const tokenDetails = JSON.parse(window.atob(token.split('.')[1]));
             setUsername(tokenDetails.sub);
             setSessionEnd(tokenDetails.exp)
-            let d = new Date(tokenDetails.exp); // create Date object
-            console.log(d.toString());
-            console.log(d.toLocaleString()); // expected output: "7/25/2016, 1:35:07 PM"
-            console.log(d.toLocaleDateString()); // expected output: "7/25/2016"
-            console.log(d.toDateString());  // expected output: "Mon Jul 25 2016"
-            console.log(d.toTimeString()); // expected output: "13:35:07 GMT+0530 (India Standard Time)"
-            console.log(d.toLocaleTimeString()); // expected output: "1:35:07 PM"
         }
     }, [token])
-
 
     const fetchAll = useCallback((seekId?:string) => {
         let urlToSeek= `${process.env.REACT_APP_BASE_URL}/api/items`;
         setHerbToChange({} as HerbsItemDTO)
         if (seekId==='') {
             urlToSeek = `${process.env.REACT_APP_BASE_URL}/api/items`
-            headerListe = "Alle Pflanzen"
-
+            setHeaderListe("Alle Pflanzen")
         }else if(seekId==="1"){
             urlToSeek = `${process.env.REACT_APP_BASE_URL}/api/items/category/Rezept`
-            headerListe = "Rezepte"
-
+            setHeaderListe("Rezepte")
         }else if(seekId==="2"){
             urlToSeek = `${process.env.REACT_APP_BASE_URL}/api/items/categoryDesc/Heilpflanze`
-            headerListe = "Heilpflanzen"
-
+            setHeaderListe("Heilpflanzen")
         }
+
         fetch(urlToSeek,{
             method: 'GET',
             headers: {
@@ -86,6 +75,7 @@ export default function HerbsPage(){
             return () => clearTimeout(timoutId)
         }, [errorMessage]
     )
+
     return(
             <div>
                 <div className={'navBar'}>
@@ -93,7 +83,7 @@ export default function HerbsPage(){
                     <div className ={'navBarLower'}>
                             <img onClick={()=>fetchAll('')} src={knopfAlle} alt='alle' className={'knopf'} />
                             <img onClick={()=>fetchAll('2')} src={knopfApplication} alt='Heilpflanze'  className={'knopf'} />
-                            <img onClick={()=>fetchAll('1')} src={knopfRezepte} alt='Rezepte'  className={'knopf'} />
+                            <img onClick={()=>fetchAll('1')} src={knopfRezepte} alt='Rezepte'  className={'knopf'}  />
                     </div>
                     <div className={'navBarUpper'}>
                             <NavBar />
@@ -103,7 +93,9 @@ export default function HerbsPage(){
                         <div className={'herbListHeader'}>
                             <h3>{headerListe}</h3>
                         </div>
-                    <HerbsList herbs={herbs} onHerbsToChange={setHerbToChange} />
+                    <div className={'herbList'}>
+                       <HerbsList herbs={herbs} onHerbsToChange={setHerbToChange} />
+                    </div>
                     <HerbsEdit onHerbsCreation={fetchAll} herbToChange={herbToChange}/>
                 </div>
             </div>

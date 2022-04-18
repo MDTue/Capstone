@@ -47,13 +47,23 @@ li {
 
 .navBarLower { grid-area: navBarLower; }
 .navBarUpper { grid-area: navBarUpper; }
+.createButton{
+    grid-area: herbList;
+    padding: 50px 50px 50px 50px;
+    align-items: end;
+}
 .herbList {
     grid-area: herbList;
+    position: center;
+    padding-inline: 0px;
+    padding: 15px ;
+    margin-left: 0px;
+    row-gap: 0px;
 }
 .herbListHeader {
     grid-area: herbList;
-    font-size: larger;
-    color: #008800;
+    padding: 0px 0px 0px 50px;
+    color: #d18c03;
 }
 .herbEdit {
     display: grid;
@@ -132,10 +142,7 @@ uploadButton2{
     border: none;
 }
 
-.createButton{
-    grid-area: herbList;
-    gap: 10px 5px;
-}
+
 .saveButton{
     padding: 30px 0px 0px 0px;
 }
