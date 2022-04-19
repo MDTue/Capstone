@@ -28,13 +28,13 @@
     float: left;
     display: block;
     padding: 8px;
+    color: #688662;
 }
 .logo{
     grid-area: logo;
     width:20rem;
     float: left;
 }
-
 .knopf{
     width: 5rem;
     gap: 6px 6px;
@@ -44,17 +44,16 @@
   grid-area: fehler;
   color: #c12127;
 }
-
 .navBarLower { grid-area: navBarLower; }
-.navBarUpper { grid-area: navBarUpper; }
-.createButton{
-    grid-area: herbList;
-    border-radius: 5px;
-    background-color: #688662;
-    cursor: pointer;
-    color: #eeeeee;
-    align-items: end;
+.navBarUpper {
+    grid-area: navBarUpper;
+    color: #688662;
 }
+.navBarSchrift{
+    font-family: "Glacial Indifference";
+    color: #688662;
+}
+
 .herbList {
     grid-area: herbList;
     position: center;
@@ -81,17 +80,6 @@
     "picture2 herbApplication herbApplicationCategory";
     grid-area: herbEdit;
 }
-.seekPicture1{
-    grid-area: picture1;
-
-}
-.seekPicture2{
-    grid-area: picture2;
-}
-
-uploadButton2{
-    grid-area: picture2;
-}
 .picture1 {
     grid-area: picture1;
     height: 300px;
@@ -101,34 +89,30 @@ uploadButton2{
     grid-area: picture2;
     height: 300px;
 }
-
 .herbName {
     grid-area: herbName;
     background-color: #e3dedb;
-    font-family: Arial;
+    font-family: "Glacial Indifference";
     font-size: 30px;
     border: #eeeeee;
-
 }
 .herbDescription {
     grid-area: herbDescription;
     background-color: #e3dedb;
-    font-family: "Arial";
+    font-family: "Glacial Indifference";
     font-size: 15px;
-
 }
 .herbApplication {
     grid-area: herbApplication;
     background-color: #e3dedb;
-    font-family: Arial;
+    font-family: "Glacial Indifference";
     font-size: 15px;
     border: none;
-
 }
 .herbNameCategory {
     grid-area: herbNameCategory;
     background-color: #f3f2f0;
-    font-family: Arial;
+    font-family: "Glacial Indifference";
     font-size: 13px;
     margin-inside: 3px;
     padding: 30px 0px 0px 0px;
@@ -136,32 +120,16 @@ uploadButton2{
 .herbDescriptionCategory {
     grid-area: herbDescriptionCategory;
     background-color: #f3f2f0;
-    font-family: Arial;
+    font-family: "Glacial Indifference";
     font-size: 13px;
     border: none;
 }
 .herbApplicationCategory {
     grid-area: herbApplicationCategory;
     background-color: #f3f2f0;
-    font-family: Arial;
+    font-family: "Glacial Indifference";
     font-size: 13px;
     border: none;
 }
 
 
-.saveButton{
-    border-radius: 5px;
-    background-color: #688662;
-    cursor: pointer;
-    color: #eeeeee;
-}
-.pointer {
-    cursor: pointer;
-}
-.deleteButton{
-    border-radius: 5px;
-    background-color: #688662;
-    cursor: pointer;
-    color: #eeeeee;
-
-}

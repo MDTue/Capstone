@@ -1,5 +1,6 @@
 import {HerbsItemDTO} from "../Herbs/HerbsModel";
 import "../css/herbs.css"
+import "../css/button.css"
 
 
 interface HerbsListProps{

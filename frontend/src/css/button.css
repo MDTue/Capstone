@@ -1,0 +1,34 @@
+.createButton{
+    grid-area: herbList;
+    border-radius: 5px;
+    background-color: #688662;
+    cursor: pointer;
+    color: #eeeeee;
+    align-items: end;
+}
+.seekPicture{
+    grid-area: picture1;
+    border-radius: 5px;
+    background-color: #688662;
+    cursor: pointer;
+    color: #eeeeee;
+}
+.uploadButton{
+    grid-area: picture1;
+    border-radius: 5px;
+    background-color: #688662;
+    cursor: pointer;
+    color: #eeeeee;
+}
+.saveButton{
+    border-radius: 5px;
+    background-color: #688662;
+    cursor: pointer;
+    color: #eeeeee;
+}
+.deleteButton{
+    border-radius: 5px;
+    background-color: #688662;
+    cursor: pointer;
+    color: #eeeeee;
+}

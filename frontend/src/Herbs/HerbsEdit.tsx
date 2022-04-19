@@ -2,6 +2,7 @@ import {useEffect, useRef, useState} from "react";
 import {HerbsItemDTO} from "../Herbs/HerbsModel";
 import {useNavigate} from "react-router-dom";
 import "../css/herbs.css"
+import "../css/button.css"
 
 
 interface HerbsFromProps{
@@ -226,32 +227,34 @@ export default function HerbsEdit(props:HerbsFromProps){
                    value={herbsDescription} onChange={ev => setHerbsDescription(ev.target.value)}disabled={!token}/>
             <textarea className={'herbApplication'} rows={10} placeholder={"Anwendung"} value={herbsApplication}
                    onChange={ev => setHerbsApplication(ev.target.value)} disabled={!token} />
-            <input className={'herbNameCategory'} type="text" placeholder={"Kategorie Pflanze"}
+            <div className={'herbNameCategory'}>
+                <input placeholder={"Kategorie Pflanze"}
                    value={herbsNameCategory} onChange={ev => setHerbsNameCategory(ev.target.value)} disabled={!token}/>
+                </div>
             <div className={'herbDescriptionCategory'}>
-            <input  placeholder={"Kategorie Pflanzenbeschreibung"}
+                <input  placeholder={"Kategorie Beschreibung"}
                     value={herbsDescriptionCategory}
                     onChange={ev => setHerbsDescriptionCategory(ev.target.value)} disabled={!token} />
-            </div>
+                </div>
             <div className={'herbApplicationCategory'}>
                     <input type="text" placeholder={"Kategorie Anwendung"}
                            value={herbsApplicationCategory}
                            onChange={ev => setHerbsApplicationCategory(ev.target.value)}disabled={!token} />
 
 
-                <div  >
+                <div>
                     <button  onClick={CreateOrEdit} className='saveButton' hidden={!token} >Speichern</button>
                 </div>
-                <div >
+                <div>
                     <button  data-testid="delete-button" onClick={deleteHerb} className={'deleteButton'} hidden={!token} >Löschen</button>
                 </div>
 
-                <div className={'seekPicture'}>
-                    <input type="file" accept="image/*" ref={ref}  onChange={ev => {
-                    if(ev.target.files !=null){setImg(ev.target.files[0]);}} } className='pointer' hidden={!token} />
+                <div >
+                    <input type="file"  accept="image/*" ref={ref}  onChange={ev => {
+                    if(ev.target.files !=null){setImg(ev.target.files[0]);}} }   hidden={!token} />
                 </div>
 
-                <div className={'uploadButton'}>{img.size>0 && <button onClick={handleUpload} className='pointer' hidden={!token} >upload</button>}     </div>
+                <div >{img.size>0 && <button onClick={handleUpload} className={'uploadButton'} hidden={!token} >upload</button>}     </div>
             </div>
         </div>
      </div>

@@ -3,6 +3,9 @@ import HerbsEdit from "../Herbs/HerbsEdit";
 import {useCallback, useEffect, useState} from "react";
 import {HerbsItemDTO} from "../Herbs/HerbsModel";
 import "../css/herbs.css"
+import "../css/button.css"
+
+
 
 
 import logo from "../images/Logo_Hoerbs_Transparent.png";
@@ -80,6 +83,7 @@ export default function HerbsPage(){
 
     return(
             <div>
+                <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/glacial-indifference" type="text/css"/>
                 <div className={'navBar'}>
                     <img src={logo} alt="Logo" className={'logo'} />
                     <div className ={'navBarLower'}>
