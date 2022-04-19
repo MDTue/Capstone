@@ -19,6 +19,10 @@ export default function HerbsList(props:HerbsListProps){
                                           onClick={()=>props.onHerbsToChange(herbs)}
                                           key={herbs.herbsName+index}>{herbs.herbsName} </li>)}
                 </ul>
+
+
+
+
         </div>
     )
 }

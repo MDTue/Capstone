@@ -5,9 +5,6 @@ import {HerbsItemDTO} from "../Herbs/HerbsModel";
 import "../css/herbs.css"
 import "../css/button.css"
 
-
-
-
 import logo from "../images/Logo_Hoerbs_Transparent.png";
 import knopfRezepte from "../images/Rezepte.png";
 import knopfApplication from "../images/Heilpflanzen.png";
@@ -15,24 +12,12 @@ import knopfAlle from "../images/allePflanzen.png";
 import knopfRuehrkueche from "../images/Ruehrkueche.png";
 import NavBar from "../Components/NavBar";
 
-
 export default function HerbsPage(){
     const[herbs, setHerbs] = useState([] as Array<HerbsItemDTO>);
     const[errorMessage, setErrorMessage]= useState('');
     const[herbToChange, setHerbToChange]=useState({}as HerbsItemDTO);
     const seekId = '';
     const [headerListe, setHeaderListe] = useState('')
-    const[token] = useState(localStorage.getItem('token') ?? '');
-    const[sessionEnd, setSessionEnd] = useState(0);
-    const [username, setUsername] = useState('');
-
-    useEffect(() => {
-        if (localStorage.getItem('token')) {
-            const tokenDetails = JSON.parse(window.atob(token.split('.')[1]));
-            setUsername(tokenDetails.sub);
-            setSessionEnd(tokenDetails.exp*1000)
-        }
-    }, [token])
 
     const fetchAll = useCallback((seekId?:string) => {
         let urlToSeek= `${process.env.REACT_APP_BASE_URL}/api/items`;
@@ -93,9 +78,6 @@ export default function HerbsPage(){
                         <img onClick={()=>fetchAll('3')} src={knopfRuehrkueche} alt='Rührküche'  className={'knopf'}  />
                     </div>
                     <div className={'navBarUpper'}>
-                        {token &&
-                            <p>"Session läuft ab: " {new Date(sessionEnd).toLocaleString()}</p>
-                        }
                             <NavBar />
                     </div>
                 </div>

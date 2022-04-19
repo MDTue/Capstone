@@ -251,11 +251,11 @@ export default function HerbsEdit(props:HerbsFromProps){
                 <div>
                 <label hidden={!token}  >
                     < input type="file" accept="image/*" ref={ref}  onChange={ev => {
-                        if(ev.target.files !=null){setImg(ev.target.files[0]);}} }    /> <div className={'seekPicture'}> Bild Suchen</div>
+                        if(ev.target.files !=null){setImg(ev.target.files[0]);}} }    /> <div className={'seekPicture'}> Bild wählen</div>
                 </label>
                 </div>
 
-                <div >{img.size>0 && <button onClick={handleUpload} className={'uploadButton'} hidden={!token} >upload</button>}     </div>
+                <div >{img.size>0 && <button onClick={handleUpload} className={'uploadButton'} hidden={!token} >Bild hochladen</button>}     </div>
             </div>
         </div>
      </div>
