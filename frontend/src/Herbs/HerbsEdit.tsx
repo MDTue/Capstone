@@ -208,8 +208,8 @@ export default function HerbsEdit(props:HerbsFromProps){
                  <h3>{errorMessage}</h3>
              </div>
          </div>
-         <div className={'createButton'}>
-             <button onClick={clearFields} hidden={!token} >Neuanlage </button>
+         <div >
+             <button onClick={clearFields} className={'createButton'} hidden={!token} >Neuanlage </button>
          </div>
         <div className={'herbEdit'}>
             {url ?
@@ -228,21 +228,22 @@ export default function HerbsEdit(props:HerbsFromProps){
                    onChange={ev => setHerbsApplication(ev.target.value)} disabled={!token} />
             <input className={'herbNameCategory'} type="text" placeholder={"Kategorie Pflanze"}
                    value={herbsNameCategory} onChange={ev => setHerbsNameCategory(ev.target.value)} disabled={!token}/>
-            <textarea className={'herbDescriptionCategory'} rows={1} placeholder={"Kategorie Pflanzenbeschreibung"}
+            <div className={'herbDescriptionCategory'}>
+            <input  placeholder={"Kategorie Pflanzenbeschreibung"}
                     value={herbsDescriptionCategory}
                     onChange={ev => setHerbsDescriptionCategory(ev.target.value)} disabled={!token} />
-
+            </div>
             <div className={'herbApplicationCategory'}>
                     <input type="text" placeholder={"Kategorie Anwendung"}
                            value={herbsApplicationCategory}
                            onChange={ev => setHerbsApplicationCategory(ev.target.value)}disabled={!token} />
 
 
-                <div  className={'saveButton'}>
-                    <button  onClick={CreateOrEdit} className='pointer' hidden={!token} >Speichern</button>
+                <div  >
+                    <button  onClick={CreateOrEdit} className='saveButton' hidden={!token} >Speichern</button>
                 </div>
-                <div className={'deleteButton'}>
-                    <button  data-testid="delete-button" onClick={deleteHerb} className='pointer' hidden={!token} >Löschen</button>
+                <div >
+                    <button  data-testid="delete-button" onClick={deleteHerb} className={'deleteButton'} hidden={!token} >Löschen</button>
                 </div>
 
                 <div className={'seekPicture'}>

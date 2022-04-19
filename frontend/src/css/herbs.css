@@ -4,7 +4,7 @@
 
 .page {
     display: grid;
-    grid-template-columns: 15% 85%;
+    grid-template-columns:15% 85%;
     gap: 0px 0px;
     grid-template-areas:
     "herbList herbEdit";
@@ -24,7 +24,7 @@
     list-style-type: none;
     background-color:#e3dedb ;
 }
-li {
+.navBar li {
     float: left;
     display: block;
     padding: 8px;
@@ -49,7 +49,10 @@ li {
 .navBarUpper { grid-area: navBarUpper; }
 .createButton{
     grid-area: herbList;
-    padding: 50px 50px 50px 50px;
+    border-radius: 5px;
+    background-color: #688662;
+    cursor: pointer;
+    color: #eeeeee;
     align-items: end;
 }
 .herbList {
@@ -58,7 +61,9 @@ li {
     padding-inline: 0px;
     padding: 15px ;
     margin-left: 0px;
-    row-gap: 0px;
+}
+.herbList ul{
+    list-style: none;
 }
 .herbListHeader {
     grid-area: herbList;
@@ -78,6 +83,7 @@ li {
 }
 .seekPicture1{
     grid-area: picture1;
+
 }
 .seekPicture2{
     grid-area: picture2;
@@ -144,11 +150,18 @@ uploadButton2{
 
 
 .saveButton{
-    padding: 30px 0px 0px 0px;
+    border-radius: 5px;
+    background-color: #688662;
+    cursor: pointer;
+    color: #eeeeee;
 }
 .pointer {
     cursor: pointer;
 }
 .deleteButton{
-    padding: 30px 0px;
+    border-radius: 5px;
+    background-color: #688662;
+    cursor: pointer;
+    color: #eeeeee;
+
 }
