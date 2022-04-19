@@ -11,46 +11,41 @@ import knopfApplication from "../images/Heilpflanzen.png";
 import knopfAlle from "../images/allePflanzen.png";
 import NavBar from "../Components/NavBar";
 
+
 export default function HerbsPage(){
     const[herbs, setHerbs] = useState([] as Array<HerbsItemDTO>);
     const[errorMessage, setErrorMessage]= useState('');
     const[herbToChange, setHerbToChange]=useState({}as HerbsItemDTO);
     const seekId = '';
-   // const[token] = useState(localStorage.getItem('token') ?? '');
- /*
-    const[sessionEnd, setSessionEnd] = useState(0);
-    const [username, setUsername] = useState('');
-    let x;
+    const [headerListe, setHeaderListe] = useState('')
+ //   const[token] = useState(localStorage.getItem('token') ?? '');
+ //   const[sessionEnd, setSessionEnd] = useState(0);
+ //   const [username, setUsername] = useState('');
+
+
+/*
     useEffect(() => {
         if (localStorage.getItem('token')) {
             const tokenDetails = JSON.parse(window.atob(token.split('.')[1]));
             setUsername(tokenDetails.sub);
-            setSessionEnd(tokenDetails.exp);
-
-            let x = tokenDetails.exp
-
-            let a = new Date( 1000*60*60*24*365)
-            console.log("X: "+x);
-            console.log("a: "+a);
-
-
+            setSessionEnd(tokenDetails.exp)
         }
     }, [token])
 */
-
     const fetchAll = useCallback((seekId?:string) => {
         let urlToSeek= `${process.env.REACT_APP_BASE_URL}/api/items`;
         setHerbToChange({} as HerbsItemDTO)
         if (seekId==='') {
             urlToSeek = `${process.env.REACT_APP_BASE_URL}/api/items`
-
+            setHeaderListe("Alle Pflanzen")
         }else if(seekId==="1"){
             urlToSeek = `${process.env.REACT_APP_BASE_URL}/api/items/category/Rezept`
-
+            setHeaderListe("Rezepte")
         }else if(seekId==="2"){
             urlToSeek = `${process.env.REACT_APP_BASE_URL}/api/items/categoryDesc/Heilpflanze`
-
+            setHeaderListe("Heilpflanzen")
         }
+
         fetch(urlToSeek,{
             method: 'GET',
             headers: {
@@ -80,6 +75,7 @@ export default function HerbsPage(){
             return () => clearTimeout(timoutId)
         }, [errorMessage]
     )
+
     return(
             <div>
                 <div className={'navBar'}>
@@ -87,17 +83,19 @@ export default function HerbsPage(){
                     <div className ={'navBarLower'}>
                             <img onClick={()=>fetchAll('')} src={knopfAlle} alt='alle' className={'knopf'} />
                             <img onClick={()=>fetchAll('2')} src={knopfApplication} alt='Heilpflanze'  className={'knopf'} />
-                            <img onClick={()=>fetchAll('1')} src={knopfRezepte} alt='Rezepte'  className={'knopf'} />
-                        {/*            <h3> {username} </h3>    */}
-                        {/*        <h3> {sessionEnd.toLocaleString()} </h3>   */}
-
+                            <img onClick={()=>fetchAll('1')} src={knopfRezepte} alt='Rezepte'  className={'knopf'}  />
                     </div>
                     <div className={'navBarUpper'}>
                             <NavBar />
                     </div>
                 </div>
                 <div className={'page'}>
-                    <HerbsList herbs={herbs} onHerbsToChange={setHerbToChange} />
+                        <div className={'herbListHeader'}>
+                            <h3>{headerListe}</h3>
+                        </div>
+                    <div className={'herbList'}>
+                       <HerbsList herbs={herbs} onHerbsToChange={setHerbToChange} />
+                    </div>
                     <HerbsEdit onHerbsCreation={fetchAll} herbToChange={herbToChange}/>
                 </div>
             </div>
