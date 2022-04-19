@@ -83,7 +83,7 @@ export default function HerbsPage(){
 
     return(
             <div>
-                <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/glacial-indifference" type="text/css"/>
+
                 <div className={'navBar'}>
                     <img src={logo} alt="Logo" className={'logo'} />
                     <div className ={'navBarLower'}>
@@ -93,7 +93,9 @@ export default function HerbsPage(){
                         <img onClick={()=>fetchAll('3')} src={knopfRuehrkueche} alt='Rührküche'  className={'knopf'}  />
                     </div>
                     <div className={'navBarUpper'}>
-                        Session läuft ab:  {new Date(sessionEnd).toLocaleString() }
+                        {token &&
+                            <p>"Session läuft ab: " {new Date(sessionEnd).toLocaleString()}</p>
+                        }
                             <NavBar />
                     </div>
                 </div>
