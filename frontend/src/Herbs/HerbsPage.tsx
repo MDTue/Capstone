@@ -13,11 +13,14 @@ import knopfRuehrkueche from "../images/Ruehrkueche.png";
 import NavBar from "../Components/NavBar";
 
 export default function HerbsPage(){
+    const[token] = useState(localStorage.getItem('token') ?? '');
+    const[userRole, setUserRole] = useState([] as Array <string>);
     const[herbs, setHerbs] = useState([] as Array<HerbsItemDTO>);
     const[errorMessage, setErrorMessage]= useState('');
     const[herbToChange, setHerbToChange]=useState({}as HerbsItemDTO);
     const seekId = '';
     const [headerListe, setHeaderListe] = useState('')
+
 
     const fetchAll = useCallback((seekId?:string) => {
         let urlToSeek= `${process.env.REACT_APP_BASE_URL}/api/items`;

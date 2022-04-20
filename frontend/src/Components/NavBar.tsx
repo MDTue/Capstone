@@ -6,11 +6,13 @@ export default function NavBar(){
     const[token] = useState(localStorage.getItem('token') ?? '');
     const[sessionEnd, setSessionEnd] = useState(0);
     const [username, setUsername] = useState('');
+    const[userRole, setUserRole] = useState([] as Array <string>);
     useEffect(() => {
         if (localStorage.getItem('token')) {
             const tokenDetails = JSON.parse(window.atob(token.split('.')[1]));
             setUsername(tokenDetails.sub);
-            setSessionEnd(tokenDetails.exp*1000)
+            setSessionEnd(tokenDetails.exp*1000);
+            setUserRole(tokenDetails.roles)
         }
     }, [token])
 

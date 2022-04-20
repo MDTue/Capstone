@@ -11,11 +11,8 @@ interface HerbsFromProps{
 }
 
 export default function HerbsEdit(props:HerbsFromProps){
-
-
     const[img, setImg] = useState({} as File)
     const[url, setUrl] = useState('')
-    //const[url2, setUrl2] = useState('')
     const ref = useRef <HTMLInputElement>(null) ;
     const nav = useNavigate()
     const[herbsName, setHerbsName] = useState(localStorage.getItem('herbsName')??'')
@@ -28,8 +25,13 @@ export default function HerbsEdit(props:HerbsFromProps){
     const[herbsOk, setHerbsOk] = useState(true)
     const[errorMessage, setErrorMessage] = useState('')
     const[token] = useState(localStorage.getItem('token') ?? '');
-
-
+    const[userRole, setUserRole] = useState([] as Array <string>);
+    useEffect(() => {
+        if (localStorage.getItem('token')) {
+            const tokenDetails = JSON.parse(window.atob(token.split('.')[1]));
+            setUserRole(tokenDetails.roles)
+        }
+    }, [token])
     useEffect(()=>{
         setHerbsName(props.herbToChange.herbsName);
         setHerbsNameCategory(props.herbToChange.herbsNameCategory)
