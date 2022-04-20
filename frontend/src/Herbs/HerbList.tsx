@@ -1,5 +1,6 @@
 import {HerbsItemDTO} from "../Herbs/HerbsModel";
 import "../css/herbs.css"
+import "../css/button.css"
 
 
 interface HerbsListProps{
@@ -18,6 +19,10 @@ export default function HerbsList(props:HerbsListProps){
                                           onClick={()=>props.onHerbsToChange(herbs)}
                                           key={herbs.herbsName+index}>{herbs.herbsName} </li>)}
                 </ul>
+
+
+
+
         </div>
     )
 }

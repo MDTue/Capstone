@@ -1,0 +1,67 @@
+.createButton{
+    grid-area: herbList;
+    width: 150px;
+    padding: 5px 0px 10px 10px;
+    margin: 10px 50px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #688662;
+    cursor: pointer;
+    color: #eeeeee;
+    font-family: "Glacial Indifference";
+    font-size: 11pt;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+
+.seekPicture{
+    width: 140px;
+    padding: 5px 0px 10px 10px;
+    margin: 0 50px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #688662;
+    cursor: pointer;
+    color: #eeeeee;
+    font-family: "Glacial Indifference";
+    font-size: 11pt;
+    text-align: center;
+}
+.uploadButton{
+    grid-area: picture1;
+    width: 150px;
+    padding: 5px 0px 10px 10px;
+    margin-bottom: 10px;
+    margin: 0 50px;
+    border-radius: 5px;
+    background-color: #688662;
+    cursor: pointer;
+    color: #eeeeee;
+    font-family: "Glacial Indifference";
+    font-size: 11pt;
+}
+.saveButton{
+    width: 150px;
+    padding: 5px 0px 10px 10px;
+    margin: 10px 50px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #688662;
+    cursor: pointer;
+    color: #eeeeee;
+    font-family: "Glacial Indifference";
+    font-size: 11pt;
+}
+.deleteButton{
+    width: 150px;
+    padding: 5px 0px 10px 10px;
+    margin: 0 50px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #688662;
+    cursor: pointer;
+    color: #eeeeee;
+}

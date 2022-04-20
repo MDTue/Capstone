@@ -1,10 +1,12 @@
 .body{
     background-color: #f3f2f0;
+    font-family: "Glacial Indifference";
+    font-size: 13px;
 }
 
 .page {
     display: grid;
-    grid-template-columns: 15% 85%;
+    grid-template-columns:15% 85%;
     gap: 0px 0px;
     grid-template-areas:
     "herbList herbEdit";
@@ -24,17 +26,17 @@
     list-style-type: none;
     background-color:#e3dedb ;
 }
-li {
+.navBar li {
     float: left;
     display: block;
     padding: 8px;
+    color: #688662;
 }
 .logo{
     grid-area: logo;
     width:20rem;
     float: left;
 }
-
 .knopf{
     width: 5rem;
     gap: 6px 6px;
@@ -44,24 +46,41 @@ li {
   grid-area: fehler;
   color: #c12127;
 }
-
-.navBarLower { grid-area: navBarLower; }
-.navBarUpper { grid-area: navBarUpper; }
-.createButton{
-    grid-area: herbList;
-    padding: 50px 50px 50px 50px;
-    align-items: end;
+.fehlerSession{
+    color: #c12127;
 }
+.navBarLower { grid-area: navBarLower; }
+.navBarUpper {
+    grid-area: navBarUpper;
+    color: #688662;
+}
+.navBarSchrift{
+    padding: 20px 0px 0px 0px;
+    font-family: "Glacial Indifference";
+    font-size: 12pt;
+    color: #688662;
+}
+.navBarSchrift li {
+   display: block;
+   color: #688662;
+}
+
 .herbList {
     grid-area: herbList;
+    font-family: "Glacial Indifference";
+    font-size: 12pt;
     position: center;
     padding-inline: 0px;
     padding: 15px ;
     margin-left: 0px;
-    row-gap: 0px;
+}
+.herbList ul{
+    list-style: none;
 }
 .herbListHeader {
     grid-area: herbList;
+    font-family: "Glacial Indifference";
+    font-size: 12pt;
     padding: 0px 0px 0px 50px;
     color: #d18c03;
 }
@@ -76,16 +95,6 @@ li {
     "picture2 herbApplication herbApplicationCategory";
     grid-area: herbEdit;
 }
-.seekPicture1{
-    grid-area: picture1;
-}
-.seekPicture2{
-    grid-area: picture2;
-}
-
-uploadButton2{
-    grid-area: picture2;
-}
 .picture1 {
     grid-area: picture1;
     height: 300px;
@@ -95,60 +104,48 @@ uploadButton2{
     grid-area: picture2;
     height: 300px;
 }
-
 .herbName {
     grid-area: herbName;
     background-color: #e3dedb;
-    font-family: Arial;
-    font-size: 30px;
+    font-family: "Glacial Indifference";
+    font-size: 20pt;
     border: #eeeeee;
-
 }
 .herbDescription {
     grid-area: herbDescription;
     background-color: #e3dedb;
-    font-family: "Arial";
-    font-size: 15px;
-
+    font-family: "Glacial Indifference";
+    font-size: 12pt;
 }
 .herbApplication {
     grid-area: herbApplication;
     background-color: #e3dedb;
-    font-family: Arial;
-    font-size: 15px;
+    font-family: "Glacial Indifference";
+    font-size: 12pt;
     border: none;
-
 }
 .herbNameCategory {
     grid-area: herbNameCategory;
     background-color: #f3f2f0;
-    font-family: Arial;
-    font-size: 13px;
+    font-family: "Glacial Indifference";
+    font-size: 12pt;
     margin-inside: 3px;
     padding: 30px 0px 0px 0px;
 }
 .herbDescriptionCategory {
     grid-area: herbDescriptionCategory;
     background-color: #f3f2f0;
-    font-family: Arial;
-    font-size: 13px;
+    font-family: "Glacial Indifference";
+    font-size: 12pt;
     border: none;
 }
 .herbApplicationCategory {
     grid-area: herbApplicationCategory;
     background-color: #f3f2f0;
-    font-family: Arial;
-    font-size: 13px;
+    font-family: "Glacial Indifference";
+    font-size: 12pt;
     border: none;
+
 }
 
 
-.saveButton{
-    padding: 30px 0px 0px 0px;
-}
-.pointer {
-    cursor: pointer;
-}
-.deleteButton{
-    padding: 30px 0px;
-}

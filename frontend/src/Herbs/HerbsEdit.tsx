@@ -2,6 +2,7 @@ import {useEffect, useRef, useState} from "react";
 import {HerbsItemDTO} from "../Herbs/HerbsModel";
 import {useNavigate} from "react-router-dom";
 import "../css/herbs.css"
+import "../css/button.css"
 
 
 interface HerbsFromProps{
@@ -24,7 +25,6 @@ export default function HerbsEdit(props:HerbsFromProps){
     const[herbsApplication, setHerbsApplication] = useState('')
     const[herbsApplicationCategory, setHerbsApplicationCategory] = useState('')
     const[herbsPic_Url1, setHerbsPicUrl1] = useState('')
-    // const[herbsPic_Url2, setHerbsPicUrl2] = useState('')
     const[herbsOk, setHerbsOk] = useState(true)
     const[errorMessage, setErrorMessage] = useState('')
     const[token] = useState(localStorage.getItem('token') ?? '');
@@ -39,7 +39,6 @@ export default function HerbsEdit(props:HerbsFromProps){
         setHerbsApplicationCategory(props.herbToChange.herbsApplicationCategory)
         setHerbsOk(props.herbToChange.herbsOk)
         setHerbsPicUrl1(props.herbToChange.herbsPicUrl1)
-       // setHerbsPicUrl2(props.herbToChange.herbsPicUrl2)
 
     }, [props.herbToChange])
 
@@ -64,7 +63,6 @@ export default function HerbsEdit(props:HerbsFromProps){
         setHerbsApplicationCategory('');
         setHerbsOk(true);
         setHerbsPicUrl1('');
-     //   setHerbsPicUrl2('');
         setUrl('')
     }
 
@@ -83,8 +81,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                 herbsApplication: herbsApplication,
                 herbsApplicationCategory: herbsApplicationCategory,
                 herbsOk: herbsOk,
-                herbsPicUrl1 : url,
-        //        herbsPicUrl2 : url2
+                herbsPicUrl1 : herbsPic_Url1
             }),
         })
             .then(response => {
@@ -124,8 +121,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                  herbsApplication: herbsApplication,
                  herbsApplicationCategory: herbsApplicationCategory,
                  herbsOk: herbsOk,
-                 herbsPicUrl1: url,
-         //        herbsPicUrl2: url2
+                 herbsPicUrl1: herbsPic_Url1
              })
             })
                 .then(response => {
@@ -186,11 +182,12 @@ export default function HerbsEdit(props:HerbsFromProps){
             body: formData
         })
             .then(response => response.json())
-            .then(data => setUrl(data.secure_url))
+            .then(data => setHerbsPicUrl1(data.secure_url))
             .then(()  => {
                 if(ref.current !== null){
                     ref.current.value = ""
                 }
+                setImg({} as File)
             })
     }
 
@@ -208,8 +205,8 @@ export default function HerbsEdit(props:HerbsFromProps){
                  <h3>{errorMessage}</h3>
              </div>
          </div>
-         <div className={'createButton'}>
-             <button onClick={clearFields} hidden={!token} >Neuanlage </button>
+         <div >
+             <button onClick={clearFields} className={'createButton'} hidden={!token} >Neuanlage </button>
          </div>
         <div className={'herbEdit'}>
             {url ?
@@ -217,40 +214,40 @@ export default function HerbsEdit(props:HerbsFromProps){
             :
                 <img src={herbsPic_Url1} alt ="." className={'picture1'}/>
             }
-
-
-
             <input data-testid="herbName" className={'herbName'} type="text" placeholder={"Name"} value={herbsName}
                    onChange={ev => setHerbsName(ev.target.value)} disabled={!token}  />
             <textarea className={'herbDescription'} rows={15} placeholder={"Beschreibung"}
                    value={herbsDescription} onChange={ev => setHerbsDescription(ev.target.value)}disabled={!token}/>
             <textarea className={'herbApplication'} rows={10} placeholder={"Anwendung"} value={herbsApplication}
                    onChange={ev => setHerbsApplication(ev.target.value)} disabled={!token} />
-            <input className={'herbNameCategory'} type="text" placeholder={"Kategorie Pflanze"}
+            <div className={'herbNameCategory'}>
+                <input placeholder={"Kategorie Pflanze"}
                    value={herbsNameCategory} onChange={ev => setHerbsNameCategory(ev.target.value)} disabled={!token}/>
-            <textarea className={'herbDescriptionCategory'} rows={1} placeholder={"Kategorie Pflanzenbeschreibung"}
+                </div>
+            <div className={'herbDescriptionCategory'}>
+                <input  placeholder={"zB. Heilpflanze"}
                     value={herbsDescriptionCategory}
                     onChange={ev => setHerbsDescriptionCategory(ev.target.value)} disabled={!token} />
-
+                </div>
             <div className={'herbApplicationCategory'}>
-                    <input type="text" placeholder={"Kategorie Anwendung"}
+                    <input type="text" placeholder={"Rezept/Kosmetik"}
                            value={herbsApplicationCategory}
                            onChange={ev => setHerbsApplicationCategory(ev.target.value)}disabled={!token} />
-
-
-                <div  className={'saveButton'}>
-                    <button  onClick={CreateOrEdit} className='pointer' hidden={!token} >Speichern</button>
+                <div>
+                    <button  onClick={CreateOrEdit} className='saveButton' hidden={!token} >Speichern</button>
                 </div>
-                <div className={'deleteButton'}>
-                    <button  data-testid="delete-button" onClick={deleteHerb} className='pointer' hidden={!token} >Löschen</button>
+                <div>
+                    <button  data-testid="delete-button" onClick={deleteHerb} className={'deleteButton'} hidden={!token} >Löschen</button>
+                </div>
+                <div>
+                <label hidden={!token}  >
+                    < input type="file" accept="image/*" ref={ref}  onChange={ev => {
+                        if(ev.target.files !=null){setImg(ev.target.files[0]);} } }    /> <div className={'seekPicture'}> Bild wählen </div>
+                </label>
+
                 </div>
 
-                <div className={'seekPicture'}>
-                    <input type="file" accept="image/*" ref={ref}  onChange={ev => {
-                    if(ev.target.files !=null){setImg(ev.target.files[0]);}} } className='pointer' hidden={!token} />
-                </div>
-
-                <div className={'uploadButton'}>{img.size>0 && <button onClick={handleUpload} className='pointer' hidden={!token} >upload</button>}     </div>
+                <div >{img.size>0 && <button onClick={handleUpload} className={'uploadButton'} hidden={!token} >Bild hochladen</button>}  {img.name}   </div>
             </div>
         </div>
      </div>

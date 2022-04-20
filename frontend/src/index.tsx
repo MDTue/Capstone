@@ -15,7 +15,7 @@ ReactDOM.render(
             <BrowserRouter>
                 <Routes>
                     <Route path="/herbsList" element={<HerbsPage/>}/>
-                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/login" element={<Login/>} />
                     <Route path="/onlogout" element={<OnLogout/>}/>
                     <Route path="/register" element={<Register/>}/>
                     <Route path='/*' element={<App/>} />
