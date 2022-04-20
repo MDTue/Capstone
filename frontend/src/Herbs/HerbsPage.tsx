@@ -27,13 +27,13 @@ export default function HerbsPage(){
             setHeaderListe("Alle Pflanzen")
         }else if(seekId==="1"){
             urlToSeek = `${process.env.REACT_APP_BASE_URL}/api/items/category/Rezept`
-            setHeaderListe("Rezepte")
+            setHeaderListe("Rezept")
         }else if(seekId==="2"){
             urlToSeek = `${process.env.REACT_APP_BASE_URL}/api/items/categoryDesc/Heilpflanze`
-            setHeaderListe("Heilpflanzen")
+            setHeaderListe("Heilpflanze")
         }else if(seekId==="3"){
-            urlToSeek = `${process.env.REACT_APP_BASE_URL}/api/items/category/Cremes`
-            setHeaderListe("Cremes und Salben")
+            urlToSeek = `${process.env.REACT_APP_BASE_URL}/api/items/category/Kosmetik`
+            setHeaderListe("Kosmetik")
         }
 
         fetch(urlToSeek,{

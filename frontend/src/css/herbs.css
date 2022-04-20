@@ -46,6 +46,9 @@
   grid-area: fehler;
   color: #c12127;
 }
+.fehlerSession{
+    color: #c12127;
+}
 .navBarLower { grid-area: navBarLower; }
 .navBarUpper {
     grid-area: navBarUpper;
@@ -56,6 +59,10 @@
     font-family: "Glacial Indifference";
     font-size: 12pt;
     color: #688662;
+}
+.navBarSchrift li {
+   display: block;
+   color: #688662;
 }
 
 .herbList {

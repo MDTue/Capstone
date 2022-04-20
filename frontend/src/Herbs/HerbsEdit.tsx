@@ -25,7 +25,6 @@ export default function HerbsEdit(props:HerbsFromProps){
     const[herbsApplication, setHerbsApplication] = useState('')
     const[herbsApplicationCategory, setHerbsApplicationCategory] = useState('')
     const[herbsPic_Url1, setHerbsPicUrl1] = useState('')
-    // const[herbsPic_Url2, setHerbsPicUrl2] = useState('')
     const[herbsOk, setHerbsOk] = useState(true)
     const[errorMessage, setErrorMessage] = useState('')
     const[token] = useState(localStorage.getItem('token') ?? '');
@@ -40,7 +39,6 @@ export default function HerbsEdit(props:HerbsFromProps){
         setHerbsApplicationCategory(props.herbToChange.herbsApplicationCategory)
         setHerbsOk(props.herbToChange.herbsOk)
         setHerbsPicUrl1(props.herbToChange.herbsPicUrl1)
-       // setHerbsPicUrl2(props.herbToChange.herbsPicUrl2)
 
     }, [props.herbToChange])
 
@@ -65,7 +63,6 @@ export default function HerbsEdit(props:HerbsFromProps){
         setHerbsApplicationCategory('');
         setHerbsOk(true);
         setHerbsPicUrl1('');
-     //   setHerbsPicUrl2('');
         setUrl('')
     }
 
@@ -84,8 +81,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                 herbsApplication: herbsApplication,
                 herbsApplicationCategory: herbsApplicationCategory,
                 herbsOk: herbsOk,
-                herbsPicUrl1 : url,
-        //        herbsPicUrl2 : url2
+                herbsPicUrl1 : herbsPic_Url1
             }),
         })
             .then(response => {
@@ -218,9 +214,6 @@ export default function HerbsEdit(props:HerbsFromProps){
             :
                 <img src={herbsPic_Url1} alt ="." className={'picture1'}/>
             }
-
-
-
             <input data-testid="herbName" className={'herbName'} type="text" placeholder={"Name"} value={herbsName}
                    onChange={ev => setHerbsName(ev.target.value)} disabled={!token}  />
             <textarea className={'herbDescription'} rows={15} placeholder={"Beschreibung"}
@@ -232,12 +225,12 @@ export default function HerbsEdit(props:HerbsFromProps){
                    value={herbsNameCategory} onChange={ev => setHerbsNameCategory(ev.target.value)} disabled={!token}/>
                 </div>
             <div className={'herbDescriptionCategory'}>
-                <input  placeholder={"Kategorie Beschreibung"}
+                <input  placeholder={"zB. Heilpflanze"}
                     value={herbsDescriptionCategory}
                     onChange={ev => setHerbsDescriptionCategory(ev.target.value)} disabled={!token} />
                 </div>
             <div className={'herbApplicationCategory'}>
-                    <input type="text" placeholder={"Kategorie Anwendung"}
+                    <input type="text" placeholder={"Rezept/Kosmetik"}
                            value={herbsApplicationCategory}
                            onChange={ev => setHerbsApplicationCategory(ev.target.value)}disabled={!token} />
 

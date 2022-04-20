@@ -26,7 +26,13 @@ export default function NavBar(){
 
                  {token &&
                      <div className={'navBarSchrift'}>
-                         <p>Ende der Sitzung:  {new Date(sessionEnd).toLocaleString()} </p>
+                         {(sessionEnd > Date.now()) ?
+                            <p>Ende der Sitzung:  {new Date(sessionEnd).toLocaleString()} </p>
+                         :
+                            <div className={'fehlerSession'}>
+                                <p>Sitzung: abgelaufen</p>
+                            </div>
+                         }
                          <p>angemeldeter User: {username} </p>
                      </div>
                  }
