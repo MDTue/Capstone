@@ -121,8 +121,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                  herbsApplication: herbsApplication,
                  herbsApplicationCategory: herbsApplicationCategory,
                  herbsOk: herbsOk,
-                 herbsPicUrl1: url,
-         //        herbsPicUrl2: url2
+                 herbsPicUrl1: herbsPic_Url1
              })
             })
                 .then(response => {
@@ -183,11 +182,12 @@ export default function HerbsEdit(props:HerbsFromProps){
             body: formData
         })
             .then(response => response.json())
-            .then(data => setUrl(data.secure_url))
+            .then(data => setHerbsPicUrl1(data.secure_url))
             .then(()  => {
                 if(ref.current !== null){
                     ref.current.value = ""
                 }
+                setImg({} as File)
             })
     }
 
@@ -233,8 +233,6 @@ export default function HerbsEdit(props:HerbsFromProps){
                     <input type="text" placeholder={"Rezept/Kosmetik"}
                            value={herbsApplicationCategory}
                            onChange={ev => setHerbsApplicationCategory(ev.target.value)}disabled={!token} />
-
-
                 <div>
                     <button  onClick={CreateOrEdit} className='saveButton' hidden={!token} >Speichern</button>
                 </div>
@@ -244,11 +242,12 @@ export default function HerbsEdit(props:HerbsFromProps){
                 <div>
                 <label hidden={!token}  >
                     < input type="file" accept="image/*" ref={ref}  onChange={ev => {
-                        if(ev.target.files !=null){setImg(ev.target.files[0]);}} }    /> <div className={'seekPicture'}> Bild wählen</div>
+                        if(ev.target.files !=null){setImg(ev.target.files[0]);} } }    /> <div className={'seekPicture'}> Bild wählen </div>
                 </label>
+
                 </div>
 
-                <div >{img.size>0 && <button onClick={handleUpload} className={'uploadButton'} hidden={!token} >Bild hochladen</button>}     </div>
+                <div >{img.size>0 && <button onClick={handleUpload} className={'uploadButton'} hidden={!token} >Bild hochladen</button>}  {img.name}   </div>
             </div>
         </div>
      </div>
