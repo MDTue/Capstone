@@ -32,12 +32,12 @@ export default function HerbsEdit(props:HerbsFromProps){
         }
     }, [token])
     useEffect(()=>{
-        setHerbsName(props.herbToChange.herbsName);
-        setHerbsNameCategory(props.herbToChange.herbsNameCategory)
-        setHerbsDescription(props.herbToChange.herbsDescription);
-        setHerbsDescriptionCategory(props.herbToChange.herbsDescriptionCategory)
-        setHerbsApplication(props.herbToChange.herbsApplication);
-        setHerbsApplicationCategory(props.herbToChange.herbsApplicationCategory)
+        setHerbsName(props.herbToChange.herbsName ?? '');
+        setHerbsNameCategory(props.herbToChange.herbsNameCategory ?? '')
+        setHerbsDescription(props.herbToChange.herbsDescription ?? '');
+        setHerbsDescriptionCategory(props.herbToChange.herbsDescriptionCategory ?? '')
+        setHerbsApplication(props.herbToChange.herbsApplication ?? '');
+        setHerbsApplicationCategory(props.herbToChange.herbsApplicationCategory ?? '')
         setHerbsPicUrl1(props.herbToChange.herbsPicUrl1)
 
     }, [props.herbToChange])
@@ -187,8 +187,6 @@ export default function HerbsEdit(props:HerbsFromProps){
                 setImg({} as File)
             })
     }
-
-
     useEffect(() => {
             const timoutId = setTimeout(() => setErrorMessage(''), 10000)
             return () => clearTimeout(timoutId)

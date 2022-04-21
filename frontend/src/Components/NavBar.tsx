@@ -1,6 +1,8 @@
 import {Link} from "react-router-dom";
 import '../css/herbs.css';
 import {useEffect, useState} from "react";
+import {isVisible} from "@testing-library/user-event/dist/utils";
+import {onHidden} from "web-vitals/dist/modules/lib/onHidden";
 
 export default function NavBar(){
     const[token] = useState(localStorage.getItem('token') ?? '');
@@ -19,9 +21,11 @@ export default function NavBar(){
     return(
              <div className={'navBarUpper'}>
                 <div>
+
                 <li> <Link to="/herbsPage" className="navBarSchrift" >Home </Link> </li>
                 <li><Link to="/login" className="navBarSchrift">Login</Link> </li>
                 <li><Link to="/register" className="navBarSchrift">Registrierung </Link></li>
+                {userRole[0]==="ROLE_ADMIN"&&<li> <Link to="/login"  className="navBarSchrift" >Adminbereich  </Link> </li>}
                 <li><Link to="/onLogout" className="navBarSchrift">Logout</Link> </li>
                 </div>
 

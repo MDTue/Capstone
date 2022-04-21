@@ -2,6 +2,7 @@ import HerbsList from "../Herbs/HerbList";
 import HerbsEdit from "../Herbs/HerbsEdit";
 import {useCallback, useEffect, useState} from "react";
 import {HerbsItemDTO} from "../Herbs/HerbsModel";
+
 import "../css/herbs.css"
 import "../css/button.css"
 
@@ -21,8 +22,8 @@ export default function HerbsPage(){
     const seekId = '';
     const [headerListe, setHeaderListe] = useState('')
 
-
     const fetchAll = useCallback((seekId?:string) => {
+
         let urlToSeek= `${process.env.REACT_APP_BASE_URL}/api/items`;
         setHerbToChange({} as HerbsItemDTO)
         if (seekId==='') {
@@ -93,6 +94,5 @@ export default function HerbsPage(){
                     <HerbsEdit onHerbsCreation={fetchAll} herbToChange={herbToChange}/>
                 </div>
             </div>
-
     )
 }

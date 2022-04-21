@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Array;
 import java.security.Principal;
 
 @RestController
@@ -25,7 +26,7 @@ public class UserController {
     @GetMapping("me")
     public ResponseEntity<UserDocument> me(Principal principal){
 
-        return  ResponseEntity.of(userService.findByUserName(principal.getName()));
+        return ResponseEntity.of(userService.findByUserName(principal.getName()));
     }
 
 
