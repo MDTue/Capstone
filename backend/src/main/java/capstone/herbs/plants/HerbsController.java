@@ -21,11 +21,12 @@ public class HerbsController {
                 .map(herbsItem -> HerbsItemDTO.of(herbsItem))
                 .toList();
     }
+
     @GetMapping("/category/{categoryToSeek}")
     public List<HerbsItemDTO> listHerbsByCategoryApplication(@PathVariable String categoryToSeek){
         return herbsService.getAllHerbsByCategory(categoryToSeek).stream()
                 .map(herbsItem -> HerbsItemDTO.of(herbsItem))
-                .toList();
+                            .toList();
     }
 
     @GetMapping("/categoryDesc/{categoryDescToSeek}")
@@ -34,11 +35,6 @@ public class HerbsController {
                 .map(herbsItem -> HerbsItemDTO.of(herbsItem))
                 .toList();
     }
-
-
-
-
-
 
     @PostMapping
     public List<HerbsItemDTO> createHerbsItem(@RequestBody HerbsItemDTO newHerb){

@@ -22,7 +22,6 @@ export default function HerbsEdit(props:HerbsFromProps){
     const[herbsApplication, setHerbsApplication] = useState('')
     const[herbsApplicationCategory, setHerbsApplicationCategory] = useState('')
     const[herbsPic_Url1, setHerbsPicUrl1] = useState('')
-    const[herbsOk, setHerbsOk] = useState(true)
     const[errorMessage, setErrorMessage] = useState('')
     const[token] = useState(localStorage.getItem('token') ?? '');
     const[userRole, setUserRole] = useState([] as Array <string>);
@@ -39,14 +38,13 @@ export default function HerbsEdit(props:HerbsFromProps){
         setHerbsDescriptionCategory(props.herbToChange.herbsDescriptionCategory)
         setHerbsApplication(props.herbToChange.herbsApplication);
         setHerbsApplicationCategory(props.herbToChange.herbsApplicationCategory)
-        setHerbsOk(props.herbToChange.herbsOk)
         setHerbsPicUrl1(props.herbToChange.herbsPicUrl1)
 
     }, [props.herbToChange])
 
     const CreateOrEdit= (event:React.FormEvent) => {
         event.preventDefault()
-        if (herbsName.length > 0) {
+        if (herbsName) {
             if (props.herbToChange.links != null) {
                 editItem()
             } else {
@@ -63,7 +61,6 @@ export default function HerbsEdit(props:HerbsFromProps){
         setHerbsDescriptionCategory('');
         setHerbsApplication('');
         setHerbsApplicationCategory('');
-        setHerbsOk(true);
         setHerbsPicUrl1('');
         setUrl('')
     }
@@ -82,7 +79,6 @@ export default function HerbsEdit(props:HerbsFromProps){
                 herbsDescriptionCategory: herbsDescriptionCategory,
                 herbsApplication: herbsApplication,
                 herbsApplicationCategory: herbsApplicationCategory,
-                herbsOk: herbsOk,
                 herbsPicUrl1 : herbsPic_Url1
             }),
         })
@@ -122,7 +118,6 @@ export default function HerbsEdit(props:HerbsFromProps){
                  herbsDescriptionCategory: herbsDescriptionCategory,
                  herbsApplication: herbsApplication,
                  herbsApplicationCategory: herbsApplicationCategory,
-                 herbsOk: herbsOk,
                  herbsPicUrl1: herbsPic_Url1
              })
             })

@@ -34,21 +34,24 @@ public class HerbsServiceTest {
         herbsItem1.setHerbsName("A_Holunder");
         herbsItem1.setHerbsDescription("Holunderblüten blühen weiß.");
         herbsItem1.setHerbsApplication("Sirup aus den Blüten .");
+        herbsItem1.setHerbsOk(true);
 
         HerbsItem herbsItem2 = new HerbsItem();
         herbsItem2.setHerbsId("02");
         herbsItem2.setHerbsName("B_Primel");
         herbsItem2.setHerbsDescription("Blüte gelb.");
         herbsItem2.setHerbsApplication("Tee aus Blättern.");
+        herbsItem1.setHerbsOk(true);
 
         HerbsItem herbsItem3 = new HerbsItem();
         herbsItem3.setHerbsId("03");
         herbsItem3.setHerbsName("C_Gänseblümchen");
         herbsItem3.setHerbsDescription("Frühlingsblüher.");
         herbsItem3.setHerbsApplication("Blüten sind essbar.");
+        herbsItem1.setHerbsOk(true);
 
         HerbsRepository herbsRepository = mock(HerbsRepository.class);
-        when(herbsRepository.findAll(Sort.by("herbsName"))).thenReturn(List.of(herbsItem1,herbsItem2,herbsItem3));
+        when(herbsRepository.findAllByHerbsOkTrue(Sort.by("herbsName"))).thenReturn(List.of(herbsItem1,herbsItem2,herbsItem3));
         HerbsService herbsService = new HerbsService(herbsRepository);
         List<HerbsItem> actual = herbsService.getAllHerbs();
         assertThat(actual).isEqualTo(List.of(herbsItem1, herbsItem2, herbsItem3));

@@ -17,12 +17,14 @@ public class UserController {
 
     @PostMapping
     public UserDocument createUser(@RequestBody UserDocument user) {
+        user.setRole("USER");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userService.createUser(user);
     }
 
     @GetMapping("me")
     public ResponseEntity<UserDocument> me(Principal principal){
+
         return  ResponseEntity.of(userService.findByUserName(principal.getName()));
     }
 

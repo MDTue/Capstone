@@ -26,7 +26,6 @@ export default function HerbsPage(){
         let urlToSeek= `${process.env.REACT_APP_BASE_URL}/api/items`;
         setHerbToChange({} as HerbsItemDTO)
         if (seekId==='') {
-         //   urlToSeek = `${process.env.REACT_APP_BASE_URL}/api/items`
             setHeaderListe("Alle Pflanzen")
         }else if(seekId==="1"){
             urlToSeek = `${process.env.REACT_APP_BASE_URL}/api/items/category/Rezept`
