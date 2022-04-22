@@ -24,7 +24,8 @@ public class HerbsItemDTO {
 
     public static HerbsItemDTO of (HerbsItem herbsItem) {
         List<Link> links = List.of(
-                Link.of("/api/items/" + herbsItem.getHerbsId(), "self")
+                Link.of("/api/items/" + herbsItem.getHerbsId(), "self"),
+                Link.of("/api/items/admin/" + herbsItem.getHerbsId(), "confirm")
         );
         return new HerbsItemDTO(herbsItem.getHerbsName(), herbsItem.getHerbsNameCategory(),
                                 herbsItem.getHerbsDescription(), herbsItem.getHerbsDescriptionCategory(),

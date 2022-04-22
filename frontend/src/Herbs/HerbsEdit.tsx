@@ -11,7 +11,8 @@ interface HerbsFromProps{
 }
 
 export default function HerbsEdit(props:HerbsFromProps){
-    const[img, setImg] = useState({} as File)
+    // @ts-ignore
+    const [imgBild, setImgBild] = useState<File>(null)
     const[url, setUrl] = useState('')
     const ref = useRef <HTMLInputElement>(null) ;
     const nav = useNavigate()
@@ -64,7 +65,34 @@ export default function HerbsEdit(props:HerbsFromProps){
         setHerbsPicUrl1('');
         setUrl('')
     }
+    const confirmHerb=()=>{
+        fetch(`${process.env.REACT_APP_BASE_URL}${props.herbToChange.links.find(l=>l.rel=== 'confirm')?.href}`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+        })
+            .then(response => {
+                if (response.status === 200) {
+                    return response.json()
+                }
+                if (response.status === 403){
+                    nav("/login")
+                }else {
+                    throw new Error("Fehler beim Speichern.")
+                }
+            })
+            .then((herbsFromBackend: Array<HerbsItemDTO>) => {
+                setHerbsName('');
+                setHerbsDescription('');
+                props.onHerbsCreation();
+            })
+            .then (() => {
+                clearFields()
+            })
+            .catch(e=> setErrorMessage(e.message));
 
+    }
     const editItem = () => {
         fetch(`${process.env.REACT_APP_BASE_URL}${props.herbToChange.links.find(l=>l.rel=== 'self')?.href}`, {
             method: 'PUT',
@@ -171,7 +199,7 @@ export default function HerbsEdit(props:HerbsFromProps){
 
     const handleUpload = () => {
         const formData = new FormData()
-        formData.append('file', img)
+        formData.append('file', imgBild)
         formData.append('upload_preset', 'uploadHoerbs')
 
         fetch(`https://api.cloudinary.com/v1_1/hoerbs/image/upload`, {
@@ -184,7 +212,7 @@ export default function HerbsEdit(props:HerbsFromProps){
                 if(ref.current !== null){
                     ref.current.value = ""
                 }
-                setImg({} as File)
+                setImgBild({} as File)
             })
     }
     useEffect(() => {
@@ -232,17 +260,23 @@ export default function HerbsEdit(props:HerbsFromProps){
                     <button  onClick={CreateOrEdit} className='saveButton' hidden={!token} >Speichern</button>
                 </div>
                 <div>
+                    {userRole[0]==="ROLE_ADMIN"&&<button  onClick={confirmHerb} className='confirmButton' hidden={!token} >Freigabe</button>}
+                </div>
+
+
+                <div>
                     <button  data-testid="delete-button" onClick={deleteHerb} className={'deleteButton'} hidden={!token} >Löschen</button>
                 </div>
                 <div>
                 <label hidden={!token}  >
                     < input type="file" accept="image/*" ref={ref}  onChange={ev => {
-                        if(ev.target.files !=null){setImg(ev.target.files[0]);} } }    /> <div className={'seekPicture'}> Bild wählen </div>
+                        if(ev.target.files !=null){setImgBild(ev.target.files[0]);} } }    /> <div className={'seekPicture'}> Bild wählen </div>
                 </label>
 
                 </div>
 
-                <div >{img.size>0 && <button onClick={handleUpload} className={'uploadButton'} hidden={!token} >Bild hochladen</button>}  {img.name}   </div>
+                <div >{imgBild&&imgBild.size>0 && <button onClick={handleUpload} className={'uploadButton'} hidden={!token}
+                >Bild hochladen</button>}  {imgBild&&  imgBild.name}   </div>
             </div>
         </div>
      </div>

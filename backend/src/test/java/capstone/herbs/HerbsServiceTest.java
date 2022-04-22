@@ -3,6 +3,7 @@ package capstone.herbs;
 import capstone.herbs.plants.HerbsItem;
 import capstone.herbs.plants.HerbsRepository;
 import capstone.herbs.plants.HerbsService;
+import capstone.herbs.user.UserDocument;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.Sort;
 
@@ -15,6 +16,9 @@ public class HerbsServiceTest {
 
     @Test
     void shouldCreateNewHerb(){
+        UserDocument user = new UserDocument();
+        user.setUsername("Oskar");
+        user.setRole("USER");
         HerbsItem herbsItem = new HerbsItem();
         herbsItem.setHerbsId("01");
         herbsItem.setHerbsName("Holunder");
@@ -23,7 +27,7 @@ public class HerbsServiceTest {
 
         HerbsRepository dbMock = mock(HerbsRepository.class);
         HerbsService herbsService = new HerbsService(dbMock);
-        herbsService.createHerbsItem(herbsItem);
+        herbsService.createHerbsItem(herbsItem, user);
         verify(dbMock).save(herbsItem);
     }
 

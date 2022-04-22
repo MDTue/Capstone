@@ -61,7 +61,8 @@
     color: #688662;
 }
 .navBarSchrift li {
-   display: block;
+    text-align:left;
+    padding: 0 0;
    color: #688662;
 }
 

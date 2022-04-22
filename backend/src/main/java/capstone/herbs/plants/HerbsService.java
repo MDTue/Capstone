@@ -1,9 +1,12 @@
 package capstone.herbs.plants;
 
+import capstone.herbs.user.UserDocument;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class HerbsService {
@@ -13,8 +16,13 @@ public class HerbsService {
         this.herbsRepository = herbsRepository;
     }
 
-    public void createHerbsItem(HerbsItem newHerb ) {
-        newHerb.setHerbsOk(true);
+    public void createHerbsItem(HerbsItem newHerb, UserDocument user) {
+        String userRole = user.getRole();
+        if (Objects.equals(userRole, "ADMIN")) {
+            newHerb.setHerbsOk(true);
+        }else{
+            newHerb.setHerbsOk(true);
+        }
         herbsRepository.save(newHerb);
     }
 
@@ -48,4 +56,12 @@ public class HerbsService {
     }
 
 
+    public void confirmHerbsItem(String id) {
+        Optional<HerbsItem> herbToConfirm =  herbsRepository.findById(id);
+        if(herbToConfirm.isPresent()   ) {
+            HerbsItem herbOk = herbToConfirm.get();
+            herbOk.setHerbsOk(true);
+            herbsRepository.save(herbOk);
+        }
+    }
 }

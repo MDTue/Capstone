@@ -1,10 +1,7 @@
 package capstone.herbs.plants;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,6 +19,12 @@ public class HerbsAdminController {
                 .map(herbsItem -> HerbsItemDTO.of(herbsItem))
                 .toList();
     }
-
+    @PutMapping("/{id}")
+    public List<HerbsItemDTO> confirmHerb(@PathVariable String id){
+        herbsService.confirmHerbsItem(id);
+        return herbsService.getAllHerbs().stream()
+                .map(herbsItem -> HerbsItemDTO.of(herbsItem))
+                .toList();
+    }
 
 }

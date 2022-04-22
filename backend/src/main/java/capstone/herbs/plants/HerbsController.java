@@ -1,8 +1,11 @@
 package capstone.herbs.plants;
 
+import capstone.herbs.user.UserDocument;
+import capstone.herbs.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -14,6 +17,7 @@ import static java.util.stream.Collectors.toList;
 @RequiredArgsConstructor
 public class HerbsController {
     private final HerbsService herbsService;
+    private final UserService userService;
 
     @GetMapping
     public List<HerbsItemDTO> listAllHerbs(){
@@ -37,8 +41,9 @@ public class HerbsController {
     }
 
     @PostMapping
-    public List<HerbsItemDTO> createHerbsItem(@RequestBody HerbsItemDTO newHerb){
-        herbsService.createHerbsItem(newHerb.toItem());
+    public List<HerbsItemDTO> createHerbsItem(@RequestBody HerbsItemDTO newHerb, Principal principal){
+        UserDocument user = userService.findByUserName(principal.getName()) .orElseThrow();
+        herbsService.createHerbsItem(newHerb.toItem(), user);
         return listAllHerbs();
     }
 

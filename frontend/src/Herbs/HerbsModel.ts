@@ -5,7 +5,6 @@ export interface HerbsItemDTO {
     herbsDescriptionCategory: string;
     herbsApplication: string;
     herbsApplicationCategory: string;
-
     herbsPicUrl1: string;
     herbsPicUrl2: string;
     links: Array<Link>;

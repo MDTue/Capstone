@@ -11,16 +11,25 @@ import knopfRezepte from "../images/Rezepte.png";
 import knopfApplication from "../images/Heilpflanzen.png";
 import knopfAlle from "../images/allePflanzen.png";
 import knopfRuehrkueche from "../images/Ruehrkueche.png";
+import knopfFreigabe from "../images/Freigabe.png";
 import NavBar from "../Components/NavBar";
+import {Link} from "react-router-dom";
 
 export default function HerbsPage(){
     const[token] = useState(localStorage.getItem('token') ?? '');
-    const[userRole, setUserRole] = useState([] as Array <string>);
     const[herbs, setHerbs] = useState([] as Array<HerbsItemDTO>);
     const[errorMessage, setErrorMessage]= useState('');
     const[herbToChange, setHerbToChange]=useState({}as HerbsItemDTO);
     const seekId = '';
     const [headerListe, setHeaderListe] = useState('')
+
+    const[userRole, setUserRole] = useState([] as Array <string>);
+    useEffect(() => {
+        if (localStorage.getItem('token')) {
+            const tokenDetails = JSON.parse(window.atob(token.split('.')[1]));
+            setUserRole(tokenDetails.roles)
+        }
+    }, [token])
 
     const fetchAll = useCallback((seekId?:string) => {
 
@@ -37,6 +46,9 @@ export default function HerbsPage(){
         }else if(seekId==="3"){
             urlToSeek = `${process.env.REACT_APP_BASE_URL}/api/items/category/Kosmetik`
             setHeaderListe("Kosmetik")
+        }else if(seekId==="4"){
+            urlToSeek = `${process.env.REACT_APP_BASE_URL}/api/items/admin`
+            setHeaderListe("Freigabe erforderlich für")
         }
 
         fetch(urlToSeek,{
@@ -71,7 +83,6 @@ export default function HerbsPage(){
 
     return(
             <div>
-
                 <div className={'navBar'}>
                     <img src={logo} alt="Logo" className={'logo'} />
                     <div className ={'navBarLower'}>
@@ -79,6 +90,7 @@ export default function HerbsPage(){
                         <img onClick={()=>fetchAll('2')} src={knopfApplication} alt='Heilpflanze'  className={'knopf'} />
                         <img onClick={()=>fetchAll('1')} src={knopfRezepte} alt='Rezepte'  className={'knopf'}  />
                         <img onClick={()=>fetchAll('3')} src={knopfRuehrkueche} alt='Rührküche'  className={'knopf'}  />
+                        {userRole[0]==="ROLE_ADMIN"&&<img onClick={()=>fetchAll('4')} src={knopfFreigabe} alt='Freigabe'  className={'knopf'}  />}
                     </div>
                     <div className={'navBarUpper'}>
                             <NavBar />
