@@ -3,7 +3,7 @@ import {getByTestId, render, screen} from "@testing-library/react";
 import HerbsEdit from "./HerbsEdit";
 import {BrowserRouter} from "react-router-dom";
 
-beforeEach(()=> localStorage.setItem("token", "123"))
+beforeEach(()=> localStorage.setItem("token", `123.${window.btoa('{"roles":["ROLE_USER"]}')}`))
 afterEach(()=> localStorage.clear())
 
 test('that component is rendered', () => {
@@ -15,12 +15,13 @@ test('that component is rendered', () => {
         herbsNameCategory: 'Heilkraut',
         herbsApplicationCategory: 'Tee',
         herbsDescriptionCategory: 'sonnige Standorte',
-        herbsOk: true,
         herbsPicUrl1: '',
         herbsPicUrl2: '',
         links: []
     }
+
     const testChangeFunction = () => {    };
+
     render(<BrowserRouter> <HerbsEdit herbToChange={editItem} onHerbsCreation={testChangeFunction}/> </BrowserRouter>);
     expect(screen.getByTestId('herbName').getAttribute('value')).toEqual('Zistrose')
 })
@@ -34,7 +35,6 @@ test('that component is deleted', (done) => {
         herbsNameCategory: 'Heilkraut',
         herbsApplicationCategory: 'Tee',
         herbsDescriptionCategory: 'sonnige Standorte',
-        herbsOk: true,
         herbsPicUrl1: '',
         herbsPicUrl2: '',
         links: []
@@ -45,7 +45,6 @@ test('that component is deleted', (done) => {
         herbsNameCategory: 'Heilkraut',
         herbsApplicationCategory: 'Tee',
         herbsDescriptionCategory: 'sonnige Standorte',
-        herbsOk: true,
         herbsPicUrl1: '',
         herbsPicUrl2: '',
         links: []
@@ -56,7 +55,6 @@ test('that component is deleted', (done) => {
         herbsNameCategory : 'Heilkraut',
         herbsApplicationCategory : 'Tee',
         herbsDescriptionCategory : 'sonnige Standorte',
-        herbsOk : true,
         herbsPicUrl1 : '',
         herbsPicUrl2: '',
         links : []

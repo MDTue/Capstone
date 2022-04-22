@@ -45,6 +45,4 @@ public class LoginController {
                 .map(GrantedAuthority::getAuthority)
                 .toList();
     }
-
-
 }

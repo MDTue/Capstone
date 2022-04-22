@@ -2,6 +2,7 @@ package capstone.herbs.user;
 
 import lombok.Data;
 
+
 @Data
     public class LoginData {
         private String username;
@@ -13,6 +14,10 @@ import lombok.Data;
         this.password = s;
         this.email = s1;
     }
+
+
+
+
 }
 
 

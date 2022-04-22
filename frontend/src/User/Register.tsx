@@ -5,8 +5,11 @@ import logo from "../images/Logo_Hoerbs_Transparent.png";
 import knopfRezepte from "../images/Rezepte.png";
 import knopfApplication from "../images/Heilpflanzen.png";
 import knopfAlle from "../images/allePflanzen.png";
+import knopfRuehrkueche from "../images/Ruehrkueche.png";
 import "../css/Login.css"
 import "../css/herbs.css"
+
+
 
 export default function Register() {
     const [loginName, setLoginName] = useState('')
@@ -55,6 +58,7 @@ export default function Register() {
                     <img src={knopfAlle} alt='alle' className={'knopf'} />
                     <img src={knopfApplication} alt='Heilpflanze'  className={'knopf'} />
                     <img src={knopfRezepte} alt='Rezepte'  className={'knopf'} />
+                    <img src={knopfRuehrkueche} alt='Rührküche' className={'knopf'}/>
                 </div>
                 <div className={'navBarUpper'}>
                     <NavBar />
