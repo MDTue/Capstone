@@ -15,7 +15,7 @@ test('that component is rendered', () => {
         herbsNameCategory: 'Heilkraut',
         herbsApplicationCategory: 'Tee',
         herbsDescriptionCategory: 'sonnige Standorte',
-        herbsOk: true,
+
         herbsPicUrl1: '',
         herbsPicUrl2: '',
         links: []
@@ -34,7 +34,7 @@ test('that component is deleted', (done) => {
         herbsNameCategory: 'Heilkraut',
         herbsApplicationCategory: 'Tee',
         herbsDescriptionCategory: 'sonnige Standorte',
-        herbsOk: true,
+
         herbsPicUrl1: '',
         herbsPicUrl2: '',
         links: []
@@ -45,7 +45,7 @@ test('that component is deleted', (done) => {
         herbsNameCategory: 'Heilkraut',
         herbsApplicationCategory: 'Tee',
         herbsDescriptionCategory: 'sonnige Standorte',
-        herbsOk: true,
+
         herbsPicUrl1: '',
         herbsPicUrl2: '',
         links: []
@@ -56,7 +56,7 @@ test('that component is deleted', (done) => {
         herbsNameCategory : 'Heilkraut',
         herbsApplicationCategory : 'Tee',
         herbsDescriptionCategory : 'sonnige Standorte',
-        herbsOk : true,
+
         herbsPicUrl1 : '',
         herbsPicUrl2: '',
         links : []
