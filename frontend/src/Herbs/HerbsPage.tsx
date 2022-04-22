@@ -13,7 +13,7 @@ import knopfAlle from "../images/allePflanzen.png";
 import knopfRuehrkueche from "../images/Ruehrkueche.png";
 import knopfFreigabe from "../images/Freigabe.png";
 import NavBar from "../Components/NavBar";
-import {Link} from "react-router-dom";
+
 
 export default function HerbsPage(){
     const[token] = useState(localStorage.getItem('token') ?? '');
@@ -48,7 +48,7 @@ export default function HerbsPage(){
             setHeaderListe("Kosmetik")
         }else if(seekId==="4"){
             urlToSeek = `${process.env.REACT_APP_BASE_URL}/api/items/admin`
-            setHeaderListe("Freigabe erforderlich für")
+            setHeaderListe("Freigabe erforderlich")
         }
 
         fetch(urlToSeek,{

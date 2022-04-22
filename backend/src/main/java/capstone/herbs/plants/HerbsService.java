@@ -21,7 +21,7 @@ public class HerbsService {
         if (Objects.equals(userRole, "ADMIN")) {
             newHerb.setHerbsOk(true);
         }else{
-            newHerb.setHerbsOk(true);
+            newHerb.setHerbsOk(false);
         }
         herbsRepository.save(newHerb);
     }

@@ -81,7 +81,7 @@
 .herbListHeader {
     grid-area: herbList;
     font-family: "Glacial Indifference";
-    font-size: 12pt;
+    font-size: 10pt;
     padding: 0px 0px 0px 50px;
     color: #d18c03;
 }
