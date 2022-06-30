@@ -21,9 +21,11 @@ export default function NavBar(){
              <div className={'navBarUpper'}>
                 <div>
                 <li> <Link to="/herbsPage" className="navBarSchrift" >Home </Link> </li>
+                <li> <Link to="/readMe" className="readMe" >Wer sind wir </Link> </li>
                 <li><Link to="/login" className="navBarSchrift">Login</Link> </li>
                 <li><Link to="/register" className="navBarSchrift">Registrierung </Link></li>
                 {userRole[0]==="ROLE_ADMIN"&&<li> <Link to="/login"  className="navBarSchrift" >Adminbereich  </Link> </li>}
+                {userRole[0]==="ROLE_ADMIN"&&<li> <Link to="/editReadMe"  className="readMe" >Adminbereich  </Link> </li>}
                 <li><Link to="/onLogout" className="navBarSchrift">Logout</Link> </li>
                     <br></br>
                 </div>
